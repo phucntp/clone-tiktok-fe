@@ -1,14 +1,14 @@
 import React from "react";
 
 interface Props {
-  label: string;
+  label?: string;
 }
 
 function InputPassword({ label }: Props) {
   return (
     <div>
-      <label>{label}</label>
-      <input type="password" />
+      {label && <label>{label}</label>}
+      <input type="password" className="w-100 normal-input"/>
     </div>
   );
 }
