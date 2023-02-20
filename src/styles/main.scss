@@ -1,5 +1,65 @@
-@import 'variables';
+@import "variables";
 
 .text-white {
-    color: $color-white;
+  color: $color-white;
+}
+
+.d-flex {
+  @include flexbox;
+}
+
+.justify-center {
+  @include flexbox-justify-center;
+}
+.align-center {
+  @include flexbox-align-center;
+}
+
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .p-#{$i} {
+    padding: $fontsize !important;
+  }
+}
+
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .m-#{$i} {
+    margin: $fontsize !important;
+  }
+}
+
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .font-#{$i} {
+    font-size: $fontsize !important;
+  }
+}
+
+@for $i from 0 through 100 {
+  $fontsize: 1% * $i;
+  .w-#{$i} {
+    width: $fontsize !important;
+  }
+}
+
+@for $i from 0 through 1000 {
+  $fontsize: 1px * $i;
+  .w-#{$i}-px {
+    width: $fontsize !important;
+  }
+}
+
+@for $i from 0 through 100 {
+  $fontsize: 1% * $i;
+  .h-#{$i} {
+    height: $fontsize !important;
+  }
+}
+
+@for $i from 0 through 1000 {
+  $fontsize: 1px * $i;
+  .h-#{$i}-px {
+    height: $fontsize !important;
+  }
 }
