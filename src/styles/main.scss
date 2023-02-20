@@ -24,8 +24,87 @@
 
 @for $i from 1 through 50 {
   $fontsize: 1px * $i;
+  .pr-#{$i} {
+    padding-right: $fontsize !important;
+  }
+}
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .pt-#{$i} {
+    padding-top: $fontsize !important;
+  }
+}
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .pb-#{$i} {
+    padding-bottom: $fontsize !important;
+  }
+}
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .pl-#{$i} {
+    padding-left: $fontsize !important;
+  }
+}
+
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .px-#{$i} {
+    padding-left: $fontsize !important;
+    padding-right: $fontsize !important;
+  }
+}
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .py-#{$i} {
+    padding-top: $fontsize !important;
+    padding-bottom: $fontsize !important;
+  }
+}
+
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .mr-#{$i} {
+    margin-right: $fontsize !important;
+  }
+}
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .mt-#{$i} {
+    margin-top: $fontsize !important;
+  }
+}
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .mb-#{$i} {
+    margin-bottom: $fontsize !important;
+  }
+}
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .ml-#{$i} {
+    margin-left: $fontsize !important;
+  }
+}
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
   .m-#{$i} {
     margin: $fontsize !important;
+  }
+}
+
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .mx-#{$i} {
+    margin-left: $fontsize !important;
+    margin-right: $fontsize !important;
+  }
+}
+@for $i from 1 through 50 {
+  $fontsize: 1px * $i;
+  .my-#{$i} {
+    margin-top: $fontsize !important;
+    margin-bottom: $fontsize !important;
   }
 }
 
@@ -62,4 +141,19 @@
   .h-#{$i}-px {
     height: $fontsize !important;
   }
+}
+
+.normal-input {
+  height: 44px;
+}
+
+.normal-button {
+  padding: 6px 8px;
+  border: $border-solid;
+  border-radius: 4px;
+  min-height: 46px;
+}
+
+.d-block {
+  display: block !important;
 }
