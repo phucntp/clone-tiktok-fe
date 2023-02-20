@@ -1,0 +1,7 @@
+@import '../../../styles/variables';
+
+.modalContainer {
+  @include center-screen;
+  border: $border-solid;
+  border-radius: 5px;
+}

@@ -1,0 +1,304 @@
+$color-black: #000;
+$color-white: #fff;
+$color-red: #ff3b3b;
+
+$color-primary: #00498b;
+$color-primary-hover: #003363;
+$color-secondary: #e7f4ff;
+$color-destructive-error: #ff3b3b;
+$color-gray-bg: #f8f8f8;
+$color-gray-bg: #f0f0f0;
+$color-gray-hairline: #e8e8e8;
+$color-text-black: #333333;
+$color-text-black-hover: #222222;
+$color-gray-primary: #868b9a;
+$color-gray-primary-hover: #646873;
+$color-gray-secondary: #dedede;
+$color-gray-secondary-hover: #bfbfbf;
+$color-approved: #27ae60;
+$color-unapproved: #eb5757;
+$color-admin-orange: #e66f0f;
+$color-text-gray: $color-gray-primary;
+$color-transparent: rgba(0, 0, 0, 0);
+
+$color-main-bg: $color-gray-bg;
+$color-header-bg: $color-primary;
+$color-footer-bg: $color-text-black;
+$color-subnav-bg: $color-white;
+$color-container-bg: $color-white;
+$color-container-bg-visited: #fcfcfc;
+$color-side-bg: $color-white;
+$color-bg-white: $color-white;
+$color-bg-disabled: $color-gray-secondary;
+$color-bg-light-gray: $color-text-gray;
+$color-bg-pale-gray: $color-gray-secondary;
+$color-bg-hairline: $color-gray-hairline;
+$color-bg-white-gray: $color-gray-bg;
+$color-bg-dialog-filter: rgba(51, 51, 51, 0.5);
+$color-bg-danger: $color-destructive-error;
+$color-font-main: $color-text-black;
+$color-font-white: $color-white;
+$color-font-gray: $color-text-gray;
+$color-font-placeholder: $color-gray-primary;
+$color-link: $color-primary;
+$color-required: $color-destructive-error;
+$color-font-red: $color-destructive-error;
+$color-border: $color-gray-secondary;
+$color-border-secondary: $color-gray-secondary;
+$color-border-hairline: $color-gray-hairline;
+$color-border-text-gray: $color-text-gray;
+$color-border-input-focus: $color-primary;
+$color-bg-input-focus: #e8f4ff;
+$color-btn-primary: $color-primary;
+$color-btn-primary-hover: $color-primary-hover;
+$color-btn-secondary: $color-secondary;
+$color-btn-white: $color-white;
+$color-btn-black: $color-text-black;
+$color-btn-black-hover: $color-text-black-hover;
+$color-btn-gray-primary: $color-gray-primary;
+$color-btn-gray-primary-hover: $color-gray-primary-hover;
+$color-btn-gray-secondary: $color-gray-secondary;
+$color-btn-gray-secondary-hover: $color-gray-secondary-hover;
+$color-btn-danger: $color-destructive-error;
+$color-btn-danger-hover: $color-destructive-error;
+
+$base-window-width: 1440px;
+$layout-window-padding: 50px;
+$layout-window-padding-sp: 16px;
+$layout-contents-min-width: 1180px;
+$layout-contents-width: 1520px;
+
+$layout2-window-padding: $layout-window-padding;
+$layout2-contents-min-width: $layout-contents-min-width;
+$layout2-contents-width: $layout-contents-width;
+
+$layout3-window-padding: $layout-window-padding;
+$layout3-contents-min-width: $layout-contents-min-width;
+$layout3-contents-width: $layout-contents-width;
+$layout3-contents-margin: 16px;
+$layout3-contents-fixed-margin: 256px;
+$layout3-side-width: 240px;
+$layout3-side-padding: 20px;
+$layout3-side-inner-padding: 0;
+$layout3-side-border-padding: 20px;
+
+$layoutSp-window-padding: 16px;
+$layoutSp-window-padding-bottom: 24px;
+
+$contents-padding: 20px;
+$contents-padding-top: 20px;
+$contents-padding-sp: 16px;
+$contents-padding-top-sp: 16px;
+$contents-gutter: 8px;
+$container-margin-top: 16px;
+
+$header-height: 64px;
+$header-height-half-sp: 48px;
+$header-height-sp: 96px;
+$main-padding-top: 16px;
+$side-padding-top: 20px;
+$footer-height: 60px;
+$footer-height-sp: 56px;
+$footer-height-sp-link: 44px;
+
+$subnav-height: 56px;
+$subnav-height-sp: 48px;
+$subnav-window-padding: 20px;
+$subnav-contents-padding: 199px;
+
+$contents-footer-min-height-sp: 88px;
+
+$detail-side-width: 285px;
+$detail-title-width: 220px;
+$detail-title-width-full: 180px;
+$input-title-width-full: 220px;
+$detail-padding: 30px;
+$detail-title-padding: 20px;
+$input-title-padding: 16px;
+
+$input-note-width: $detail-side-width;
+$input-item-margin: 16px;
+
+$worker-item-detail-title: $detail-title-width;
+$worker-item-profile-padding: $detail-title-padding;
+
+$chat-side-width: 410px;
+$chat-header-height: 73px;
+$chat-main-padding-left: 150px;
+$chat-main-padding-right: 190px;
+$chat-item-img-width: 40px;
+$chat-item-margin: 24px;
+$chat-item-massage-width: 450px;
+
+$border-radius: 3px;
+$input-radius: 3px;
+
+$box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+$box-border-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05),
+  0px 4px 4px rgba(0, 0, 0, 0.05);
+$box-border-shadow-up: 0px -1px 0px rgba(0, 0, 0, 0.05),
+  0px -4px 4px rgba(0, 0, 0, 0.05);
+$box-border-shadow-hover: 0px 2px 16px rgba(0, 0, 0, 0.07);
+
+$opacity: 0.7;
+
+$border-solid: 1px solid $color-border-hairline;
+$border-dashed: 1px dashed $color-border-hairline;
+
+$btn-height-small: 30px;
+$btn-height: 40px;
+$btn-height-large: 48px;
+$input-height-large: 38px;
+$textarea-height: 160px;
+$btn-height-small-sp: 30px;
+$btn-height-sp: 40px;
+$btn-height-large-sp: 46px;
+$btn-height-xlarge-sp: 56px;
+$textarea-height-sp: 160px;
+
+$font-size26: 26px;
+$font-size24: 24px;
+$font-size22: 22px;
+$font-size21: 21px;
+$font-size20: 20px;
+$font-size19: 19px;
+$font-size18: 18px;
+$font-size17: 17px;
+$font-size16: 16px;
+$font-size15: 15px;
+$font-size14: 14px;
+$font-size13: 13px;
+$font-size12: 12px;
+$font-size11: 11px;
+$font-size10: 10px;
+
+$set-prefix: -webkit-, "";
+
+@mixin clearfix {
+  zoom: 1;
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin vertical-middle {
+  display: block;
+  position: relative;
+  top: 50%;
+  @each $prefix in $set-prefix {
+    #{$prefix}transform: translateY(-50%);
+  }
+}
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+@mixin inline-flexbox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+@mixin flexbox-row {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+@mixin flexbox-row-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+@mixin flexbox-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+@mixin flexbox-nowrap {
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+@mixin flexbox-wrap {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+@mixin flexbox-justify-start {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+@mixin flexbox-justify-end {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+@mixin flexbox-justify-center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+@mixin flexbox-justify-space-between {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+@mixin flexbox-justify-space-around {
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+@mixin flexbox-align-stretch {
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+@mixin flexbox-align-start {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+@mixin flexbox-align-end {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+@mixin flexbox-align-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+@mixin flexbox-align-baseline {
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+@mixin flexbox-grow($grow: 1) {
+  -webkit-box-flex: $grow;
+  -ms-flex-positive: $grow;
+  flex-grow: $grow;
+}
+@mixin flexbox-shrink($shrink: 0) {
+  -ms-flex-negative: $shrink;
+  flex-shrink: $shrink;
+}
+
+@mixin textStyle {
+  font-size: $font-size13;
+  line-height: 1.5;
+}
+@mixin textStyleSub {
+  font-size: $font-size11;
+  line-height: 1.5;
+}
+
+@mixin center-screen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
