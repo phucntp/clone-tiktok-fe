@@ -28,7 +28,7 @@
     padding-right: $fontsize !important;
   }
 }
-@for $i from 1 through 50 {
+@for $i from 0 through 50 {
   $fontsize: 1px * $i;
   .pt-#{$i} {
     padding-top: $fontsize !important;
@@ -143,6 +143,7 @@
   }
 }
 
+
 .normal-input {
   height: 44px;
 }
@@ -152,8 +153,38 @@
   border: $border-solid;
   border-radius: 4px;
   min-height: 46px;
+  font-size: $font-size16;
 }
 
 .d-block {
   display: block !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.float-left {
+  float: left !important;
+}
+
+.m-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.background-none {
+ background-color: inherit !important;
+}
+
+.border-none {
+  border: none !important;
+}
+
+@media (min-width: $sm) {
+
 }
