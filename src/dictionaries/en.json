@@ -1,16 +1,17 @@
 {
   "login": {
     "button_submit": "Log in",
-    "title": "Login",
+    "title": "Log in",
     "label": "Email or username",
     "forgot_password": "Forgot password?",
-    "have_an_account": "Don’t have an account?"
+    "have_not_account": "Don’t have an account?"
   },
   "register": {
     "button_submit": "Sign up",
-    "title": "Login",
-    "label": "Email or username",
-    "forgot_password": "Forgot password?",
-    "have_an_account": "Don’t have an account?"
+    "title": "Sign up",
+    "label": "Email",
+    "next": "Next",
+    "have_an_account": "Already have an account?",
+    "birthday_title": "When’s your birthday?"
   }
 }

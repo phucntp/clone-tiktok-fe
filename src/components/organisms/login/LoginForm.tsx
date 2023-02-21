@@ -1,6 +1,6 @@
 'use client';
 
-import React from "react";
+import React, {useState, useCallback} from "react";
 import InputNormal from "@/components/atoms/form/inputs/InputNormal";
 import InputPassword from "@/components/atoms/form/inputs/InputPassword";
 import styles from "./LoginForm.module.scss";
@@ -14,10 +14,16 @@ interface Props {
 }
 
 export default function LoginForm({dict} : Props) {
+  const [showModal, setShowModal] = useState(true)
+
+  const toggleModal = useCallback(() => {
+    setShowModal((prev) => !prev)
+  }, [])
+
   return (
     <>
-      <Modal height="60%">
-        <div className={`${styles.backgroundContain} p-50 pt-0 h-100`}>
+      <Modal showModal={showModal} handleBack={toggleModal} handleClose={toggleModal} height="80%">
+        <div className={`${styles.backgroundContain} p-50 pt-0 h-80`}>
           <h2 className="my-32">{dict.login.title}</h2>
           <div className="mb-5">
             <label>{dict.login.label}</label>
@@ -39,7 +45,7 @@ export default function LoginForm({dict} : Props) {
             className="w-100 my-30"
           />
           <div className={styles.redirectRegister}>
-            {dict.login.have_an_account}{" "}
+            {dict.login.have_not_account}{" "}
             <Link className="p-5" href={ROUTER.REGISTER}>
               {dict.register.button_submit}
             </Link>

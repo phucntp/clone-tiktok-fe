@@ -1,31 +1,39 @@
-@import '@/styles/variables';
+@import "@/styles/variables";
 
 .backgroundContain {
-    max-height: 693px;
-    width: 483px;
-    overflow-y: auto;
-    position: relative;
+  max-height: 693px;
+  width: 483px;
+  overflow-y: auto;
+  position: relative;
 
-    h2 {
-        text-align: center;
-        font: {
-            weight: bold;
-            size: 32px;
-        }
+  h2 {
+    text-align: center;
+    font: {
+      weight: bold;
+      size: 32px;
     }
+  }
 
-    .redirectRegister {
-        position: fixed;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-        text-align: center;
-        padding: 10px 0;
-        border-top: 1px solid $color-border-hairline;
-        background-color: $color-black;
+  .redirectLogin {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid $color-border-hairline;
+    background-color: $color-black;
 
-        @include flexbox;
-        @include flexbox-align-center;
-        @include flexbox-justify-center;
+    @include flexbox;
+    @include flexbox-align-center;
+    @include flexbox-justify-center;
+
+    a {
+      color: $color-red;
     }
+  }
+
+  @media (max-width: $sm) {
+    width: 100%;
+  }
 }
