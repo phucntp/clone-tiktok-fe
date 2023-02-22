@@ -9,13 +9,12 @@ import NormalButton from "@/components/atoms/buttons/NormalButton";
 import Link from "next/link";
 import { ROUTER } from "@/routers/routers";
 import Birthday from "@/components/molecules/SelectDate/Birthday";
+import {useTranslations} from 'next-intl';
 
-interface Props {
-  dict: any;
-}
-
-export default function LoginForm({ dict }: Props) {
+export default function LoginForm() {
   const [showModal, setShowModal] = useState(true);
+  const t = useTranslations('login');
+  const tRegister = useTranslations('register');
 
   const toggleModal = useCallback(() => {
     setShowModal((prev) => !prev);
@@ -30,10 +29,10 @@ export default function LoginForm({ dict }: Props) {
         height="80%"
       >
         <div className={`${styles.backgroundContain} p-50 pt-0 h-80`}>
-          <h2 className="my-32">{dict.register.title}</h2>
+          <h2 className="my-32">{tRegister('title')}</h2>
           <Birthday />
           <div className="mb-5">
-            <label>{dict.register.label}</label>
+            <label>{tRegister('label')}</label>
           </div>
           <form action="">
             <div className="my-10">
@@ -44,14 +43,14 @@ export default function LoginForm({ dict }: Props) {
             </div>
           </form>
           <NormalButton
-            label={dict.register.next}
+            label={tRegister('next')}
             type="submit"
             className="w-100 my-30"
           />
           <div className={styles.redirectLogin}>
-            {dict.register.have_an_account}{" "}
+            {tRegister('have_an_account')}{" "}
             <Link className="p-5" href={ROUTER.REGISTER}>
-              {dict.login.button_submit}
+              {t('button_submit')}
             </Link>
           </div>
         </div>
