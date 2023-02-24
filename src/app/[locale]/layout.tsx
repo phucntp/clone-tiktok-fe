@@ -1,20 +1,22 @@
-import './globals.scss'
-import '@/styles/main.scss'
-import { NextIntlClientProvider } from 'next-intl/client';
+import "./globals.scss";
+import "@/styles/main.scss";
+import { NextIntlClientProvider } from "next-intl/client";
+import { Providers } from "./Providers";
 
 type Props = {
-  children: React.ReactNode,
+  children: React.ReactNode;
   params: {
     locale: string;
   };
 };
 
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'de' }];
+  return [{ locale: "en" }, { locale: "de" }];
 }
 
 export default async function RootLayout({
-  children, params: { locale }
+  children,
+  params: { locale },
 }: Props) {
   let messages;
   try {
@@ -29,9 +31,11 @@ export default async function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body><NextIntlClientProvider locale={locale} messages={messages}>
-        {children}
-      </NextIntlClientProvider></body>
+      <body>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers>{children}</Providers>
+        </NextIntlClientProvider>
+      </body>
     </html>
-  )
+  );
 }

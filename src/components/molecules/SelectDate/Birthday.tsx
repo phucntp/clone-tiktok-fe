@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import SelectBox from "@/components/atoms/form/select-box/SelectBox";
-import { listOptionMonth, listOptionDay } from "@/types/date";
+import { listOptionMonth, listOptionDay } from "@/utils/common/date";
 
 function Birthday() {
   const [birthday, setBirthday] = useState({
