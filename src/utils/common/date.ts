@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { TSelectBox } from "./form";
+import { TSelectBox } from "../../types/common/form";
 export const months = [
   "January",
   "February",

@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState, useCallback} from "react";
+import React, {useState, useCallback, useEffect} from "react";
 import InputNormal from "@/components/atoms/form/inputs/InputNormal";
 import InputPassword from "@/components/atoms/form/inputs/InputPassword";
 import styles from "./LoginForm.module.scss";
@@ -8,6 +8,9 @@ import Modal from "@/components/molecules/Modal/Modal";
 import NormalButton from "@/components/atoms/buttons/NormalButton";
 import Link from "next/link";
 import { ROUTER } from "@/routers/routers";
+import loginActions from "@/actions/login";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "@/store";
 
 interface Props {
   dict: any
@@ -15,10 +18,20 @@ interface Props {
 
 export default function LoginForm({dict} : Props) {
   const [showModal, setShowModal] = useState(true)
+  const dispatch = useDispatch()
+  const auth = useSelector((state: AppState) => state.loginReducer.data)
 
   const toggleModal = useCallback(() => {
     setShowModal((prev) => !prev)
   }, [])
+
+  const handleLogin = () => {
+    dispatch(loginActions.login({email: 'abcde@gmail.com', password: '222222'}))
+  }
+
+  useEffect(() => {
+    console.log(auth, 'auth')
+  })
 
   return (
     <>
@@ -39,6 +52,7 @@ export default function LoginForm({dict} : Props) {
           <Link className="d-block pt-15 font-14" href="">
             {dict.login.forgot_password}
           </Link>
+          <button onClick={handleLogin}>login</button>
           <NormalButton
             label={dict.login.button_submit}
             type="submit"

@@ -1,5 +1,5 @@
 import React from "react";
-import { TSelectBox } from "@/types/form";
+import { TSelectBox } from "@/types/common/form";
 
 interface Props {
   listOption: TSelectBox[];
