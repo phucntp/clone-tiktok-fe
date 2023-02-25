@@ -12,12 +12,11 @@ type TPostCommonConfig = {
 }
 
 const getMethod = (commonConfig: TGetCommonConfig) => {
-    return axios.get(commonConfig.url, {params: commonConfig.config?.params})
+    return axios.get(process.env.NEXT_PUBLIC_API_BASE + commonConfig.url, {params: commonConfig.config?.params})
 }
 
 const postMethod = (commonConfig: TPostCommonConfig) => {
-    console.log('http://localhost:4000/api' + commonConfig.url, 'url')
-    return axios.post('http://localhost:4000/api' + commonConfig.url, commonConfig.data)
+    return axios.post(process.env.NEXT_PUBLIC_API_BASE + commonConfig.url, commonConfig.data)
 }
 
 export const apiClient = {
