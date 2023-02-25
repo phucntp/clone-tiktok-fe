@@ -16,7 +16,7 @@ import {useTranslations} from 'next-intl';
 export default function LoginForm() {
   const [showModal, setShowModal] = useState(true)
   const dispatch = useDispatch()
-  const auth = useSelector((state: AppState) => state.loginReducer.data)
+  const auth = useSelector((state: AppState) => state.loginReducer)
   const t = useTranslations('login');
   const tRegister = useTranslations('register');
 
