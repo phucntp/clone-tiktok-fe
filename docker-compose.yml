@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  home:
+    image: docker-nextjs-dev
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src:/home/src
+      - ./public:/home/public
