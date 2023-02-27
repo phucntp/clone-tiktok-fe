@@ -26,7 +26,7 @@ pipeline {
         stage('Push image') {
              steps {
                 script {
-                withDockerRegistry([ credentialsId: "Docker-hub", url: "" ]) {
+                withDockerRegistry([ credentialsId: "Docker-hub", url: "https://hub.docker.com/repository/docker/phucntp/jenkins-basic" ]) {
                 dockerImage.push()
                 }}
              } 
