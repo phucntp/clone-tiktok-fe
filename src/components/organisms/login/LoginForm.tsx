@@ -38,7 +38,6 @@ export default function LoginForm() {
       },
       body: JSON.stringify({email: "phuc@gmail.com", password: "1234567"})
     })
-    console.log(data.headers.get("Set-Cookie"))
   },[])
   return (
     <>
