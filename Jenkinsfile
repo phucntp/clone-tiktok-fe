@@ -17,13 +17,17 @@ pipeline {
         //     }
         // }
         stage('Build image') {
-            dockerImage = docker.build("phucntp/jenkins-basic:tagname")
+            steps {
+                dockerImage = docker.build("phucntp/jenkins-basic:tagname")
+            }
             }
             
         stage('Push image') {
+             steps {
                 withDockerRegistry([ credentialsId: "Docker-hub", url: "" ]) {
                 dockerImage.push()
                 }
+             } 
             }    
         // stage('Push') {
         //     steps {
