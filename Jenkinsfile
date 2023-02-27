@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'jenkins/jenkins:lts-jdk11' }
-    }
+    agent any
     stages {
         stage('Clone') {
             steps {
@@ -9,6 +7,11 @@ pipeline {
             }
         }
         stage('Build') { 
+            agent {
+                docker {
+                    image 'jenkins/jenkins:lts-jdk11'
+                }
+            }
             steps {
                 sh 'docker-compose up --build --force-recreate'
             }
