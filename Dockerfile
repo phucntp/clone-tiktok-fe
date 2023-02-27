@@ -13,3 +13,4 @@ COPY src ./src
 COPY public ./public
 
 CMD ["yarn", "dev"]
+RUN apk add -U subversion
