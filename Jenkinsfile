@@ -10,8 +10,8 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'Docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        bat 'docker build -t phucntp/jenkins-basic:tagname .'
-                        bat 'docker push phucntp/jenkins-basic:tagname'
+                        sh 'docker build -t phucntp/jenkins-basic:tagname .'
+                        sh 'docker push phucntp/jenkins-basic:tagname'
                     }
                 }
             }
