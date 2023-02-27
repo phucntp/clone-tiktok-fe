@@ -8,8 +8,12 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                sh 'docker build -t phucntp/jenkins-basic:tagname .'
-                sh 'docker push phucntp/jenkins-basic:tagname'
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'Docker-hub', usernameVariable: 'phucntp', passwordVariable: 'admin123')]) {
+                        sh 'docker build -t phucntp/jenkins-basic:tagname .'
+                        sh 'docker push phucntp/jenkins-basic:tagname'
+                    }
+                }
             }
         }
         // stage('Push') {
