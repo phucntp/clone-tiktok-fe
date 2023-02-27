@@ -8,7 +8,8 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                sh 'docker-compose up --build --force-recreate'
+                sh 'docker build -t phucntp/jenkins-basic:tagname .'
+                sh 'docker push phucntp/jenkins-basic:tagname'
             }
         }
     }
