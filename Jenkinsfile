@@ -16,12 +16,12 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Build image') {
-            steps {
-                script {
-                dockerImage = docker.build("phucntp/jenkins-basic:tagname")
-            }}
-            }
+//         stage('Build image') {
+//             steps {
+//                 script {
+//                 dockerImage = docker.build("phucntp/jenkins-basic:tagname")
+//             }}
+//             }
             
         stage('Push image') {
              steps {
