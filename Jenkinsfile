@@ -9,7 +9,7 @@ pipeline {
         stage('Build') { 
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'Docker-hub', usernameVariable: 'phucntp', passwordVariable: 'admin123')]) {
+                    withCredentials([usernamePassword(credentialsId: 'Docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh 'docker build -t phucntp/jenkins-basic:tagname .'
                         sh 'docker push phucntp/jenkins-basic:tagname'
                     }
