@@ -1,10 +1,23 @@
 pipeline {
     agent any
     stages {
-        stage('Build') { 
+        stage('Clone') {
             steps {
-                sh 'docker build -t jenkins/jenkins:lts-jdk11 .'
+                git 'https://github.com/phucntp/clone-tiktok-fe.git'
             }
         }
+        stage('Build') { 
+            steps {
+                withDockerRegistry(credentialsId: 'Docker-hub', url: 'https://hub.docker.com/r/phucntp/jenkins-basic') {
+                    sh 'docker build -t phucntp/jenkins-basic:tagname .'
+                    sh 'docker push phucntp/jenkins-basic:tagname'
+                }
+            }
+        }
+        // stage('Push') {
+        //     steps {
+        //         sh 'docker push phucntp/jenkins-basic:tagname'
+        //     }
+        // }
     }
 }

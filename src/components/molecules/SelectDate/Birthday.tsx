@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import SelectBox from "@/components/atoms/form/select-box/SelectBox";
 import { listOptionMonth, listOptionDay } from "@/utils/common/date";
+import styles from './Birthday.module.scss'
 
 function Birthday() {
   const [birthday, setBirthday] = useState({
@@ -41,22 +42,22 @@ function Birthday() {
   }, []);
 
   return (
-    <div>
-      <div>
+    <div className={styles.birthdayContainer}>
+      <div className={styles.selectItem}>
         <SelectBox
           valueSelect={birthday.month}
           listOption={listOptionMonth}
           handleChange={changeMonth}
         />
       </div>
-      <div>
+      <div className={styles.selectItem}>
         <SelectBox
           valueSelect={birthday.day}
           listOption={listOptionDay}
           handleChange={changeDay}
         />
       </div>
-      <div>
+      <div className={styles.selectItem}>
         <SelectBox
           valueSelect={birthday.year}
           listOption={listOptionMonth}

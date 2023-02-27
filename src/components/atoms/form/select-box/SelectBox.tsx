@@ -13,7 +13,7 @@ function SelectBox({ listOption, valueSelect, handleChange }: Props) {
 
   return (
     <>
-      <select value={valueSelect} onChange={(e) => handleChange(e.target.value)}>
+      <select className="normal-select" value={valueSelect} onChange={(e) => handleChange(e.target.value)}>
         {listOption.length &&
           listOption.map((option, index) => <option key={`${option.label}-${index}`} value={option.value.toString()}>{option.label}</option>)}
       </select>
