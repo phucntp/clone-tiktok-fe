@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile true }
+    agent { docker { image 'jenkins/jenkins:lts-jdk11' } }
     stages {
         stage('Clone') {
             steps {
@@ -26,7 +26,7 @@ pipeline {
         stage('Push image') {
              steps {
                 script {
-                withDockerRegistry([ credentialsId: "Docker-hub", url: "https://hub.docker.com/repository/docker/phucntp/jenkins-basic" ]) {
+                withDockerRegistry([ credentialsId: "Docker-hub", url: "" ]) {
                 sh 'docker build -t phucntp/jenkins-basic:tagname .'
                 sh 'docker push phucntp/jenkins-basic:tagname'
                 }}
