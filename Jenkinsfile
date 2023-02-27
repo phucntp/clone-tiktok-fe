@@ -18,15 +18,17 @@ pipeline {
         // }
         stage('Build image') {
             steps {
+                script {
                 dockerImage = docker.build("phucntp/jenkins-basic:tagname")
-            }
+            }}
             }
             
         stage('Push image') {
              steps {
+                script {
                 withDockerRegistry([ credentialsId: "Docker-hub", url: "" ]) {
                 dockerImage.push()
-                }
+                }}
              } 
             }    
         // stage('Push') {
