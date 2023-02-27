@@ -6,12 +6,6 @@ pipeline {
                 git 'https://github.com/phucntp/clone-tiktok-fe.git'
             }
         }
-        stage('Initialize'){
-            steps {
-                def dockerHome = tool 'docker-jenkins'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
-            }
-        }
         stage('Build') { 
             steps {
                 sh 'docker build -t phucntp/jenkins-basic:tagname .'
