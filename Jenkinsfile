@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'phucntp/jenkins-basic:tagname' } }
+    agent { dockerfile true }
     stages {
         stage('Clone') {
             steps {
