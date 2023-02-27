@@ -8,11 +8,8 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                 script { 
-                    withDockerRegistry(credentialsId: 'Docker-hub', url: 'https://hub.docker.com/r/phucntp/jenkins-basic') {
-                        sh 'docker build -t phucntp/jenkins-basic:tagname .'
-                        sh 'docker push phucntp/jenkins-basic:tagname'
-                    }
+                    sh 'docker build -t phucntp/jenkins-basic:tagname .'
+                    sh 'docker push phucntp/jenkins-basic:tagname'
                 }
             }
         }
