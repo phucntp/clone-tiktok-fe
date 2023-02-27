@@ -1,5 +1,8 @@
 pipeline {
-    agent { dockerfile true }
+    agent { label 'linux' }
+    environment {
+        DOCKERHUB_CREDENTIALS = creadentials('Docker-hub')
+    }    
     stages {
         stage('Clone') {
             steps {
@@ -25,11 +28,11 @@ pipeline {
             
         stage('Push image') {
              steps {
-                script {
-                withDockerRegistry([ credentialsId: "Docker-hub", url: "" ]) {
+//                 script {
+//                 withDockerRegistry([ credentialsId: "Docker-hub", url: "" ]) {
                 sh 'docker build -t phucntp/jenkins-basic:tagname .'
                 sh 'docker push phucntp/jenkins-basic:tagname'
-                }}
+//                 }}
              } 
             }    
         // stage('Push') {
