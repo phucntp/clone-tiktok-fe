@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        dockerhub=credentials('Docker-hub')
-    }
     stages {
         stage('Clone') {
             steps {
@@ -10,7 +7,7 @@ pipeline {
             }
         }
         stage('Build') { 
-            steps {
+            withDockerRegistry([ credentialsId: "Docker-hub", url: "" ]) {
                 sh 'docker build -t phucntp/jenkins-basic:tagname .'
                 sh 'docker push phucntp/jenkins-basic:tagname'
             }
