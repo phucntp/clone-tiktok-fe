@@ -27,7 +27,8 @@ pipeline {
              steps {
                 script {
                 withDockerRegistry([ credentialsId: "Docker-hub", url: "https://hub.docker.com/repository/docker/phucntp/jenkins-basic" ]) {
-                dockerImage.push()
+                sh 'docker build -t phucntp/jenkins-basic:tagname .'
+                sh 'docker push phucntp/jenkins-basic:tagname'
                 }}
              } 
             }    
