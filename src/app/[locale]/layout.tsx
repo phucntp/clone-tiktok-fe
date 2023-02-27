@@ -11,7 +11,7 @@ type Props = {
 };
 
 export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "de" }];
+  return [{ locale: 'en' }, { locale: 'vi' }];
 }
 
 export default async function RootLayout({

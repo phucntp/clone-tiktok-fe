@@ -1,0 +1,9 @@
+@import '@/styles/variables';
+
+.birthdayContainer {
+    @include flexbox;
+
+    .selectItem {
+        width: 30%;
+    }
+}
