@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'jenkins/jenkins:lts-jdk11' } }
+    agent { docker { image 'phucntp/jenkins-basic:tagname' } }
     stages {
         stage('Clone') {
             steps {
