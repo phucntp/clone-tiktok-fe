@@ -9,13 +9,7 @@ pipeline {
                 git 'https://github.com/phucntp/clone-tiktok-fe.git'
             }
         }
-        stage('Maven Install') {
-    	agent {
-      	docker {
-        	image 'jenkins/jenkins'
-        }
-      }
-    }
+        
 //         stage('Build') { 
 //             steps {
 //                 script {
@@ -34,6 +28,11 @@ pipeline {
 //             }
             
         stage('Push image') {
+            agent {
+      	docker {
+        	image 'jenkins/jenkins'
+        }
+      }
              steps {
 //                  script {
 //                      withDockerRegistry(credentialsId: 'Docker-hub', url: '') {
