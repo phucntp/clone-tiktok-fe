@@ -2,6 +2,7 @@
 
 .birthdayContainer {
     @include flexbox;
+    @include flexbox-justify-space-between;
 
     .selectItem {
         width: 30%;

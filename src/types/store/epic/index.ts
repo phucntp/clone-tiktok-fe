@@ -53,7 +53,6 @@ const asyncExec: Epic<AnyAction, Action<any>, any> = (action$, _) =>
   action$.pipe(
     ofAction(actions._exec),
     mergeMap(({ payload }) => {
-      console.log(payload, 'abcf')
       const complete: Action<any>[] = payload.complete ? [payload.complete].flat() : [];
       return payload.asyncFunc.toPromise().then(
         (res): Action<any>[] => {

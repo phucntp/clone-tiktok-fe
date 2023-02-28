@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 let locales = ['en', 'vi'];
 let defaultLocale = 'en';
 let localePaths = ['/en', '/vi'];
-const auth = ['register']
+const auth = ['registerdsf']
 
 export function middleware(request: NextRequest) {
   let authen = false
