@@ -29,10 +29,15 @@ pipeline {
         stage('Push image') {
              steps {
                  script {
-                 withDockerServer([uri: 'https://hub.docker.com/repository/docker/phucntp/jenkins-basic']) {
-                sh 'docker build -t phucntp/jenkins-basic:tagname .'
+                     withDockerRegistry(credentialsId: 'Docker-hub', url: 'https://hub.docker.com/repository/docker/phucntp/jenkins-basic') {
+     sh 'docker build -t phucntp/jenkins-basic:tagname .'
                 sh 'docker push phucntp/jenkins-basic:tagname'
-                }}
+}
+//                  withDockerServer([uri: 'https://hub.docker.com/repository/docker/phucntp/jenkins-basic']) {
+//                 sh 'docker build -t phucntp/jenkins-basic:tagname .'
+//                 sh 'docker push phucntp/jenkins-basic:tagname'
+//                 }
+                 }
              } 
             }    
         // stage('Push') {
