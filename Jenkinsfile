@@ -49,13 +49,10 @@ pipeline {
 //                 sh 'docker build -t phucntp/jenkins-basic:tagname .'
 //                 sh 'docker push phucntp/jenkins-basic:tagname'
 //                 }
-                 }
-             } 
+                 
             }    
         // stage('Push') {
         //     steps {
         //         sh 'docker push phucntp/jenkins-basic:tagname'
         //     }
         // }
-    }
-}
