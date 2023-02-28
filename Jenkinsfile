@@ -28,11 +28,11 @@ pipeline {
             
         stage('Push image') {
              steps {
-//                 script {
-//                 withDockerRegistry([ credentialsId: "Docker-hub", url: "" ]) {
+                 script {
+                 withDockerServer([uri: 'https://hub.docker.com/repository/docker/phucntp/jenkins-basic']) {
                 sh 'docker build -t phucntp/jenkins-basic:tagname .'
                 sh 'docker push phucntp/jenkins-basic:tagname'
-//                 }}
+                }}
              } 
             }    
         // stage('Push') {
