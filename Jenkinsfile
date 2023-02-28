@@ -39,11 +39,6 @@ pipeline {
 //             }
             
         stage('Push image') {
-            agent {
-      	docker {
-        	image 'jenkins/jenkins'
-        }
-      }
              steps {
 //                  script {
 //                      withDockerRegistry(credentialsId: 'Docker-hub', url: '') {
