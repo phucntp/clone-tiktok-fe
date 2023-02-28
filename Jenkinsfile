@@ -3,10 +3,18 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('Docker-hub')
     }
-    tools {
-        docker 'latest'
-    }
+//     tools {
+//         docker 'latest'
+//     }
     stages {
+        stage('Initialize') {
+            steps{
+                script {
+                    def dockerHome = tool 'jenkins-blueoceanr'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
+        }
         stage('Clone') {
             steps {
                 git 'https://github.com/phucntp/clone-tiktok-fe.git'
