@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'jenkins/jenkins' }
-    }
+    agent any
     environment {
         DOCKERHUB_CREDENTIALS = credentials('Docker-hub')
     }    
@@ -11,6 +9,13 @@ pipeline {
                 git 'https://github.com/phucntp/clone-tiktok-fe.git'
             }
         }
+        stage('Maven Install') {
+    	agent {
+      	docker {
+        	image 'jenkins/jenkins'
+        }
+      }
+    }
 //         stage('Build') { 
 //             steps {
 //                 script {
