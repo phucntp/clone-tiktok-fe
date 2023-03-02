@@ -1,4 +1,14 @@
 {
+  "common": {
+    "validate": {
+      "error": {
+        "email_require": "Please enter email or username",
+        "password_require": "Please enter password",
+        "min_length": "at least {length} characters",
+        "max_length": "up to {length} characters"
+      }
+    }
+  },
   "login": {
     "button_submit": "Log in",
     "title": "Log in",

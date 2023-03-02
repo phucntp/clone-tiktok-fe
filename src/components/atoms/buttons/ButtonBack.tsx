@@ -8,14 +8,14 @@ interface Props {
   handleClose: () => void;
 }
 
-function ButtonBack({ handleClose, height, width, color, className }: Props) {
+function ButtonBack({ handleClose, height, width, color = '', className = '' }: Props) {
   return (
     <button className={className} onClick={handleClose}>
       <svg
         width={`${width}px`}
         height={`${height}px`}
         viewBox="0 0 1024 1024"
-        fill={color ?? "#ffffff"}
+        fill={color || "#ffffff"}
         className="icon"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"

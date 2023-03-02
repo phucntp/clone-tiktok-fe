@@ -6,8 +6,8 @@ type TProps = {
     className?: string,
 }
 
-function Message({ text, hasError = false, className }: TProps) {
-    const listClass = hasError ? 'text-error' : className
+function Message({ text, hasError = false, className = '' }: TProps) {
+    const listClass = hasError ? 'text-error' + (className ? ' ' + className : '') : className
     return (
         <>
             {text && <div className={listClass}>{text}</div>}

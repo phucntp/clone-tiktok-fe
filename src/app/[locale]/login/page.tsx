@@ -1,6 +1,6 @@
 
 import React from "react";
-import LoginForm from "@/components/organisms/Login/LoginForm";
+import LoginForm from "@/components/organisms/login/LoginForm";
 
 type Props = {
   params: {

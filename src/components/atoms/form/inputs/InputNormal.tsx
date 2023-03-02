@@ -35,7 +35,7 @@ function InputNormal({ disabled = false, placeholder = '', value = '', readOnly 
     //     <input className="w-100 normal-input"/>
     //   </div>
     // </div>
-    <input name={name} type={inputType} disabled={disabled} placeholder={placeholder} value={state} readOnly={readOnly} onChange={onChangeValue} className={`${listClass} w-100 normal-input`}/>
+    <input name={name} onBlur={onBlur} type={inputType} disabled={disabled} placeholder={placeholder} value={state} readOnly={readOnly} onChange={onChangeValue} className={`${listClass} w-100 normal-input`}/>
   );
 }
 
