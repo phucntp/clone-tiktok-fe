@@ -48,6 +48,7 @@ pipeline {
 //                     }
                      withDockerRegistry(credentialsId: 'Docker-hub', toolName: 'docker', url: 'https://index.docker.io/v1/') {
                          sh 'docker build -t phucntp/jenkins-basic:tagname .'
+                         sh 'docker push phucntp/jenkins-basic:tagname'
                     }
 //                  withDockerServer([uri: 'https://hub.docker.com/repository/docker/phucntp/jenkins-basic']) {
 //                 sh 'docker build -t phucntp/jenkins-basic:tagname .'
