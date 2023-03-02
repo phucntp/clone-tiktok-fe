@@ -18,7 +18,6 @@ pipeline {
         stage('Clone') {
             steps {
                 git 'https://github.com/phucntp/clone-tiktok-fe.git'
-                sh 'docker build -t jenkins/jenkins .'
             }
         }
         
