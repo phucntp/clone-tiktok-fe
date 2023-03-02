@@ -2,10 +2,10 @@ version: '3'
 
 services:
   home:
-    image: docker-nextjs-dev
+    image: phucntp/jenkins-basic
     build: .
     ports:
-      - 3000:3000
+      - 7000:7000
     volumes:
       - ./src:/home/src
       - ./public:/home/public
