@@ -7,14 +7,14 @@ pipeline {
 //         docker 'latest'
 //     }
     stages {
-        stage('Initialize') {
-            steps{
-                script {
-                    def dockerHome = tool 'docker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                }
-            }
-        }
+//         stage('Initialize') {
+//             steps{
+//                 script {
+//                     def dockerHome = tool 'docker'
+//                     env.PATH = "${dockerHome}/bin:${env.PATH}"
+//                 }
+//             }
+//         }
         stage('Clone') {
             steps {
                 git 'https://github.com/phucntp/clone-tiktok-fe.git'
