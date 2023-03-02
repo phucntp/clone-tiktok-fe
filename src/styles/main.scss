@@ -146,6 +146,8 @@
 
 .normal-input {
   height: 44px;
+  padding: 6px 8px;
+  font-size: $font-size16;
 }
 
 .normal-button {
@@ -188,6 +190,12 @@
 
 .border-none {
   border: none !important;
+}
+.text-error {
+  color: $color-red;
+}
+.border-error {
+  border: 1px solid $color-red;
 }
 
 @media (min-width: $sm) {

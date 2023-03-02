@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 'use client';
 
-import React, {useState, useCallback} from "react";
+import React, {useState, useCallback, useEffect} from "react";
 import InputNormal from "@/components/atoms/form/inputs/InputNormal";
-import InputPassword from "@/components/atoms/form/inputs/InputPassword";
 import styles from "./LoginForm.module.scss";
 import Modal from "@/components/molecules/Modal/Modal";
 import NormalButton from "@/components/atoms/buttons/NormalButton";
@@ -13,9 +12,12 @@ import loginActions from "@/actions/login";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "@/store";
 import {useTranslations} from 'next-intl';
+import { useImmer } from "use-immer";
+import { TParamLogin } from "@/types/login";
 
 export default function LoginForm() {
   const [showModal, setShowModal] = useState(true)
+  const [userInfo, setUserInfo] = useImmer({email: '', password: ''})
   const dispatch = useDispatch()
   // const auth = useSelector((state: AppState) => state.loginReducer)
   const t = useTranslations();
@@ -24,21 +26,26 @@ export default function LoginForm() {
     setShowModal((prev) => !prev)
   }, [])
 
-  const handleLogin = () => {
-    dispatch(loginActions.login({email: 'abcde@gmail.com', password: '222222'}))
+  useEffect(() => {
+    console.log(userInfo);
+  }, [userInfo])
+
+  const handleChangeInfor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInfo((draft: any) => {draft[e.target.name] = e.target.value})
   }
 
   const handleClick = useCallback(async() => {
-    const data = await fetch('http://localhost:9000/api/users/login', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify({email: "phuc@gmail.com", password: "1234567"})
-    })
-  },[])
+    // const data = await fetch('http://localhost:9000/api/users/login', {
+    //   method: 'POST',
+    //   credentials: 'include',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //     // 'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+    //   body: JSON.stringify({email: "phuc@gmail.com", password: "1234567"})
+    // })
+    dispatch(loginActions.login(userInfo))
+  },[dispatch, userInfo])
   return (
     <>
       <Modal showModal={showModal} handleBack={toggleModal} handleClose={toggleModal} height="80%">
@@ -49,16 +56,15 @@ export default function LoginForm() {
           </div>
           <form action="">
             <div className="my-10">
-              <InputNormal />
+              <InputNormal name="email" onChange={handleChangeInfor}/>
             </div>
             <div>
-              <InputPassword />
+              <InputNormal name="password" inputType="password" onChange={handleChangeInfor} />
             </div>
           </form>
           <Link className="d-block pt-15 font-14" href="">
             {t('login.forgot_password')}
           </Link>
-          <button onClick={handleLogin}>login</button>
           <NormalButton
             label={t('login.button_submit')}
             type="submit"

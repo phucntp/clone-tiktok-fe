@@ -2,10 +2,9 @@
 
 import React, { useState, useCallback } from "react";
 import InputNormal from "@/components/atoms/form/inputs/InputNormal";
-import InputPassword from "@/components/atoms/form/inputs/InputPassword";
 import styles from "./RegisterForm.module.scss";
 import Modal from "@/components/molecules/Modal/Modal";
-// import NormalButton from "@/components/atoms/buttons/NormalButton";
+import NormalButton from "@/components/atoms/buttons/NormalButton";
 import Link from "next/link";
 import { ROUTER } from "@/routers/routers";
 import Birthday from "@/components/molecules/SelectDate/Birthday";
@@ -38,14 +37,15 @@ export default function LoginForm() {
               <InputNormal />
             </div>
             <div>
-              <InputPassword />
+              <InputNormal />
             </div>
           </form>
-          {/* <NormalButton
+          <NormalButton
             label={t('register.next')}
             type="submit"
             className="w-100 my-30"
-          /> */}
+            handleClick={() => {}}
+          />
           <div className={styles.redirectLogin}>
             {t('register.have_an_account')}{" "}
             <Link className="p-5" href={ROUTER.REGISTER}>

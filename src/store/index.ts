@@ -1,8 +1,12 @@
+'use client'
+
 import { combineEpics, createEpicMiddleware } from "redux-observable";
-import { applyMiddleware, createStore, AnyAction } from "redux";
+import { applyMiddleware, createStore, AnyAction, compose, StoreCreator } from "redux";
 import { reducers } from "@/reducers";
+import { createLogger } from 'redux-logger'
 import { epics } from "@/epics";
 import { commonAsyncEpics } from "@/types/store/epic";
+import { createWrapper } from "next-redux-wrapper";
 
 // epics
 
@@ -16,9 +20,28 @@ const rootReducer = (state: any, action: any) => {
 // epic
 const rootEpic = combineEpics(epics, commonAsyncEpics);
 const epicMiddleware = createEpicMiddleware<AnyAction, AnyAction, AppState>();
+const logger = createLogger({ collapsed: true })
+
+const enhancers = typeof window !== "undefined" ? compose(
+  applyMiddleware(
+    epicMiddleware,
+    logger
+  ),
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__
+    ? (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+    : (f: StoreCreator) => f,
+) : compose(
+  applyMiddleware(
+    epicMiddleware,
+    logger
+  )
+);
 
 export const configureStore = () => {
-  const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
+  const store = createStore(rootReducer, enhancers);
   epicMiddleware.run(rootEpic);
   return store;
 };
+
+
+export const wrapper = createWrapper(configureStore);
