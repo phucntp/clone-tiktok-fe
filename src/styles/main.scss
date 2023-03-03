@@ -145,23 +145,29 @@
 
 
 .normal-input {
-  height: 44px;
-  padding: 6px 8px;
+  height: $btn-height;
+  padding: $normal-padding;
   font-size: $font-size16;
 }
 
 .normal-button {
-  padding: 6px 8px;
+  padding: $normal-padding;
   border: $border-solid;
   border-radius: 4px;
-  min-height: 46px;
+  min-height: $btn-height;
   font-size: $font-size16;
 }
 
 .normal-select {
   padding: 6px 10px;
   width: 100%;
-  height: 42px;
+  height: $btn-height;
+
+  option {
+    font-size: $font-size14;
+    padding: $normal-padding !important;
+    height: $btn-height !important;
+  }
 }
 
 .d-block {

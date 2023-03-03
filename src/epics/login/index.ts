@@ -27,10 +27,7 @@ const loginEpic: Epic<
       asyncActionWithCallback({
         previous: loadingModule.actions.on(),
         asyncFunc: from(authServices.loginUser(payload)),
-        error: (error: any) => {
-          console.log(error, 'error')
-          return errorActions.throwError(error)
-        },
+        error: (error: any) => errorActions.throwError(error),
         next: (res: TState) => _actionLogin.loginNext(res),
         complete: loadingModule.actions.off(),
       })
@@ -40,7 +37,6 @@ const loginEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
   action$.pipe(
     ofAction(_actionLogin.loginNext),
     map(({ payload }) => {
-      console.log(payload, 'payload')
       return loginReducer.actions.set(payload)
     })
   );

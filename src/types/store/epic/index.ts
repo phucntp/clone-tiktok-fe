@@ -33,7 +33,6 @@ const asyncStart: Epic<AnyAction, Action<Pick<TAsyncEpicProp, 'previous'> | Omit
   action$.pipe(
     ofAction(actions.start),
     mergeMap(({ payload }) => {
-      console.log('ab', payload)
       const nextAction = actions._exec(omit(['previous'], payload));
       return payload.previous ? [..._toArray(payload.previous), nextAction] : [nextAction];
     }),

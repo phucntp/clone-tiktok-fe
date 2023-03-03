@@ -8,6 +8,7 @@ export const regxPattern = {
     numberStr: /^\d+$/,
     postalCode: /^\d{3}-\d{4}$/,
     allWhitespaces: /^\s*$/,
+    password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,64}$/
 } as const;
 
 
@@ -25,3 +26,5 @@ export const required = (val: unknown): boolean =>
     (Array.isArray(val) && val.length === 0) ||
     (typeof val === 'string' && isMatch(val, regxPattern.allWhitespaces))
   );
+
+export const validatePassword = (val: string) : boolean => isMatch(val, regxPattern.password)
