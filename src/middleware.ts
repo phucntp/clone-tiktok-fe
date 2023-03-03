@@ -1,44 +1,42 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from "next/server";
 
-let locales = ['en', 'vi'];
-let defaultLocale = 'en';
-let localePaths = ['/en', '/vi'];
-const auth = ['registerdsf']
+let locales = ["en", "vi"];
+let defaultLocale = "en";
+let localePaths = ["/en", "/vi"];
+const auth = ["registerdsf"];
 
 export function middleware(request: NextRequest) {
-  let authen = false
-  const jwt = request.cookies.get('jwt')
-  const pathname = request.nextUrl.pathname
+  let authen = false;
+  const jwt = request.cookies.get("jwt");
+  const pathname = request.nextUrl.pathname;
   const pathnameIsMissingLocale = locales.every(
     (loc) => !pathname.startsWith(`/${loc}/`) && pathname !== `/${loc}`
-  )
-  if(pathnameIsMissingLocale) {
+  );
+  if (pathnameIsMissingLocale) {
     authen = auth.some(
-      (auth) => pathname.includes(`/${auth}`) || pathname === '/'
-    )
+      (auth) => pathname.includes(`/${auth}`) || pathname === ""
+    );
+  } else if (localePaths.includes(pathname)) {
+    authen = false;
   } else {
     authen = auth.some(
       (auth) => pathname.includes(`/${auth}`) || localePaths.includes(pathname)
-    )
+    );
   }
 
   if (authen && !jwt?.value) {
-    const locale = defaultLocale
-    return NextResponse.redirect(
-      new URL(`/${locale}/login`, request.url)
-    )
+    const locale = defaultLocale;
+    return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
   } else {
     if (pathnameIsMissingLocale) {
-      const locale = defaultLocale
+      const locale = defaultLocale;
       return NextResponse.redirect(
         new URL(`/${locale}/${pathname}`, request.url)
-      )
+      );
     }
   }
 }
 
 export const config = {
-  matcher: [
-    '/((?!_next).*)',
-  ],
-}
+  matcher: ["/((?!_next).*)"],
+};
