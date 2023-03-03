@@ -2,11 +2,14 @@
   "common": {
     "validate": {
       "error": {
-        "email_require": "Please enter email or username",
+        "username_require": "Please enter username",
+        "email_require": "Please enter email",
+        "username_email_require": "Please enter email or username",
         "password_require": "Please enter password",
         "min_length": "at least {length} characters",
         "max_length": "up to {length} characters",
-        "password_validate": "Minimum eight characters, at least one letter, one number and one special character"
+        "password_validate": "Minimum eight characters, at least one letter, one number and one special character",
+        "email_validate": "Invalid email"
       }
     }
   },
@@ -20,7 +23,7 @@
   "register": {
     "button_submit": "Sign up",
     "title": "Sign up",
-    "label": "Email",
+    "label": "User Information",
     "next": "Next",
     "have_an_account": "Already have an account?",
     "birthday_title": "When’s your birthday?"

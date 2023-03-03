@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from "react";
-import InputNormal from "@/components/atoms/form/inputs/InputNormal";
+import InputNormal from "@/components/atoms/form/inputs/InputNormal/InputNormal";
 import styles from "./LoginForm.module.scss";
 import Modal from "@/components/molecules/modal/Modal";
 import NormalButton from "@/components/atoms/buttons/NormalButton";
@@ -14,7 +14,8 @@ import { AppState } from "@/store";
 import { useTranslations } from "next-intl";
 import { useImmer } from "use-immer";
 import Message from "@/components/atoms/form/message/Message";
-import { maxLength, required, validatePassword } from "@/utils/validate";
+import { minLength, required, validatePassword } from "@/utils/validate";
+import InputPassword from "@/components/atoms/form/inputs/InputPassword/InputPassword";
 
 export default function LoginForm() {
   const [showModal, setShowModal] = useState(true);
@@ -49,17 +50,17 @@ export default function LoginForm() {
     if (!required(userInfo.email)) {
       setErrEmail((draft) => {
         (draft.hasError = true),
-          (draft.message = t("common.validate.error.email_require"));
+          (draft.message = t("common.validate.error.username_email_require"));
       });
-    } else if (!maxLength(userInfo.email, 20)) {
+    } else if (!minLength(userInfo.email, 6)) {
       setErrEmail((draft) => {
         (draft.hasError = true),
-          (draft.message = t("common.validate.error.max_length", {
-            length: 20,
+          (draft.message = t("common.validate.error.min_length", {
+            length: 6,
           }));
       });
     }
-  }
+  };
 
   const valPassword = () => {
     if (!required(userInfo.password)) {
@@ -113,11 +114,14 @@ export default function LoginForm() {
                 onChange={handleChangeInfo}
               />
             </div>
-            <Message className="mb-5" hasError={errEmail.hasError} text={errEmail.message} />
+            <Message
+              className="mb-5"
+              hasError={errEmail.hasError}
+              text={errEmail.message}
+            />
             <div className="my-10">
-              <InputNormal
+              <InputPassword
                 name="password"
-                inputType="password"
                 onChange={handleChangeInfo}
                 onBlur={handleBlur}
               />

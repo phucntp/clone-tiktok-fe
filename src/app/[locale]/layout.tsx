@@ -11,7 +11,7 @@ type Props = {
 };
 
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'vi' }];
+  return [{ locale: "en" }, { locale: "vi" }];
 }
 
 export default async function RootLayout({
@@ -26,10 +26,6 @@ export default async function RootLayout({
   }
   return (
     <html lang={`${locale}`}>
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
