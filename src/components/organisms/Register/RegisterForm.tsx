@@ -14,12 +14,12 @@ import { AppState } from "@/store";
 import { useTranslations } from "next-intl";
 import { useImmer } from "use-immer";
 import Message from "@/components/atoms/form/message/Message";
-import { maxLength, minLength, required } from "@/utils/validate";
+import { maxLength, minLength, required, validatePassword } from "@/utils/validate";
 import Birthday from "@/components/molecules/SelectDate/Birthday";
 
 export default function RegisterForm() {
   const [showModal, setShowModal] = useState(true);
-  const [userInfo, setUserInfo] = useImmer({ email: "", password: "" });
+  const [userInfo, setUserInfo] = useImmer({ email: "", password: "", username: "", birthday: "" });
   const [errEmail, setErrEmail] = useImmer({ hasError: false, message: "" });
   const [errPassword, setErrPassword] = useImmer({
     hasError: false,
@@ -46,7 +46,7 @@ export default function RegisterForm() {
     });
   };
 
-  const validateLogin = () => {
+  const validateEmail = () => {
     if (!required(userInfo.email)) {
       setErrEmail((draft) => {
         (draft.hasError = true),
@@ -60,24 +60,27 @@ export default function RegisterForm() {
           }));
       });
     }
+  }
+
+  const valPassword = () => {
     if (!required(userInfo.password)) {
       setErrPassword((draft) => {
         (draft.hasError = true),
           (draft.message = t("common.validate.error.password_require"));
       });
-    } else if (!minLength(userInfo.email, 5)) {
+    } else if (!validatePassword(userInfo.password)) {
       setErrPassword((draft) => {
         (draft.hasError = true),
-          (draft.message = t("common.validate.error.min_length", {
-            length: 5,
-          }));
+          (draft.message = t("common.validate.error.password_validate"));
       });
     }
   };
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    validateLogin();
+    validateEmail();
+    valPassword();
   };
+
 
   const handleClick = useCallback(async () => {
     // const data = await fetch('http://localhost:9000/api/users/login', {

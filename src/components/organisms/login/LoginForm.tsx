@@ -14,7 +14,7 @@ import { AppState } from "@/store";
 import { useTranslations } from "next-intl";
 import { useImmer } from "use-immer";
 import Message from "@/components/atoms/form/message/Message";
-import { maxLength, minLength, required } from "@/utils/validate";
+import { maxLength, required, validatePassword } from "@/utils/validate";
 
 export default function LoginForm() {
   const [showModal, setShowModal] = useState(true);
@@ -45,7 +45,7 @@ export default function LoginForm() {
     });
   };
 
-  const validateLogin = () => {
+  const validateEmail = () => {
     if (!required(userInfo.email)) {
       setErrEmail((draft) => {
         (draft.hasError = true),
@@ -59,23 +59,25 @@ export default function LoginForm() {
           }));
       });
     }
+  }
+
+  const valPassword = () => {
     if (!required(userInfo.password)) {
       setErrPassword((draft) => {
         (draft.hasError = true),
           (draft.message = t("common.validate.error.password_require"));
       });
-    } else if (!minLength(userInfo.email, 5)) {
+    } else if (!validatePassword(userInfo.password)) {
       setErrPassword((draft) => {
         (draft.hasError = true),
-          (draft.message = t("common.validate.error.min_length", {
-            length: 5,
-          }));
+          (draft.message = t("common.validate.error.password_validate"));
       });
     }
   };
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    validateLogin();
+    validateEmail();
+    valPassword();
   };
 
   const handleClick = useCallback(async () => {

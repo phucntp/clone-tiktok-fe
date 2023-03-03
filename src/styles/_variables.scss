@@ -180,6 +180,8 @@ $xl-2: 1536px;
 
 $set-prefix: -webkit-, "";
 
+$normal-padding: 6px 8px;
+
 @mixin clearfix {
   zoom: 1;
   &:after {

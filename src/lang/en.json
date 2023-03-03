@@ -5,7 +5,8 @@
         "email_require": "Please enter email or username",
         "password_require": "Please enter password",
         "min_length": "at least {length} characters",
-        "max_length": "up to {length} characters"
+        "max_length": "up to {length} characters",
+        "password_validate": "Minimum eight characters, at least one letter, one number and one special character"
       }
     }
   },

@@ -1,11 +1,11 @@
-@import '@/styles/variables';
+@import "@/styles/variables";
 
 .birthdayContainer {
-    @include flexbox;
-    @include flexbox-justify-space-between;
-    margin: 10px 0;
+  @include flexbox;
+  @include flexbox-justify-space-between;
+  margin: 10px 0;
 
-    .selectItem {
-        width: 30%;
-    }
+  .selectItem {
+    width: 30%;
+  }
 }
