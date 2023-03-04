@@ -1,5 +1,5 @@
 import { errorActions } from "@/actions/errorActions";
-import loginActions from "@/actions/login";
+import registerActions from "@/actions/register";
 import { authServices } from "@/services/auth";
 import loadingModule from "@/reducers/ui/loading";
 import { asyncActionWithCallback, WrapAction } from "@/types/store/epic";
@@ -8,35 +8,35 @@ import { from, map } from "rxjs";
 import actionCreatorFactory, { AnyAction } from "typescript-fsa";
 import { ofAction } from "typescript-fsa-redux-observable-of-action";
 import { AppState } from "@/store";
-import loginReducer, { TStateLogin } from "@/reducers/login";
+import registerReducer, { TStateRegister } from "@/reducers/register";
 
-const ac = actionCreatorFactory("[epics/login]");
+const ac = actionCreatorFactory("[epics/register]");
 
-const _actionLogin = {
-  loginNext: ac<TStateLogin>("getExpertStatusNext"),
+const _actionRegister = {
+  registerNext: ac<TStateRegister>("getExpertStatusNext"),
 };
-const loginEpic: Epic<
+const registerEpic: Epic<
   AnyAction,
   WrapAction<typeof asyncActionWithCallback>, //
   AppState
 > = (action$) =>
   action$.pipe(
-    ofAction(loginActions.login),
+    ofAction(registerActions.register),
     map(({ payload }) =>
       asyncActionWithCallback({
         previous: loadingModule.actions.on(),
-        asyncFunc: from(authServices.loginUser(payload)),
+        asyncFunc: from(authServices.registerUser(payload)),
         error: (error: any) => errorActions.throwError(error),
-        next: (res: TStateLogin) => _actionLogin.loginNext(res),
+        next: (res: TStateRegister) => _actionRegister.registerNext(res),
         complete: loadingModule.actions.off(),
       })
     )
   );
-const loginEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
+const registerEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
   action$.pipe(
-    ofAction(_actionLogin.loginNext),
+    ofAction(_actionRegister.registerNext),
     map(({ payload }) => {
-      return loginReducer.actions.set(payload);
+      return registerReducer.actions.set(payload);
     })
   );
-export const loginEpics = combineEpics(loginEpic, loginEpicNext);
+export const registerEpics = combineEpics(registerEpic, registerEpicNext);

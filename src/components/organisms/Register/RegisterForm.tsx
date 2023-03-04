@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
+import { useClickAway } from "react-use";
 import InputNormal from "@/components/atoms/form/inputs/InputNormal/InputNormal";
 import styles from "./RegisterForm.module.scss";
 import Modal from "@/components/molecules/modal/Modal";
@@ -23,6 +24,7 @@ import {
 } from "@/utils/validate";
 import Birthday from "@/components/molecules/SelectDate/Birthday";
 import InputPassword from "@/components/atoms/form/inputs/InputPassword/InputPassword";
+import registerActions from "@/actions/register";
 
 export default function RegisterForm() {
   const [showModal, setShowModal] = useState(true);
@@ -45,6 +47,11 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   // const auth = useSelector((state: AppState) => state.loginReducer)
   const t = useTranslations();
+
+  const ref = useRef(null);
+  useClickAway(ref, () => {
+    toggleModal();
+  });
 
   const toggleModal = useCallback(() => {
     setShowModal((prev) => !prev);
@@ -122,6 +129,16 @@ export default function RegisterForm() {
     valPassword();
   };
 
+  const handleBirthDay = useCallback(
+    (value: string) => {
+      console.log(value, "value");
+      setUserInfo((draft) => {
+        draft.birthday = value;
+      });
+    },
+    [setUserInfo]
+  );
+
   const handleClick = useCallback(async () => {
     // const data = await fetch('http://localhost:9000/api/users/login', {
     //   method: 'POST',
@@ -132,7 +149,7 @@ export default function RegisterForm() {
     //   },
     //   body: JSON.stringify({email: "phuc@gmail.com", password: "1234567"})
     // })
-    dispatch(loginActions.login(userInfo));
+    dispatch(registerActions.register(userInfo));
   }, [dispatch, userInfo]);
   return (
     <>
@@ -142,18 +159,19 @@ export default function RegisterForm() {
         handleClose={toggleModal}
         height="90%"
       >
-        <div className={`${styles.backgroundContain} p-50 pt-0 h-80`}>
+        <div ref={ref} className={`${styles.backgroundContain} p-50 pt-0 h-80`}>
           <h2 className="my-32">{t("register.title")}</h2>
           <div className="mb-5">
             <label>{t("register.label")}</label>
           </div>
-          <Birthday />
+          <Birthday onChange={handleBirthDay} />
           <form action="">
             <div className="mt-10 mb-5">
               <InputNormal
                 name="username"
                 onBlur={handleBlur}
                 onChange={handleChangeInfo}
+                placeholder={t("common.placeholder.username")}
               />
             </div>
             <Message
@@ -166,6 +184,7 @@ export default function RegisterForm() {
                 name="email"
                 onBlur={handleBlur}
                 onChange={handleChangeInfo}
+                placeholder={t("common.placeholder.email")}
               />
             </div>
             <Message
@@ -178,6 +197,7 @@ export default function RegisterForm() {
                 name="password"
                 onChange={handleChangeInfo}
                 onBlur={handleBlur}
+                placeholder={t("common.placeholder.password")}
               />
             </div>
             <Message
