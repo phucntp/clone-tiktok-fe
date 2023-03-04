@@ -1,21 +1,38 @@
-import { initialState, TState } from "@/reducers/login";
+import { initialStateLogin, TStateLogin } from "@/reducers/login";
+import { initialStateRegister, TStateRegister } from "@/reducers/register";
 import { authRepositories } from "@/repositories/auth";
 import { TParamLogin } from "@/types/login";
+import { TParamRegister } from "@/types/register";
 
-const loginUser = async (data: TParamLogin) : Promise<TState> => {
-    const res = await authRepositories.login(data);
-    if (!res || res?.data) {
-      return {
-        ...initialState,
-        hasError: true,
-      };
-    }
+const loginUser = async (data: TParamLogin): Promise<TStateLogin> => {
+  const res = await authRepositories.login(data, { withCredentials: true });
+  if (!res || res?.data) {
     return {
-      hasError: false,
-      data: res.data
+      ...initialStateLogin,
+      hasError: true,
     };
+  }
+  return {
+    hasError: false,
+    data: res.data,
   };
+};
 
-  export const authServices = {
-    loginUser,
+const registerUser = async (data: TParamRegister): Promise<TStateRegister> => {
+  const res = await authRepositories.register(data, { withCredentials: true });
+  if (!res || res?.data) {
+    return {
+      ...initialStateRegister,
+      hasError: true,
+    };
+  }
+  return {
+    hasError: false,
+    data: res.data,
   };
+};
+
+export const authServices = {
+  loginUser,
+  registerUser,
+};

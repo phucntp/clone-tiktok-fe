@@ -11,6 +11,15 @@
         "password_validate": "Minimum eight characters, at least one letter, one number and one special character",
         "email_validate": "Invalid email"
       }
+    },
+    "placeholder": {
+      "password": "Password",
+      "username": "Username",
+      "email": "Email address",
+      "username_email": "Username or email",
+      "month": "Month",
+      "day": "Day",
+      "year": "Year"
     }
   },
   "login": {

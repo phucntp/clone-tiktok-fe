@@ -1,20 +1,24 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export const initialState = {
+export const initialStateLogin = {
   hasError: false,
-  data: {}
+  data: {},
 };
-export type TState = typeof initialState;
+export type TStateLogin = typeof initialStateLogin;
 
 const loginReducer = createSlice({
-  name: '[reducers/login]',
-  initialState,
+  name: "[reducers/login]",
+  initialState: initialStateLogin,
   reducers: {
-    set(state: TState, action: PayloadAction<TState>) {
-      return { ...state, data: action.payload.data, hasError: action.payload.hasError };
+    set(state: TStateLogin, action: PayloadAction<TStateLogin>) {
+      return {
+        ...state,
+        data: action.payload.data,
+        hasError: action.payload.hasError,
+      };
     },
-    clear(state: TState) {
-      return { ...state, ...initialState };
+    clear(state: TStateLogin) {
+      return { ...state, ...initialStateLogin };
     },
   },
 });
