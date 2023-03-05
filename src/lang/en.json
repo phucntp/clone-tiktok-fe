@@ -36,5 +36,11 @@
     "next": "Next",
     "have_an_account": "Already have an account?",
     "birthday_title": "When’s your birthday?"
+  },
+  "forgot_password": {
+    "button_submit": "Log in",
+    "title": "Reset password",
+    "label": "Enter email address",
+    "have_not_account": "Don’t have an account?"
   }
 }

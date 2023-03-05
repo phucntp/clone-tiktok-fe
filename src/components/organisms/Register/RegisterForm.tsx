@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import { useClickAway } from "react-use";
 import InputNormal from "@/components/atoms/form/inputs/InputNormal/InputNormal";
 import styles from "./RegisterForm.module.scss";
 import Modal from "@/components/molecules/modal/Modal";
@@ -47,11 +46,6 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   // const auth = useSelector((state: AppState) => state.loginReducer)
   const t = useTranslations();
-
-  const ref = useRef(null);
-  useClickAway(ref, () => {
-    toggleModal();
-  });
 
   const toggleModal = useCallback(() => {
     setShowModal((prev) => !prev);
@@ -131,7 +125,6 @@ export default function RegisterForm() {
 
   const handleBirthDay = useCallback(
     (value: string) => {
-      console.log(value, "value");
       setUserInfo((draft) => {
         draft.birthday = value;
       });
@@ -159,7 +152,7 @@ export default function RegisterForm() {
         handleClose={toggleModal}
         height="90%"
       >
-        <div ref={ref} className={`${styles.backgroundContain} p-50 pt-0 h-80`}>
+        <div className={`${styles.backgroundContain} p-50 pt-0 h-80`}>
           <h2 className="my-32">{t("register.title")}</h2>
           <div className="mb-5">
             <label>{t("register.label")}</label>

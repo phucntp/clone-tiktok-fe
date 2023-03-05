@@ -3,7 +3,7 @@
 
 import React, { useState, useCallback, useEffect } from "react";
 import InputNormal from "@/components/atoms/form/inputs/InputNormal/InputNormal";
-import styles from "./LoginForm.module.scss";
+import styles from "./ForgotPassword.module.scss";
 import Modal from "@/components/molecules/modal/Modal";
 import NormalButton from "@/components/atoms/buttons/NormalButton";
 import Link from "next/link";
@@ -14,12 +14,18 @@ import { AppState } from "@/store";
 import { useTranslations } from "next-intl";
 import { useImmer } from "use-immer";
 import Message from "@/components/atoms/form/message/Message";
-import { minLength, required, validatePassword } from "@/utils/validate";
+import {
+  minLength,
+  required,
+  validateEmail,
+  validatePassword,
+} from "@/utils/validate";
 import InputPassword from "@/components/atoms/form/inputs/InputPassword/InputPassword";
+import forgotPasswordActions from "@/actions/forgotPassword";
 
-export default function LoginForm() {
+export default function ForgotPasswordForm() {
   const [showModal, setShowModal] = useState(true);
-  const [userInfo, setUserInfo] = useImmer({ email: "", password: "" });
+  const [userInfo, setUserInfo] = useImmer({ email: "", newPassword: "" });
   const [errEmail, setErrEmail] = useImmer({ hasError: false, message: "" });
   const [errPassword, setErrPassword] = useImmer({
     hasError: false,
@@ -46,29 +52,27 @@ export default function LoginForm() {
     });
   };
 
-  const validateEmail = () => {
+  const valEmail = () => {
     if (!required(userInfo.email)) {
       setErrEmail((draft) => {
         (draft.hasError = true),
-          (draft.message = t("common.validate.error.username_email_require"));
+          (draft.message = t("common.validate.error.email_require"));
       });
-    } else if (!minLength(userInfo.email, 6)) {
+    } else if (!validateEmail(userInfo.email)) {
       setErrEmail((draft) => {
         (draft.hasError = true),
-          (draft.message = t("common.validate.error.min_length", {
-            length: 6,
-          }));
+          (draft.message = t("common.validate.error.email_validate"));
       });
     }
   };
 
   const valPassword = () => {
-    if (!required(userInfo.password)) {
+    if (!required(userInfo.newPassword)) {
       setErrPassword((draft) => {
         (draft.hasError = true),
           (draft.message = t("common.validate.error.password_require"));
       });
-    } else if (!validatePassword(userInfo.password)) {
+    } else if (!validatePassword(userInfo.newPassword)) {
       setErrPassword((draft) => {
         (draft.hasError = true),
           (draft.message = t("common.validate.error.password_validate"));
@@ -77,7 +81,7 @@ export default function LoginForm() {
   };
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    validateEmail();
+    valEmail();
     valPassword();
   };
 
@@ -91,7 +95,7 @@ export default function LoginForm() {
     //   },
     //   body: JSON.stringify({email: "phuc@gmail.com", password: "1234567"})
     // })
-    dispatch(loginActions.login(userInfo));
+    dispatch(forgotPasswordActions.forgotPassword(userInfo));
   }, [dispatch, userInfo]);
   return (
     <>
@@ -102,9 +106,9 @@ export default function LoginForm() {
         height="90%"
       >
         <div className={`${styles.backgroundContain} p-50 pt-0 h-80`}>
-          <h2 className="my-32">{t("login.title")}</h2>
+          <h2 className="my-32">{t("forgot_password.title")}</h2>
           <div className="mb-5">
-            <label>{t("login.label")}</label>
+            <label>{t("forgot_password.label")}</label>
           </div>
           <form action="">
             <div className="mt-10 mb-5">
@@ -122,7 +126,7 @@ export default function LoginForm() {
             />
             <div className="my-10">
               <InputPassword
-                name="password"
+                name="newPassword"
                 onChange={handleChangeInfo}
                 onBlur={handleBlur}
                 placeholder={t("common.placeholder.password")}
@@ -134,17 +138,14 @@ export default function LoginForm() {
               text={errPassword.message}
             />
           </form>
-          <Link className="d-block pt-15 font-14" href="">
-            {t("login.forgot_password")}
-          </Link>
           <NormalButton
-            label={t("login.button_submit")}
+            label={t("forgot_password.button_submit")}
             type="submit"
             className="w-100 my-30"
             handleClick={handleClick}
           />
           <div className={styles.redirectRegister}>
-            {t("login.have_not_account")}{" "}
+            {t("forgot_password.have_not_account")}{" "}
             <Link className="p-5" href={ROUTER.REGISTER}>
               {t("register.button_submit")}
             </Link>
