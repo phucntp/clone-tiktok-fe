@@ -20,6 +20,9 @@
       "month": "Month",
       "day": "Day",
       "year": "Year"
+    },
+    "button": {
+      "upload": "Upload"
     }
   },
   "login": {
@@ -42,5 +45,6 @@
     "title": "Reset password",
     "label": "Enter email address",
     "have_not_account": "Don’t have an account?"
-  }
+  },
+  "home": {}
 }

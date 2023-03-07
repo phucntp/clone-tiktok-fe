@@ -11,6 +11,10 @@
 .justify-center {
   @include flexbox-justify-center;
 }
+
+.justify-space-around {
+  @include flexbox-justify-space-around;
+}
 .align-center {
   @include flexbox-align-center;
 }
@@ -143,7 +147,6 @@
   }
 }
 
-
 .normal-input {
   height: $btn-height;
   padding: $normal-padding;
@@ -156,6 +159,11 @@
   border-radius: 4px;
   min-height: $btn-height;
   font-size: $font-size16;
+}
+
+.button-danger {
+  background-color: $color-bg-danger;
+  color: $color-white;
 }
 
 .normal-select {
@@ -192,7 +200,7 @@
 }
 
 .background-none {
- background-color: inherit !important;
+  background-color: inherit !important;
 }
 
 .border-none {
@@ -205,6 +213,9 @@
   border: 1px solid $color-red;
 }
 
-@media (min-width: $sm) {
+.background-red {
+  background-color: $color-bg-danger;
+}
 
+@media (min-width: $sm) {
 }

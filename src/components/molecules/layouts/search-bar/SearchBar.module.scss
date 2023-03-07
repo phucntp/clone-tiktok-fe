@@ -1,0 +1,26 @@
+@import "@/styles/variables";
+
+.searchBarContainer {
+  @include flexbox;
+  @include flexbox-align-center;
+
+  .inputSearch {
+    border: none;
+    border-radius: 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .spanBorder {
+    width: 1px;
+    height: 28px;
+    background-color: $color-white;
+    margin-left: -3px;
+  }
+
+  .buttonSearch {
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
