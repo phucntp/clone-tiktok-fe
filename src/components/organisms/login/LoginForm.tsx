@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from "react";
-import InputNormal from "@/components/atoms/form/inputs/InputNormal/InputNormal";
+import InputNormal from "@/components/atoms/form/inputs/input-normal/InputNormal";
 import styles from "./LoginForm.module.scss";
 import Modal from "@/components/molecules/modal/Modal";
 import NormalButton from "@/components/atoms/buttons/NormalButton";
@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 import { useImmer } from "use-immer";
 import Message from "@/components/atoms/form/message/Message";
 import { minLength, required, validatePassword } from "@/utils/validate";
-import InputPassword from "@/components/atoms/form/inputs/InputPassword/InputPassword";
+import InputPassword from "@/components/atoms/form/inputs/input-password/InputPassword";
 
 export default function LoginForm() {
   const [showModal, setShowModal] = useState(true);

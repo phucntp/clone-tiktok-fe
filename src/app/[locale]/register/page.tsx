@@ -1,6 +1,5 @@
-
 import React from "react";
-import RegisterForm from "@/components/organisms/Register/RegisterForm";
+import RegisterForm from "@/components/organisms/_register/RegisterForm";
 
 const page = async () => {
   return (
