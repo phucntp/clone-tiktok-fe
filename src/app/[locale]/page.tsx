@@ -1,9 +1,12 @@
-'use client';
-import {useTranslations} from 'next-intl';
+"use client";
+import { useTranslations } from "next-intl";
+import { LayoutHome } from "@/components/layouts/home/LayoutHome";
 
 export default function Home() {
-  const t = useTranslations('login');
+  const t = useTranslations("login");
   return (
-    <main>{t('title')}</main>
-  )
+    <LayoutHome>
+      <main>{t("title")}</main>
+    </LayoutHome>
+  );
 }
