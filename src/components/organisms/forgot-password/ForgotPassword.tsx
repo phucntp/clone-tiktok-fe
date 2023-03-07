@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 "use client";
 
-import React, { useState, useCallback, useEffect, useRef } from "react";
-import InputNormal from "@/components/atoms/form/inputs/InputNormal/InputNormal";
-import styles from "./RegisterForm.module.scss";
+import React, { useState, useCallback, useEffect } from "react";
+import InputNormal from "@/components/atoms/form/inputs/input-normal/InputNormal";
+import styles from "./ForgotPassword.module.scss";
 import Modal from "@/components/molecules/modal/Modal";
 import NormalButton from "@/components/atoms/buttons/NormalButton";
 import Link from "next/link";
@@ -15,28 +15,17 @@ import { useTranslations } from "next-intl";
 import { useImmer } from "use-immer";
 import Message from "@/components/atoms/form/message/Message";
 import {
-  maxLength,
   minLength,
   required,
-  validatePassword,
   validateEmail,
+  validatePassword,
 } from "@/utils/validate";
-import Birthday from "@/components/molecules/SelectDate/Birthday";
-import InputPassword from "@/components/atoms/form/inputs/InputPassword/InputPassword";
-import registerActions from "@/actions/register";
+import InputPassword from "@/components/atoms/form/inputs/input-password/InputPassword";
+import forgotPasswordActions from "@/actions/forgotPassword";
 
-export default function RegisterForm() {
+export default function ForgotPasswordForm() {
   const [showModal, setShowModal] = useState(true);
-  const [userInfo, setUserInfo] = useImmer({
-    email: "",
-    password: "",
-    username: "",
-    birthday: "",
-  });
-  const [errUsername, setErrUsername] = useImmer({
-    hasError: false,
-    message: "",
-  });
+  const [userInfo, setUserInfo] = useImmer({ email: "", newPassword: "" });
   const [errEmail, setErrEmail] = useImmer({ hasError: false, message: "" });
   const [errPassword, setErrPassword] = useImmer({
     hasError: false,
@@ -52,9 +41,6 @@ export default function RegisterForm() {
   }, []);
 
   const handleChangeInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setErrUsername((draft) => {
-      (draft.hasError = false), (draft.message = "");
-    });
     setErrEmail((draft) => {
       (draft.hasError = false), (draft.message = "");
     });
@@ -64,29 +50,6 @@ export default function RegisterForm() {
     setUserInfo((draft: any) => {
       draft[e.target.name] = e.target.value;
     });
-  };
-
-  const valUsername = () => {
-    if (!required(userInfo.username)) {
-      setErrUsername((draft) => {
-        (draft.hasError = true),
-          (draft.message = t("common.validate.error.username_require"));
-      });
-    } else if (!maxLength(userInfo.username, 20)) {
-      setErrUsername((draft) => {
-        (draft.hasError = true),
-          (draft.message = t("common.validate.error.max_length", {
-            length: 20,
-          }));
-      });
-    } else if (!minLength(userInfo.username, 6)) {
-      setErrUsername((draft) => {
-        (draft.hasError = true),
-          (draft.message = t("common.validate.error.min_length", {
-            length: 6,
-          }));
-      });
-    }
   };
 
   const valEmail = () => {
@@ -104,12 +67,12 @@ export default function RegisterForm() {
   };
 
   const valPassword = () => {
-    if (!required(userInfo.password)) {
+    if (!required(userInfo.newPassword)) {
       setErrPassword((draft) => {
         (draft.hasError = true),
           (draft.message = t("common.validate.error.password_require"));
       });
-    } else if (!validatePassword(userInfo.password)) {
+    } else if (!validatePassword(userInfo.newPassword)) {
       setErrPassword((draft) => {
         (draft.hasError = true),
           (draft.message = t("common.validate.error.password_validate"));
@@ -118,19 +81,9 @@ export default function RegisterForm() {
   };
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    valUsername();
     valEmail();
     valPassword();
   };
-
-  const handleBirthDay = useCallback(
-    (value: string) => {
-      setUserInfo((draft) => {
-        draft.birthday = value;
-      });
-    },
-    [setUserInfo]
-  );
 
   const handleClick = useCallback(async () => {
     // const data = await fetch('http://localhost:9000/api/users/login', {
@@ -142,7 +95,7 @@ export default function RegisterForm() {
     //   },
     //   body: JSON.stringify({email: "phuc@gmail.com", password: "1234567"})
     // })
-    dispatch(registerActions.register(userInfo));
+    dispatch(forgotPasswordActions.forgotPassword(userInfo));
   }, [dispatch, userInfo]);
   return (
     <>
@@ -153,31 +106,17 @@ export default function RegisterForm() {
         height="90%"
       >
         <div className={`${styles.backgroundContain} p-50 pt-0 h-80`}>
-          <h2 className="my-32">{t("register.title")}</h2>
+          <h2 className="my-32">{t("forgot_password.title")}</h2>
           <div className="mb-5">
-            <label>{t("register.label")}</label>
+            <label>{t("forgot_password.label")}</label>
           </div>
-          <Birthday onChange={handleBirthDay} />
           <form action="">
-            <div className="mt-10 mb-5">
-              <InputNormal
-                name="username"
-                onBlur={handleBlur}
-                onChange={handleChangeInfo}
-                placeholder={t("common.placeholder.username")}
-              />
-            </div>
-            <Message
-              className="mb-5"
-              hasError={errUsername.hasError}
-              text={errUsername.message}
-            />
             <div className="mt-10 mb-5">
               <InputNormal
                 name="email"
                 onBlur={handleBlur}
                 onChange={handleChangeInfo}
-                placeholder={t("common.placeholder.email")}
+                placeholder={t("common.placeholder.username_email")}
               />
             </div>
             <Message
@@ -187,7 +126,7 @@ export default function RegisterForm() {
             />
             <div className="my-10">
               <InputPassword
-                name="password"
+                name="newPassword"
                 onChange={handleChangeInfo}
                 onBlur={handleBlur}
                 placeholder={t("common.placeholder.password")}
@@ -200,15 +139,15 @@ export default function RegisterForm() {
             />
           </form>
           <NormalButton
-            label={t("register.next")}
+            label={t("forgot_password.button_submit")}
             type="submit"
             className="w-100 my-30"
             handleClick={handleClick}
           />
-          <div className={styles.redirectLogin}>
-            {t("register.have_an_account")}
-            <Link className="p-5" href={ROUTER.LOGIN}>
-              {t("login.button_submit")}
+          <div className={styles.redirectRegister}>
+            {t("forgot_password.have_not_account")}{" "}
+            <Link className="p-5" href={ROUTER.REGISTER}>
+              {t("register.button_submit")}
             </Link>
           </div>
         </div>
