@@ -46,5 +46,15 @@
     "label": "Enter email address",
     "have_not_account": "Don’t have an account?"
   },
-  "home": {}
+  "home": {},
+  "layout": {
+    "title": {
+      "suggested_account": "Suggested accounts",
+      "following_account": "Following accounts"
+    },
+    "object": {
+      "for_you": "For You",
+      "following": "Following"
+    }
+  }
 }

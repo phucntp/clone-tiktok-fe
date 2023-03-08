@@ -1,0 +1,10 @@
+@import "@/styles/variables";
+
+.itemContainer {
+  @include flexbox;
+
+  .itemAvatar {
+  }
+  .itemContent {
+  }
+}
