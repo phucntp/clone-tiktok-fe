@@ -1,14 +1,15 @@
 import React from "react";
 import Avatar from "@/components/atoms/images/avatar/Avatar";
+import styles from "./ItemAccount.module.scss"
 
 function ItemAccount() {
   return (
-    <div>
-      <div>
+    <div className={styles.accountContainer}>
+      <div className={styles.accountAvatar}>
         <Avatar />
       </div>
-      <div>
-        <h3>Gusion Name</h3>
+      <div className={styles.accountContent}>
+        <div className={styles.accountTitle}><h4>Gusion Name</h4></div>
         <p>Description</p>
       </div>
     </div>

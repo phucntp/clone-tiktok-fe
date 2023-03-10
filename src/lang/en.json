@@ -50,7 +50,8 @@
   "layout": {
     "title": {
       "suggested_account": "Suggested accounts",
-      "following_account": "Following accounts"
+      "following_account": "Following accounts",
+      "discover": "Discover"
     },
     "object": {
       "for_you": "For You",

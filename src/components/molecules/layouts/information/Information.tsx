@@ -7,7 +7,6 @@ function Information() {
       <NormalLink />
       <NormalLink />
       <NormalLink />
-      <p>Tiktok</p>
     </div>
   );
 }

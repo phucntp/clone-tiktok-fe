@@ -1,11 +1,12 @@
 import { useTranslations } from "next-intl";
 import React from "react";
+import styles from "./Object.module.scss";
 
 function Object() {
   const t = useTranslations();
   return (
-    <div>
-      <div className="d-flex align-center">
+    <div className={styles.objectContainer}>
+      <div className={styles.objectItem}>
         <svg
           width="32"
           data-e2e=""
@@ -22,7 +23,7 @@ function Object() {
         </svg>
         <h2 className="ml-5">{t("layout.object.for_you")}</h2>
       </div>
-      <div className="d-flex align-center">
+      <div className={styles.objectItem}>
         <svg
           width="32"
           data-e2e=""

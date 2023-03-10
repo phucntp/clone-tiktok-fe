@@ -29,12 +29,6 @@ function InputNormal({ disabled = false, placeholder = '', value = '', readOnly 
 
   const listClass = hasError ? 'border-error' + className : className
   return (
-    // <div className="d-flex justify-center align-center">
-    //   {label && <label className="font-20 w-100">{label}</label>}
-    //   <div className="w-100">
-    //     <input className="w-100 normal-input"/>
-    //   </div>
-    // </div>
     <input name={name} onBlur={onBlur} type={inputType} disabled={disabled} placeholder={placeholder} value={state} readOnly={readOnly} onChange={onChangeValue} className={`${listClass} w-100 normal-input`}/>
   );
 }

@@ -1,10 +1,21 @@
 @import "@/styles/variables";
 
-.itemContainer {
+.accountContainer {
   @include flexbox;
+  padding: 10px 0;
 
-  .itemAvatar {
+  .accountAvatar {
+    margin-right: 10px;
   }
-  .itemContent {
+  .accountContent {
+    .accountTitle {
+      h4 {
+        font-size: 16px;
+      }
+    }
+
+    p {
+      font-size: 12px;
+    }
   }
 }
