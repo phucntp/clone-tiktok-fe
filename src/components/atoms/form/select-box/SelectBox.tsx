@@ -6,21 +6,21 @@ interface Props {
   listOption: TSelectBox[];
   valueSelect: string;
   name?: string;
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange?: (value: string) => void;
   placeholder?: string;
 }
 
 function SelectBox({
   listOption,
   valueSelect,
-  onChange = () => {},
+  onChange = (value: string) => {},
   name = "",
   placeholder = "",
 }: Props) {
   const [state, setState] = useState(valueSelect);
   const onChangeValue = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
-      onChange(event);
+      onChange(event.target.value);
       setState(event.target.value);
     },
     [onChange]

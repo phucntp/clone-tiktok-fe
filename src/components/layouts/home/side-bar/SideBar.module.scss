@@ -1,11 +1,12 @@
 @import "@/styles/variables";
 
 .sidebarContainer {
+  @include flexbox;
+  @include flexbox-column;
   width: 300px;
   height: 100vh;
   overflow: auto;
   padding-top: 100px;
-  @include flexbox;
-  @include flexbox-column;
+  padding-left: 20px;
   row-gap: 20px;
 }

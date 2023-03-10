@@ -1,0 +1,9 @@
+@import "@/styles/variables";
+
+.followingContainer {
+    border-bottom: $border-bottom-white;
+    padding-bottom: 10px;
+    .followingItem {
+        font-size: 14px;
+    }
+}

@@ -24,7 +24,7 @@ const Header = () => {
       <div className={styles.rightContainer}>
         <ButtonUpload label={t("common.button.upload")} className="h-40-px" />
         <NormalButton label={t("login.title")} className="button-danger" />
-        <ButtonChat />
+        <ButtonChat className="px-20" />
         <ButtonInbox />
         <Avatar />
       </div>
