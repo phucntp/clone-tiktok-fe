@@ -3,17 +3,40 @@ import FollowingAccount from "@/components/molecules/layouts/following-account/F
 import Information from "@/components/molecules/layouts/information/Information";
 import Object from "@/components/molecules/layouts/object/Object";
 import SuggestedAccount from "@/components/molecules/layouts/suggested-account/SuggestedAccount";
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./SideBar.module.scss";
+import useBreakpoint from "@/hooks/useBreakpoint";
+import Menu from "@/components/atoms/icons/Menu";
+import Logo from "@/components/atoms/images/logo/Logo";
+import { useClickAway } from "react-use";
 
-const SideBar = () => {
+type TProps = {
+  closeSideMenu?: () => void;
+};
+
+const SideBar = ({ closeSideMenu = () => {} }: TProps) => {
+  const breakpoint = useBreakpoint();
+  const ref = useRef(null);
+  useClickAway(ref, () => {
+    closeSideMenu();
+  });
   return (
-    <div className={styles.sidebarContainer}>
-      <Object />
-      <SuggestedAccount />
+    <div ref={ref} className={styles.sidebarContainer}>
+      {breakpoint === "SM" && (
+        <div className="d-flex align-center">
+          <Menu className="w-32-px h-32-px" color="black" />
+          <Logo color="black" />
+        </div>
+      )}
+      {breakpoint === "SM" ? (
+        <Object colorFollowing="black" colorForYou="black" />
+      ) : (
+        <Object />
+      )}
+      {breakpoint !== "SM" && <SuggestedAccount />}
       <FollowingAccount />
-      <Discover />
-      <Information />
+      <Discover className="hidden-content-lg" />
+      <Information className="hidden-content-lg" />
     </div>
   );
 };

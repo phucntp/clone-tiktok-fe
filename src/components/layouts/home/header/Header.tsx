@@ -11,10 +11,9 @@ import styles from "./Header.module.scss";
 
 const Header = () => {
   const t = useTranslations();
+
   return (
-    <div
-      className={`${styles.headerContainer} d-flex align-center justify-space-around py-10`}
-    >
+    <div className={`${styles.headerContainer} py-10`}>
       <div>
         <Logo />
       </div>
@@ -22,9 +21,12 @@ const Header = () => {
         <SearchBar />
       </div>
       <div className={styles.rightContainer}>
-        <ButtonUpload label={t("common.button.upload")} className="h-40-px" />
-        <NormalButton label={t("login.title")} className="button-danger" />
-        <ButtonChat className="px-20" />
+        <ButtonUpload label={t("common.button.upload")} className="h-36-px" />
+        <NormalButton
+          label={t("login.title")}
+          className="button-danger h-36-px"
+        />
+        <ButtonChat className="" />
         <ButtonInbox />
         <Avatar />
       </div>

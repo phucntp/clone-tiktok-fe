@@ -8,7 +8,10 @@ const SearchBar = () => {
     <form className={styles.searchBarContainer}>
       <InputNormal className={styles.inputSearch} />
       <span className={styles.spanBorder}></span>
-      <ButtonSearch className={`${styles.buttonSearch} h-40-px border-none`} />
+      <ButtonSearch
+        className={`${styles.buttonSearch} h-40-px border-none pr-16`}
+        color="#fff"
+      />
     </form>
   );
 };

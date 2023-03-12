@@ -8,6 +8,11 @@
   @include flexbox;
 }
 
+.d-flex-col {
+  @include flexbox;
+  @include flexbox-column;
+}
+
 .justify-center {
   @include flexbox-justify-center;
 }
@@ -217,5 +222,8 @@
   background-color: $color-bg-danger;
 }
 
-@media (min-width: $sm) {
+@media screen and (max-width: $lg) and (min-width: $sm) {
+  .hidden-content-lg {
+    display: none !important;
+  }
 }
