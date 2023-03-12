@@ -1,8 +1,8 @@
 @import "@/styles/variables";
 
 .objectContainer {
-    padding: 10px 0;
-    border-bottom: $border-bottom-white;
+  padding: 10px 0;
+  border-bottom: $border-small;
 
   .objectItem {
     @include flexbox;

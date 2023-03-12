@@ -4,9 +4,15 @@ interface Props {
   type?: "button" | "submit" | "reset";
   className?: string;
   handleClick?: () => void;
+  color?: string;
 }
 
-function ButtonSearch({ type, className, handleClick }: Props) {
+function ButtonSearch({
+  type = "button",
+  className = "",
+  handleClick = () => {},
+  color = "rgba(255, 255, 255, .34)",
+}: Props) {
   return (
     <button
       type={type}
@@ -18,7 +24,7 @@ function ButtonSearch({ type, className, handleClick }: Props) {
         data-e2e=""
         height="24"
         viewBox="0 0 48 48"
-        fill="rgba(255, 255, 255, .34)"
+        fill={color}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

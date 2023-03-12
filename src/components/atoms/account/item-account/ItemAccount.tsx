@@ -1,6 +1,6 @@
 import React from "react";
 import Avatar from "@/components/atoms/images/avatar/Avatar";
-import styles from "./ItemAccount.module.scss"
+import styles from "./ItemAccount.module.scss";
 
 function ItemAccount() {
   return (
@@ -8,8 +8,10 @@ function ItemAccount() {
       <div className={styles.accountAvatar}>
         <Avatar />
       </div>
-      <div className={styles.accountContent}>
-        <div className={styles.accountTitle}><h4>Gusion Name</h4></div>
+      <div className={`${styles.accountContent} hidden-content-lg`}>
+        <div className={styles.accountTitle}>
+          <h4>Gusion Name</h4>
+        </div>
         <p>Description</p>
       </div>
     </div>

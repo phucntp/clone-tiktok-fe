@@ -2,7 +2,7 @@
 
 .containerLayout {
   flex: 1 1 auto !important;
-  @include flexbox-column;
+  @include flexbox;
   @include flexbox-justify-space-between;
   width: 100vw;
   max-width: 1150px;

@@ -1,9 +1,9 @@
 @import "@/styles/variables";
 
 .suggestedContainer {
-    border-bottom: $border-bottom-white;
-    padding-bottom: 10px;
-    .suggestedTilte {
-        font-size: 14px;
-    }
+  border-bottom: $border-small;
+  padding-bottom: 10px;
+  .suggestedTitle {
+    font-size: 14px;
+  }
 }

@@ -15,4 +15,8 @@
     white-space: nowrap;
     padding-left: 6px;
   }
+
+  @media screen and (max-width: $sm) {
+    background-color: $color-bg-pale-gray;
+  }
 }
