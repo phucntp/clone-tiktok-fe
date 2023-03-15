@@ -1,6 +1,6 @@
 import React from "react";
 import Object from "@/components/molecules/layouts/object/Object";
-import Menu from "@/components/atoms/icons/Menu";
+import Menu from "@/components/atoms/icons/IconMenu";
 import ButtonSearch from "@/components/atoms/buttons/ButtonSearch";
 import styles from "./Header.module.scss";
 

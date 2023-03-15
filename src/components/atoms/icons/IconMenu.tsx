@@ -6,7 +6,7 @@ type TProps = {
   openSideMenu?: () => void;
 };
 
-function Menu({
+function IconMenu({
   className = "",
   color = "white",
   openSideMenu = () => {},
@@ -32,4 +32,4 @@ function Menu({
   );
 }
 
-export default Menu;
+export default IconMenu;
