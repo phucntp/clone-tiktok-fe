@@ -1,18 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./Modal.module.scss";
 import ButtonBack from "@/components/atoms/buttons/ButtonBack";
 import ButtonClose from "@/components/atoms/buttons/ButtonClose";
+import { useClickAway } from "react-use";
 
-interface Props {
+type TProps = {
   children: React.ReactNode;
   height?: string;
   width?: string;
   showModal: boolean;
   handleBack: () => void;
   handleClose: () => void;
-}
+};
 
 function Modal({
   children,
@@ -21,9 +22,13 @@ function Modal({
   handleBack,
   handleClose,
   showModal,
-}: Props) {
+}: TProps) {
+  const ref = useRef(null);
+  useClickAway(ref, () => {
+    handleClose();
+  });
   return (
-    <div>
+    <div ref={ref}>
       {showModal && (
         <div
           className={styles.modalContainer}

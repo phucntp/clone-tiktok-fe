@@ -8,9 +8,23 @@
   @include flexbox;
 }
 
+.d-flex-col {
+  @include flexbox;
+  @include flexbox-column;
+}
+
 .justify-center {
   @include flexbox-justify-center;
 }
+
+.justify-space-around {
+  @include flexbox-justify-space-around;
+}
+
+.justify-space-between {
+  @include flexbox-justify-space-between;
+}
+
 .align-center {
   @include flexbox-align-center;
 }
@@ -143,24 +157,35 @@
   }
 }
 
-
 .normal-input {
-  height: 44px;
-  padding: 6px 8px;
+  height: $btn-height;
+  padding: $normal-padding;
   font-size: $font-size16;
 }
 
 .normal-button {
-  padding: 6px 8px;
+  padding: $normal-padding;
   border: $border-solid;
   border-radius: 4px;
-  min-height: 46px;
+  height: $btn-height;
   font-size: $font-size16;
 }
 
+.button-danger {
+  background-color: $color-bg-danger;
+  color: $color-white;
+}
+
 .normal-select {
-  padding: 8px 10px;
+  padding: 6px 10px;
   width: 100%;
+  height: $btn-height;
+
+  option {
+    font-size: $font-size14;
+    padding: $normal-padding !important;
+    height: $btn-height !important;
+  }
 }
 
 .d-block {
@@ -185,7 +210,7 @@
 }
 
 .background-none {
- background-color: inherit !important;
+  background-color: inherit !important;
 }
 
 .border-none {
@@ -198,6 +223,12 @@
   border: 1px solid $color-red;
 }
 
-@media (min-width: $sm) {
+.background-red {
+  background-color: $color-bg-danger;
+}
 
+@media screen and (max-width: $lg) and (min-width: $sm) {
+  .hidden-content-lg {
+    display: none !important;
+  }
 }

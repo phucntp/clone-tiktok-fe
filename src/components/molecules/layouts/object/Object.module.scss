@@ -1,0 +1,15 @@
+@import "@/styles/variables";
+
+.objectContainer {
+  padding: 10px 0;
+  border-bottom: $border-small;
+
+  .objectItem {
+    @include flexbox;
+    @include flexbox-align-center;
+
+    h2 {
+      font-size: 18px;
+    }
+  }
+}

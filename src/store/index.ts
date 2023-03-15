@@ -6,7 +6,8 @@ import { reducers } from "@/reducers";
 import { createLogger } from 'redux-logger'
 import { epics } from "@/epics";
 import { commonAsyncEpics } from "@/types/store/epic";
-import { createWrapper } from "next-redux-wrapper";
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 // epics
 
@@ -21,6 +22,13 @@ const rootReducer = (state: any, action: any) => {
 const rootEpic = combineEpics(epics, commonAsyncEpics);
 const epicMiddleware = createEpicMiddleware<AnyAction, AnyAction, AppState>();
 const logger = createLogger({ collapsed: true })
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const enhancers = typeof window !== "undefined" ? compose(
   applyMiddleware(
@@ -38,10 +46,8 @@ const enhancers = typeof window !== "undefined" ? compose(
 );
 
 export const configureStore = () => {
-  const store = createStore(rootReducer, enhancers);
+  const store = createStore(persistedReducer, enhancers);
   epicMiddleware.run(rootEpic);
-  return store;
+  const persistor = persistStore(store)
+  return { store, persistor }
 };
-
-
-export const wrapper = createWrapper(configureStore);

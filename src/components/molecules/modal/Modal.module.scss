@@ -1,4 +1,4 @@
-@import '@/styles/variables';
+@import "@/styles/variables";
 
 .modalContainer {
   @include center-screen;
@@ -6,6 +6,7 @@
   border-radius: 5px;
 
   @media (max-width: $sm) {
-    width: 90%;
+    width: 100%;
+    height: 100% !important;
   }
 }

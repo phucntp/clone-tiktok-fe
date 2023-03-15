@@ -2,44 +2,33 @@ import React, { useState, useCallback, useEffect } from "react";
 import SelectBox from "@/components/atoms/form/select-box/SelectBox";
 import { listOptionMonth, listOptionDay } from "@/utils/common/date";
 import styles from './Birthday.module.scss'
+import { useImmer } from "use-immer";
 
 function Birthday() {
-  const [birthday, setBirthday] = useState({
+  const [birthday, setBirthday] = useImmer({
     day: "",
     month: "",
     year: "",
   });
 
-  useEffect(() => {
-    console.log(birthday);
-  }, [birthday]);
-
-  const changeMonth = useCallback((value: string): void => {
-    setBirthday((prev) => {
-      return {
-        ...prev,
-        month: listOptionMonth[parseInt(value)].label,
-      };
+  const changeMonth = ((value: string) => {
+    setBirthday((draft) => {
+      draft.month = listOptionMonth[parseInt(value)].label
     });
-  }, []);
+  });
 
-  const changeDay = useCallback((value: string): void => {
-    setBirthday((prev) => {
-      return {
-        ...prev,
-        day: listOptionDay[parseInt(value)].label,
-      };
+  const changeDay = ((event: React.ChangeEvent<HTMLSelectElement>) => {
+    setBirthday((draft) => {
+      draft.day = listOptionDay[parseInt(event.target.value)].label
     });
-  }, []);
+  });
 
-  const changeYear = useCallback((value: string): void => {
-    setBirthday((prev) => {
-      return {
-        ...prev,
-        year: listOptionMonth[parseInt(value)].label,
-      };
-    });
-  }, []);
+  const changeYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setBirthday((draft) => {
+      draft.year = listOptionMonth[parseInt(event.target.value)].label
+    }
+    );
+  };
 
   return (
     <div className={styles.birthdayContainer}>

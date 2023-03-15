@@ -1,7 +1,9 @@
+import React from "react";
 import "./globals.scss";
 import "@/styles/main.scss";
 import { NextIntlClientProvider } from "next-intl/client";
 import { Providers } from "./Providers";
+import Loading from "@/components/molecules/ui/Loading/Loading";
 
 type Props = {
   children: React.ReactNode;
@@ -11,7 +13,7 @@ type Props = {
 };
 
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'vi' }];
+  return [{ locale: "en" }, { locale: "vi" }];
 }
 
 export default async function RootLayout({
@@ -26,14 +28,13 @@ export default async function RootLayout({
   }
   return (
     <html lang={`${locale}`}>
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+            <Loading />
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

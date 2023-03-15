@@ -1,40 +1,87 @@
 /* eslint-disable no-unused-vars */
-'use client';
+"use client";
 
-import React, {useState, useCallback, useEffect} from "react";
-import InputNormal from "@/components/atoms/form/inputs/InputNormal";
+import React, { useState, useCallback, useEffect } from "react";
+import InputNormal from "@/components/atoms/form/inputs/input-normal/InputNormal";
 import styles from "./LoginForm.module.scss";
-import Modal from "@/components/molecules/Modal/Modal";
+import Modal from "@/components/molecules/modal/Modal";
 import NormalButton from "@/components/atoms/buttons/NormalButton";
 import Link from "next/link";
 import { ROUTER } from "@/routers/routers";
 import loginActions from "@/actions/login";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "@/store";
-import {useTranslations} from 'next-intl';
+import { useTranslations } from "next-intl";
 import { useImmer } from "use-immer";
-import { TParamLogin } from "@/types/login";
+import Message from "@/components/atoms/form/message/Message";
+import { minLength, required, validatePassword } from "@/utils/validate";
+import InputPassword from "@/components/atoms/form/inputs/input-password/InputPassword";
 
 export default function LoginForm() {
-  const [showModal, setShowModal] = useState(true)
-  const [userInfo, setUserInfo] = useImmer({email: '', password: ''})
-  const dispatch = useDispatch()
+  const [showModal, setShowModal] = useState(true);
+  const [userInfo, setUserInfo] = useImmer({ email: "", password: "" });
+  const [errEmail, setErrEmail] = useImmer({ hasError: false, message: "" });
+  const [errPassword, setErrPassword] = useImmer({
+    hasError: false,
+    message: "",
+  });
+
+  const dispatch = useDispatch();
   // const auth = useSelector((state: AppState) => state.loginReducer)
   const t = useTranslations();
 
   const toggleModal = useCallback(() => {
-    setShowModal((prev) => !prev)
-  }, [])
+    setShowModal((prev) => !prev);
+  }, []);
 
-  useEffect(() => {
-    console.log(userInfo);
-  }, [userInfo])
+  const handleChangeInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrEmail((draft) => {
+      (draft.hasError = false), (draft.message = "");
+    });
+    setErrPassword((draft) => {
+      (draft.hasError = false), (draft.message = "");
+    });
+    setUserInfo((draft: any) => {
+      draft[e.target.name] = e.target.value;
+    });
+  };
 
-  const handleChangeInfor = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInfo((draft: any) => {draft[e.target.name] = e.target.value})
-  }
+  const validateEmail = () => {
+    if (!required(userInfo.email)) {
+      setErrEmail((draft) => {
+        (draft.hasError = true),
+          (draft.message = t("common.validate.error.username_email_require"));
+      });
+    } else if (!minLength(userInfo.email, 6)) {
+      setErrEmail((draft) => {
+        (draft.hasError = true),
+          (draft.message = t("common.validate.error.min_length", {
+            length: 6,
+          }));
+      });
+    }
+  };
 
-  const handleClick = useCallback(async() => {
+  const valPassword = () => {
+    if (!required(userInfo.password)) {
+      setErrPassword((draft) => {
+        (draft.hasError = true),
+          (draft.message = t("common.validate.error.password_require"));
+      });
+    } else if (!validatePassword(userInfo.password)) {
+      setErrPassword((draft) => {
+        (draft.hasError = true),
+          (draft.message = t("common.validate.error.password_validate"));
+      });
+    }
+  };
+
+  const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    validateEmail();
+    valPassword();
+  };
+
+  const handleClick = useCallback(async () => {
     // const data = await fetch('http://localhost:9000/api/users/login', {
     //   method: 'POST',
     //   credentials: 'include',
@@ -44,37 +91,62 @@ export default function LoginForm() {
     //   },
     //   body: JSON.stringify({email: "phuc@gmail.com", password: "1234567"})
     // })
-    dispatch(loginActions.login(userInfo))
-  },[dispatch, userInfo])
+    dispatch(loginActions.login(userInfo));
+  }, [dispatch, userInfo]);
   return (
     <>
-      <Modal showModal={showModal} handleBack={toggleModal} handleClose={toggleModal} height="80%">
+      <Modal
+        showModal={showModal}
+        handleBack={toggleModal}
+        handleClose={toggleModal}
+        height="90%"
+      >
         <div className={`${styles.backgroundContain} p-50 pt-0 h-80`}>
-          <h2 className="my-32">{t('login.title')}</h2>
+          <h2 className="my-32">{t("login.title")}</h2>
           <div className="mb-5">
-            <label>{t('login.label')}</label>
+            <label>{t("login.label")}</label>
           </div>
           <form action="">
+            <div className="mt-10 mb-5">
+              <InputNormal
+                name="email"
+                onBlur={handleBlur}
+                onChange={handleChangeInfo}
+                placeholder={t("common.placeholder.username_email")}
+              />
+            </div>
+            <Message
+              className="mb-5"
+              hasError={errEmail.hasError}
+              text={errEmail.message}
+            />
             <div className="my-10">
-              <InputNormal name="email" onChange={handleChangeInfor}/>
+              <InputPassword
+                name="password"
+                onChange={handleChangeInfo}
+                onBlur={handleBlur}
+                placeholder={t("common.placeholder.password")}
+              />
             </div>
-            <div>
-              <InputNormal name="password" inputType="password" onChange={handleChangeInfor} />
-            </div>
+            <Message
+              className="mb-5"
+              hasError={errPassword.hasError}
+              text={errPassword.message}
+            />
           </form>
           <Link className="d-block pt-15 font-14" href="">
-            {t('login.forgot_password')}
+            {t("login.forgot_password")}
           </Link>
           <NormalButton
-            label={t('login.button_submit')}
+            label={t("login.button_submit")}
             type="submit"
             className="w-100 my-30"
             handleClick={handleClick}
           />
           <div className={styles.redirectRegister}>
-            {t('login.have_not_account')}{" "}
+            {t("login.have_not_account")}{" "}
             <Link className="p-5" href={ROUTER.REGISTER}>
-              {t('register.button_submit')}
+              {t("register.button_submit")}
             </Link>
           </div>
         </div>

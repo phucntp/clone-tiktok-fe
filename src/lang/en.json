@@ -1,4 +1,30 @@
 {
+  "common": {
+    "validate": {
+      "error": {
+        "username_require": "Please enter username",
+        "email_require": "Please enter email",
+        "username_email_require": "Please enter email or username",
+        "password_require": "Please enter password",
+        "min_length": "at least {length} characters",
+        "max_length": "up to {length} characters",
+        "password_validate": "Minimum eight characters, at least one letter, one number and one special character",
+        "email_validate": "Invalid email"
+      }
+    },
+    "placeholder": {
+      "password": "Password",
+      "username": "Username",
+      "email": "Email address",
+      "username_email": "Username or email",
+      "month": "Month",
+      "day": "Day",
+      "year": "Year"
+    },
+    "button": {
+      "upload": "Upload"
+    }
+  },
   "login": {
     "button_submit": "Log in",
     "title": "Log in",
@@ -9,9 +35,27 @@
   "register": {
     "button_submit": "Sign up",
     "title": "Sign up",
-    "label": "Email",
+    "label": "User Information",
     "next": "Next",
     "have_an_account": "Already have an account?",
     "birthday_title": "When’s your birthday?"
+  },
+  "forgot_password": {
+    "button_submit": "Log in",
+    "title": "Reset password",
+    "label": "Enter email address",
+    "have_not_account": "Don’t have an account?"
+  },
+  "home": {},
+  "layout": {
+    "title": {
+      "suggested_account": "Suggested accounts",
+      "following_account": "Following accounts",
+      "discover": "Discover"
+    },
+    "object": {
+      "for_you": "For You",
+      "following": "Following"
+    }
   }
 }
