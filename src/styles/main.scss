@@ -20,6 +20,11 @@
 .justify-space-around {
   @include flexbox-justify-space-around;
 }
+
+.justify-space-between {
+  @include flexbox-justify-space-between;
+}
+
 .align-center {
   @include flexbox-align-center;
 }

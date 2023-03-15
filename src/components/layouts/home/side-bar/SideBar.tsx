@@ -6,7 +6,7 @@ import SuggestedAccount from "@/components/molecules/layouts/suggested-account/S
 import React, { useRef } from "react";
 import styles from "./SideBar.module.scss";
 import useBreakpoint from "@/hooks/useBreakpoint";
-import Menu from "@/components/atoms/icons/Menu";
+import IconMenu from "@/components/atoms/icons/IconMenu";
 import Logo from "@/components/atoms/images/logo/Logo";
 import { useClickAway } from "react-use";
 
@@ -24,7 +24,7 @@ const SideBar = ({ closeSideMenu = () => {} }: TProps) => {
     <div ref={ref} className={styles.sidebarContainer}>
       {breakpoint === "SM" && (
         <div className="d-flex align-center">
-          <Menu className="w-32-px h-32-px" color="black" />
+          <IconMenu className="w-32-px h-32-px" color="black" />
           <Logo color="black" />
         </div>
       )}
