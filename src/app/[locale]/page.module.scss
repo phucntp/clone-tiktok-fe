@@ -1,7 +1,156 @@
 @import "@/styles/variables";
 
+.videoItem {
+  display: none;
+
+  @media screen and (max-width: $sm) {
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    display: block;
+    position: absolute;
+  }
+}
+
 .containerHome {
   margin-top: 100px;
   max-width: 672px;
   width: 672px;
+
+  @media screen and (max-width: $lg) and (min-width: $sm) {
+    width: 70%;
+  }
+
+  @media screen and (max-width: $sm) {
+    margin-top: 0;
+    width: 100%;
+    position: relative;
+    height: 100vh;
+  }
+
+  .containerItem {
+    @include flexbox;
+    max-width: 624px;
+    width: 624px;
+
+    @media screen and (max-width: $lg) and (min-width: $sm) {
+      width: 70%;
+    }
+
+    @media screen and (max-width: $sm) {
+      width: 100%;
+      height: 100vh;
+      padding: 0 10px;
+      @include flexbox-align-center;
+      @include flexbox-justify-center;
+      @include flexbox-column;
+      @include flexbox-align-end;
+    }
+
+    .avatar {
+      @media screen and (max-width: $sm) {
+        position: relative;
+        right: 0;
+      }
+    }
+
+    .contentItem {
+      @include flexbox;
+      @include flexbox-column;
+      margin-left: 15px;
+
+      @media screen and (max-width: $sm) {
+        @include flexbox-column-reverse;
+      }
+
+      .infoNews {
+        @include flexbox;
+        @include flexbox-justify-space-between;
+
+        @media screen and (max-width: $sm) {
+          position: absolute;
+          left: 0;
+        }
+
+        .buttonFollow {
+          @media screen and (max-width: $sm) {
+            display: none;
+          }
+        }
+      }
+
+      .socialItem {
+        @include flexbox;
+
+        .videoItem {
+          width: 542px;
+          max-width: 542px;
+          margin-right: 15px;
+          height: auto;
+          display: flex;
+
+          @media screen and (max-width: $lg) and (min-width: $sm) {
+            width: 70%;
+          }
+
+          @media screen and (max-width: $sm) {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+          }
+          // height: calc(450px + (100vw - 768px) / 1152 * 100);
+        }
+
+        .listButtonSocial {
+          @include flexbox;
+          @include flexbox-column;
+          @include flexbox-justify-end;
+          row-gap: 10px;
+
+          @media screen and (max-width: $sm) {
+            position: relative;
+          }
+
+          .buttonSocial {
+            // @include flexbox;
+            // @include flexbox-column;
+            // @include flexbox-align-center;
+
+            button {
+              border-radius: 50%;
+              height: 48px;
+              width: 48px;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-pack: center;
+              -ms-flex-pack: center;
+              -webkit-justify-content: center;
+              justify-content: center;
+              -webkit-align-items: center;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+              width: 48px;
+              height: 48px;
+              font-size: 0px;
+              border-radius: 50%;
+              -webkit-transition: all ease-in-out 200ms;
+              transition: all ease-in-out 200ms;
+              background-color: rgba(255, 255, 255, 0.12);
+              border: none;
+            }
+
+            .buttonCount {
+              font-size: 12px;
+              line-height: 17px;
+              text-align: center;
+              margin-top: 2px-;
+            }
+          }
+        }
+      }
+    }
+  }
 }
