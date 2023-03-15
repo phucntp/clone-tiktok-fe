@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 "use client";
 
 import React, { useState } from "react";
@@ -31,7 +32,7 @@ export function LayoutHome({ children }: { children: React.ReactNode }) {
         <SideBar closeSideMenu={closeSideMenu} />
       )}
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

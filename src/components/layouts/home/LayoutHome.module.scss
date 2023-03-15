@@ -7,4 +7,9 @@
   width: 100vw;
   max-width: 1150px;
   margin: 0 auto;
+  position: relative;
+
+  @media screen and (max-width: $sm) {
+    @include flexbox-column;
+  }
 }
