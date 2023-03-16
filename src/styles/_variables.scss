@@ -269,6 +269,10 @@ $normal-padding: 6px 8px;
   -ms-flex-pack: distribute;
   justify-content: space-around;
 }
+@mixin flexbox-justify-space-evenly {
+  -ms-flex-pack: distribute;
+  justify-content: space-evenly;
+}
 @mixin flexbox-align-stretch {
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
