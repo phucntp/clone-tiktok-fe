@@ -4,11 +4,13 @@ import { registerEpics } from "./register";
 import { logoutEpics } from "./logout";
 import { forgotPasswordEpics } from "./forgotPassword";
 import { refreshTokenEpics } from "./refreshToken";
+import { newsEpics } from "./news";
 
 export const epics = combineEpics(
   loginEpics,
   registerEpics,
   logoutEpics,
   forgotPasswordEpics,
-  refreshTokenEpics
+  refreshTokenEpics,
+  newsEpics
 );
