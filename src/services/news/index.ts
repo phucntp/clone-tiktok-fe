@@ -3,7 +3,6 @@ import { newsRepositories } from "@/repositories/news";
 
 const getNewsAll = async (): Promise<TStateNews> => {
   const res = await newsRepositories.getNewsAll();
-  console.log(res, "res");
   if (!res || !res?.data) {
     return {
       ...initialStateNews,

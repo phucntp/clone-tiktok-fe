@@ -3,6 +3,11 @@
 .objectContainer {
   padding: 10px 0;
   border-bottom: $border-small;
+  @media screen and (max-width: $sm) {
+    border: none;
+    @include flexbox-row-reverse;
+    gap: 10px;
+  }
 
   .objectItem {
     @include flexbox;

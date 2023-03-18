@@ -17,10 +17,6 @@
   max-width: 672px;
   width: 672px;
 
-  @media screen and (max-width: $lg) and (min-width: $sm) {
-    width: 70%;
-  }
-
   @media screen and (max-width: $sm) {
     margin-top: 0;
     width: 100%;
@@ -32,10 +28,6 @@
     @include flexbox;
     max-width: 624px;
     width: 624px;
-
-    @media screen and (max-width: $lg) and (min-width: $sm) {
-      width: 70%;
-    }
 
     @media screen and (max-width: $sm) {
       width: 100%;
@@ -88,10 +80,6 @@
           margin-right: 15px;
           height: auto;
           display: flex;
-
-          @media screen and (max-width: $lg) and (min-width: $sm) {
-            width: 70%;
-          }
 
           @media screen and (max-width: $sm) {
             width: 100vw;

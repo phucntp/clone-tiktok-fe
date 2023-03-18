@@ -29,6 +29,12 @@
   @include flexbox-align-center;
 }
 
+.flex-center {
+  @include flexbox;
+  @include flexbox-align-center;
+  @include flexbox-justify-center;
+}
+
 @for $i from 1 through 50 {
   $size: 1px * $i;
   .p-#{$i} {

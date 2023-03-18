@@ -22,7 +22,9 @@
       "year": "Year"
     },
     "button": {
-      "upload": "Upload"
+      "upload": "Upload",
+      "follow": "Follow",
+      "following": "Following"
     }
   },
   "login": {

@@ -6,7 +6,7 @@ function ItemAccount() {
   return (
     <div className={styles.accountContainer}>
       <div className={styles.accountAvatar}>
-        <Avatar />
+        <Avatar width={40} height={40} />
       </div>
       <div className={`${styles.accountContent} hidden-content-lg`}>
         <div className={styles.accountTitle}>

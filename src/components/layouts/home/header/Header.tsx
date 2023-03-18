@@ -28,7 +28,7 @@ const Header = () => {
         />
         <ButtonChat className="" />
         <ButtonInbox />
-        <Avatar />
+        <Avatar width={40} height={40} />
       </div>
     </div>
   );
