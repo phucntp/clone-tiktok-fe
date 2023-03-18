@@ -4,13 +4,16 @@ export type TNews = {
   url: string;
   music: string;
   description: string;
-  isLike: string;
-  following: string;
-  countLike: number;
-  count: number;
-  users: string[];
+  like_count: number;
+  comment_count: number;
+  share_count: number;
+  users_like: string[];
+  users_share: string[];
   comments: string[];
+  tags: string[];
   author: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type TResListNews = TNews[];

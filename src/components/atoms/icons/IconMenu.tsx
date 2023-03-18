@@ -22,8 +22,8 @@ function IconMenu({
       >
         <path
           fill={color}
-          fill-opacity="0.5"
-          fill-rule="evenodd"
+          fillOpacity="0.5"
+          fillRule="evenodd"
           d="M8 10.5a.5.5 0 01.5-.5h23a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-23a.5.5 0 01-.5-.5v-1zm0 9a.5.5 0 01.5-.5h23a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-23a.5.5 0 01-.5-.5v-1zm.5 8.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h23a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5h-23z"
           clip-rule="evenodd"
         ></path>

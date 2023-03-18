@@ -36,7 +36,6 @@ const newsEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
   action$.pipe(
     ofAction(_actionNews.newsNext),
     map(({ payload }) => {
-      console.log(payload, "payload");
       return newsReducer.actions.set(payload);
     })
   );
