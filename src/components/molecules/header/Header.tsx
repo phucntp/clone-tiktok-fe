@@ -1,3 +1,5 @@
+"use client";
+
 import ButtonChat from "@/components/atoms/buttons/ButtonChat";
 import ButtonInbox from "@/components/atoms/buttons/ButtonInbox";
 import ButtonUpload from "@/components/atoms/buttons/ButtonUpload";

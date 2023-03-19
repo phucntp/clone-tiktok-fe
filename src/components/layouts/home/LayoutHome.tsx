@@ -1,13 +1,11 @@
-/* eslint-disable no-unused-vars */
 "use client";
 
 import React, { useState } from "react";
-import Header from "./header/Header";
-import Footer from "./footer/Footer";
-import SideBar from "../home/side-bar/SideBar";
 import styles from "./LayoutHome.module.scss";
 import useBreakpoint from "@/hooks/useBreakpoint";
-import HeaderSP from "./header/HeaderSP";
+import HeaderSP from "@/components/molecules/header/HeaderSP";
+import Header from "@/components/molecules/header/Header";
+import SideBar from "@/components/molecules/side-bar/SideBar";
 
 export function LayoutHome({ children }: { children: React.ReactNode }) {
   const [showSideMenu, setShowSideMenu] = useState(false);
@@ -32,7 +30,6 @@ export function LayoutHome({ children }: { children: React.ReactNode }) {
         <SideBar closeSideMenu={closeSideMenu} />
       )}
       {children}
-      {/* <Footer /> */}
     </div>
   );
 }

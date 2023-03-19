@@ -5,6 +5,7 @@ import { logoutEpics } from "./logout";
 import { forgotPasswordEpics } from "./forgotPassword";
 import { refreshTokenEpics } from "./refreshToken";
 import { newsEpics } from "./news";
+import { uploadVideoEpics } from "./uploadVideo";
 
 export const epics = combineEpics(
   loginEpics,
@@ -12,5 +13,6 @@ export const epics = combineEpics(
   logoutEpics,
   forgotPasswordEpics,
   refreshTokenEpics,
-  newsEpics
+  newsEpics,
+  uploadVideoEpics
 );

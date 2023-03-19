@@ -42,25 +42,25 @@ function ItemNews({ data }: TProps) {
           <div className={styles.socialItem}>
             <div className={styles.videoItem}>
               <NormalVideo src={data.url} />
-            </div>
-            <div className={styles.listButtonSocial}>
-              <div className={styles.buttonSocial}>
-                <button className={styles.buttonFavorite}>
-                  <IconHeart />
-                </button>
-                <div className={styles.buttonCount}>{data.like_count}</div>
-              </div>
-              <div className={styles.buttonSocial}>
-                <button className={styles.buttonComment}>
-                  <IconComment />
-                </button>
-                <div className={styles.buttonCount}>{data.comment_count}</div>
-              </div>
-              <div className={styles.buttonSocial}>
-                <button className={styles.buttonShare}>
-                  <IconShare />
-                </button>
-                <div className={styles.buttonCount}>{data.share_count}</div>
+              <div className={styles.listButtonSocial}>
+                <div className={styles.buttonSocial}>
+                  <button className={styles.buttonFavorite}>
+                    <IconHeart />
+                  </button>
+                  <div className={styles.buttonCount}>{data.like_count}</div>
+                </div>
+                <div className={styles.buttonSocial}>
+                  <button className={styles.buttonComment}>
+                    <IconComment />
+                  </button>
+                  <div className={styles.buttonCount}>{data.comment_count}</div>
+                </div>
+                <div className={styles.buttonSocial}>
+                  <button className={styles.buttonShare}>
+                    <IconShare />
+                  </button>
+                  <div className={styles.buttonCount}>{data.share_count}</div>
+                </div>
               </div>
             </div>
           </div>

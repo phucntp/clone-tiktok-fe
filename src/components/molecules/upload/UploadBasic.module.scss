@@ -1,0 +1,19 @@
+@import "@/styles/variables";
+@import "@/styles/main";
+
+.containerBasicUpload {
+  @extend .flex-center;
+  @include flexbox-column;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease-in-out 0s;
+  padding-left: 35px;
+  padding-right: 35px;
+  border: 2px dashed rgba(22, 24, 35, 0.2);
+
+  div {
+    @extend .flex-center;
+    @include flexbox-column;
+    gap: 10px;
+  }
+}

@@ -1,17 +1,25 @@
 @import "@/styles/variables";
 
-.controlVideo {
-  @include flexbox;
-  @include flexbox-justify-space-between;
-  width: 100%;
-  padding: 0 10px 20px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.containerVideo {
+  position: relative;
+  height: calc(450px + (100vw - 768px) / 1152 * 100);
 
-  button {
-    background-color: transparent;
-    outline: none;
-    border: none;
+  @media screen and (max-width: $sm) {
+    height: 100%;
+  }
+  .controlVideo {
+    @include flexbox;
+    @include flexbox-justify-space-between;
+    width: 100%;
+    padding: 0 10px 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    button {
+      background-color: transparent;
+      outline: none;
+      border: none;
+    }
   }
 }
