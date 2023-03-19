@@ -8,6 +8,7 @@ interface Props {
   name?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
+  className?: string;
 }
 
 function SelectBox({
@@ -16,6 +17,7 @@ function SelectBox({
   onChange = (value: string) => {},
   name = "",
   placeholder = "",
+  className = "",
 }: Props) {
   const [state, setState] = useState(valueSelect);
   const onChangeValue = useCallback(
@@ -29,7 +31,7 @@ function SelectBox({
     <>
       <select
         name={name}
-        className="normal-select"
+        className={`normal-select ${className}`}
         value={state}
         onChange={onChangeValue}
         placeholder={placeholder}

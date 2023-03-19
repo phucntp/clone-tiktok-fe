@@ -4,6 +4,10 @@
   color: $color-white;
 }
 
+.text-black {
+  color: $color-text-black;
+}
+
 .d-flex {
   @include flexbox;
 }
@@ -223,14 +227,18 @@
   border: none !important;
 }
 .text-error {
-  color: $color-red;
+  color: $color-red !important;
 }
 .border-error {
-  border: 1px solid $color-red;
+  border: 1px solid $color-red !important;
 }
 
 .background-red {
-  background-color: $color-bg-danger;
+  background-color: $color-bg-danger !important;
+}
+
+.background-white {
+  background-color: $color-white !important;
 }
 
 @media screen and (max-width: $lg) and (min-width: $sm) {

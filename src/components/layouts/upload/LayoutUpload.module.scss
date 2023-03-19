@@ -1,0 +1,13 @@
+@import "@/styles/variables";
+
+.containerLayout {
+  @include flexbox;
+  @include flexbox-column;
+  width: 100vw;
+  position: relative;
+  background-color: rgb(248, 248, 248);
+
+  @media screen and (max-width: $sm) {
+    @include flexbox-column;
+  }
+}

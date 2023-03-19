@@ -24,7 +24,10 @@
     "button": {
       "upload": "Upload",
       "follow": "Follow",
-      "following": "Following"
+      "following": "Following",
+      "discard": "Discard",
+      "post": "Post",
+      "select_file": "Select file"
     }
   },
   "login": {
@@ -58,6 +61,21 @@
     "object": {
       "for_you": "For You",
       "following": "Following"
+    },
+    "footer": {
+      "company": "Company",
+      "programs": "Programs",
+      "support": "Support",
+      "legal": "Legal"
     }
+  },
+  "upload": {
+    "title": "Upload video",
+    "description": "Post a video to your account",
+    "caption": "Caption",
+    "cover": "Cover",
+    "who_can_watch_this_video": "Who can watch this video",
+    "allows_users_to": "Allows users to",
+    "run_a_copyright_check": "Run a copyright check"
   }
 }
