@@ -27,7 +27,8 @@
       "following": "Following",
       "discard": "Discard",
       "post": "Post",
-      "select_file": "Select file"
+      "select_file": "Select file",
+      "change_video": "Change video"
     }
   },
   "login": {
