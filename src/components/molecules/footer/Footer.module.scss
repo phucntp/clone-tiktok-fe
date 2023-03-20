@@ -1,0 +1,16 @@
+@import "@/styles/variables";
+
+.footerContainer {
+  @include flexbox;
+  @include flexbox-justify-space-around;
+  border-top: $border-small;
+  border-bottom: $border-small;
+  width: 100%;
+  background-color: #000;
+  padding: 40px 50px;
+
+  .footerContent {
+    @include flexbox;
+    @include flexbox-column;
+  }
+}

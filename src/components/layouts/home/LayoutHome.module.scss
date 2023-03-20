@@ -3,8 +3,12 @@
 .containerLayout {
   flex: 1 1 auto !important;
   @include flexbox;
-  @include flexbox-justify-space-between;
   width: 100vw;
   max-width: 1150px;
   margin: 0 auto;
+  position: relative;
+
+  @media screen and (max-width: $sm) {
+    @include flexbox-column;
+  }
 }

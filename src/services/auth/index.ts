@@ -16,7 +16,7 @@ import { TParamRegister } from "@/types/register";
 
 const loginUser = async (data: TParamLogin): Promise<TStateLogin> => {
   const res = await authRepositories.login(data, { withCredentials: true });
-  if (!res || res?.data) {
+  if (!res || !res?.data) {
     return {
       ...initialStateLogin,
       hasError: true,
@@ -30,7 +30,7 @@ const loginUser = async (data: TParamLogin): Promise<TStateLogin> => {
 
 const registerUser = async (data: TParamRegister): Promise<TStateRegister> => {
   const res = await authRepositories.register(data);
-  if (!res || res?.data) {
+  if (!res || !res?.data) {
     return {
       ...initialStateRegister,
       hasError: true,
@@ -46,7 +46,7 @@ const forgotPasswordUser = async (
   data: TParamForgotPassword
 ): Promise<TStateForgotPassword> => {
   const res = await authRepositories.forgotPassword(data);
-  if (!res || res?.data) {
+  if (!res || !res?.data) {
     return {
       ...initialStateForgotPassword,
       hasError: true,
@@ -59,7 +59,7 @@ const forgotPasswordUser = async (
 };
 const logoutUser = async (): Promise<TStateLogout> => {
   const res = await authRepositories.logout();
-  if (!res || res?.data) {
+  if (!res || !res?.data) {
     return {
       ...initialStateLogout,
       hasError: true,
@@ -72,7 +72,7 @@ const logoutUser = async (): Promise<TStateLogout> => {
 
 const refreshTokenUser = async (): Promise<TStateRefreshToken> => {
   const res = await authRepositories.refreshToken();
-  if (!res || res?.data) {
+  if (!res || !res?.data) {
     return {
       ...initialStateRefreshToken,
       hasError: true,

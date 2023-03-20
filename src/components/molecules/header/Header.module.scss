@@ -1,0 +1,26 @@
+@import "@/styles/variables";
+
+.headerContainer {
+  @include flexbox;
+  @include flexbox-align-center;
+  @include flexbox-justify-space-around;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-top: $border-small;
+  border-bottom: $border-small;
+  width: 100%;
+  background-color: #000;
+  z-index: 1000;
+
+  @media screen and (max-width: $sm) {
+    border: none;
+    background-color: transparent;
+  }
+
+  .rightContainer {
+    @include flexbox;
+    @include flexbox-align-center;
+    gap: 20px;
+  }
+}

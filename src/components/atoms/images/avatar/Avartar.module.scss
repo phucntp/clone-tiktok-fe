@@ -1,5 +1,27 @@
 @import "@/styles/variables";
+@import "@/styles/main";
 
-.avatar {
-  border-radius: 50px;
+.containerAvatar {
+  position: relative;
+  .avatar {
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .addButton {
+    @extend .flex-center;
+    background-color: red;
+    border: none;
+    outline: none;
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translate(-50%);
+    border-radius: 50%;
+    padding: 3px;
+
+    svg {
+      margin: 0;
+    }
+  }
 }

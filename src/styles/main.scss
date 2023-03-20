@@ -4,6 +4,10 @@
   color: $color-white;
 }
 
+.text-black {
+  color: $color-text-black;
+}
+
 .d-flex {
   @include flexbox;
 }
@@ -29,131 +33,137 @@
   @include flexbox-align-center;
 }
 
+.flex-center {
+  @include flexbox;
+  @include flexbox-align-center;
+  @include flexbox-justify-center;
+}
+
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .p-#{$i} {
-    padding: $fontsize !important;
+    padding: $size !important;
   }
 }
 
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .pr-#{$i} {
-    padding-right: $fontsize !important;
+    padding-right: $size !important;
   }
 }
 @for $i from 0 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .pt-#{$i} {
-    padding-top: $fontsize !important;
+    padding-top: $size !important;
   }
 }
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .pb-#{$i} {
-    padding-bottom: $fontsize !important;
+    padding-bottom: $size !important;
   }
 }
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .pl-#{$i} {
-    padding-left: $fontsize !important;
+    padding-left: $size !important;
   }
 }
 
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .px-#{$i} {
-    padding-left: $fontsize !important;
-    padding-right: $fontsize !important;
+    padding-left: $size !important;
+    padding-right: $size !important;
   }
 }
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .py-#{$i} {
-    padding-top: $fontsize !important;
-    padding-bottom: $fontsize !important;
+    padding-top: $size !important;
+    padding-bottom: $size !important;
   }
 }
 
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .mr-#{$i} {
-    margin-right: $fontsize !important;
+    margin-right: $size !important;
   }
 }
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .mt-#{$i} {
-    margin-top: $fontsize !important;
+    margin-top: $size !important;
   }
 }
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .mb-#{$i} {
-    margin-bottom: $fontsize !important;
+    margin-bottom: $size !important;
   }
 }
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .ml-#{$i} {
-    margin-left: $fontsize !important;
+    margin-left: $size !important;
   }
 }
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .m-#{$i} {
-    margin: $fontsize !important;
+    margin: $size !important;
   }
 }
 
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .mx-#{$i} {
-    margin-left: $fontsize !important;
-    margin-right: $fontsize !important;
+    margin-left: $size !important;
+    margin-right: $size !important;
   }
 }
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .my-#{$i} {
-    margin-top: $fontsize !important;
-    margin-bottom: $fontsize !important;
+    margin-top: $size !important;
+    margin-bottom: $size !important;
   }
 }
 
 @for $i from 1 through 50 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .font-#{$i} {
-    font-size: $fontsize !important;
+    font-size: $size !important;
   }
 }
 
 @for $i from 0 through 100 {
-  $fontsize: 1% * $i;
+  $size: 1% * $i;
   .w-#{$i} {
-    width: $fontsize !important;
+    width: $size !important;
   }
 }
 
 @for $i from 0 through 1000 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .w-#{$i}-px {
-    width: $fontsize !important;
+    width: $size !important;
   }
 }
 
 @for $i from 0 through 100 {
-  $fontsize: 1% * $i;
+  $size: 1% * $i;
   .h-#{$i} {
-    height: $fontsize !important;
+    height: $size !important;
   }
 }
 
 @for $i from 0 through 1000 {
-  $fontsize: 1px * $i;
+  $size: 1px * $i;
   .h-#{$i}-px {
-    height: $fontsize !important;
+    height: $size !important;
   }
 }
 
@@ -217,14 +227,18 @@
   border: none !important;
 }
 .text-error {
-  color: $color-red;
+  color: $color-red !important;
 }
 .border-error {
-  border: 1px solid $color-red;
+  border: 1px solid $color-red !important;
 }
 
 .background-red {
-  background-color: $color-bg-danger;
+  background-color: $color-bg-danger !important;
+}
+
+.background-white {
+  background-color: $color-white !important;
 }
 
 @media screen and (max-width: $lg) and (min-width: $sm) {

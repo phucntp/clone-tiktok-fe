@@ -231,6 +231,12 @@ $normal-padding: 6px 8px;
   -ms-flex-direction: column;
   flex-direction: column;
 }
+@mixin flexbox-column-reverse {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
 @mixin flexbox-nowrap {
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
@@ -262,6 +268,10 @@ $normal-padding: 6px 8px;
 @mixin flexbox-justify-space-around {
   -ms-flex-pack: distribute;
   justify-content: space-around;
+}
+@mixin flexbox-justify-space-evenly {
+  -ms-flex-pack: distribute;
+  justify-content: space-evenly;
 }
 @mixin flexbox-align-stretch {
   -webkit-box-align: stretch;
