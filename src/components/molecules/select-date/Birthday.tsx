@@ -41,7 +41,7 @@ function Birthday({ onChange }: TProps) {
           name="month"
           valueSelect={birthday.month}
           listOption={listOptionMonth}
-          onChange={changeDate}
+          // onChange={changeDate}
           placeholder={t("common.placeholder.month")}
         />
       </div>
@@ -50,7 +50,7 @@ function Birthday({ onChange }: TProps) {
           name="day"
           valueSelect={birthday.day}
           listOption={listOptionDay}
-          onChange={changeDate}
+          // onChange={changeDate}
           placeholder={t("common.placeholder.day")}
         />
       </div>
@@ -59,7 +59,7 @@ function Birthday({ onChange }: TProps) {
           name="year"
           valueSelect={birthday.year}
           listOption={listOptionYear()}
-          onChange={changeDate}
+          // onChange={changeDate}
           placeholder={t("common.placeholder.year")}
         />
       </div>
