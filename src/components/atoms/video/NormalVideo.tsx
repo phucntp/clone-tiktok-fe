@@ -1,20 +1,27 @@
-/* eslint-disable no-unused-vars */
 import { useVideo } from "react-use";
 import styles from "./Video.module.scss";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import IconPause from "../icons/IconPause";
 import IconPlay from "../icons/IconPlay";
 import IconUnMute from "../icons/IconUnMute";
 import IconMute from "../icons/IconMute";
+import { useDispatch } from "react-redux";
+import loadingModule from "@/reducers/ui/loading";
 
 type TProps = {
   src?: string;
   width?: string | number;
   height?: string | number;
+  className?: string;
 };
 
-function NormalVideo({ src = "", width = "100%", height = "100%" }: TProps) {
-  const [url, setUrl] = useState(src);
+function NormalVideo({
+  src = "",
+  width = "100%",
+  height = "100%",
+  className = "",
+}: TProps) {
+  const dispatch = useDispatch();
   const [video, state, controls] = useVideo(
     <video
       className={styles.video}
@@ -22,19 +29,13 @@ function NormalVideo({ src = "", width = "100%", height = "100%" }: TProps) {
       height={height}
       src={src}
       autoPlay
+      onLoadStart={() => dispatch(loadingModule.actions.on())}
+      onLoadedData={() => dispatch(loadingModule.actions.off())}
     ></video>
   );
 
-  // useEffect(() => {
-  //   console.log(src);
-  //   const blob = new Blob([src], {
-  //     type: "video/mp4",
-  //   }); // create a blob of buffer
-  //   setUrl(URL.createObjectURL(blob));
-  // }, [src]);
-
   return (
-    <div className={styles.containerVideo}>
+    <div className={`${styles.containerVideo} ${className}`}>
       {video}
       <div className={styles.controlVideo}>
         {state.playing ? (

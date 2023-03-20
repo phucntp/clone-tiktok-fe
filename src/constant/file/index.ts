@@ -1,0 +1,1 @@
+export const MAX_LENGTH_SIZE_VIDEO = 10000;

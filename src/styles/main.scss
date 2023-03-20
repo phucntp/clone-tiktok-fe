@@ -1,11 +1,15 @@
 @import "variables";
 
 .text-white {
-  color: $color-white;
+  color: $color-white !important;
 }
 
 .text-black {
-  color: $color-text-black;
+  color: $color-text-black !important;
+}
+
+.text-red {
+  color: $color-red !important;
 }
 
 .d-flex {
@@ -164,6 +168,34 @@
   $size: 1px * $i;
   .h-#{$i}-px {
     height: $size !important;
+  }
+}
+
+@for $i from 0 through 100 {
+  $size: 1% * $i;
+  .max-w-#{$i} {
+    max-width: $size !important;
+  }
+}
+
+@for $i from 0 through 1000 {
+  $size: 1px * $i;
+  .max-w-#{$i}-px {
+    max-width: $size !important;
+  }
+}
+
+@for $i from 0 through 100 {
+  $size: 1% * $i;
+  .max-h-#{$i} {
+    max-height: $size !important;
+  }
+}
+
+@for $i from 0 through 1000 {
+  $size: 1px * $i;
+  .max-h-#{$i}-px {
+    max-height: $size !important;
   }
 }
 
