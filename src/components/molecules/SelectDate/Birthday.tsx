@@ -1,34 +1,34 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 import SelectBox from "@/components/atoms/form/select-box/SelectBox";
 import { listOptionMonth, listOptionDay } from "@/utils/common/date";
 import styles from './Birthday.module.scss'
 import { useImmer } from "use-immer";
 
 function Birthday() {
-  const [birthday, setBirthday] = useImmer({
+  const [birthday] = useImmer({
     day: "",
     month: "",
     year: "",
   });
 
-  const changeMonth = ((value: string) => {
-    setBirthday((draft) => {
-      draft.month = listOptionMonth[parseInt(value)].label
-    });
-  });
+  // const changeMonth = ((value: string) => {
+  //   setBirthday((draft) => {
+  //     draft.month = listOptionMonth[parseInt(value)].label
+  //   });
+  // });
 
-  const changeDay = ((event: React.ChangeEvent<HTMLSelectElement>) => {
-    setBirthday((draft) => {
-      draft.day = listOptionDay[parseInt(event.target.value)].label
-    });
-  });
+  // const changeDay = ((event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setBirthday((draft) => {
+  //     draft.day = listOptionDay[parseInt(event.target.value)].label
+  //   });
+  // });
 
-  const changeYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setBirthday((draft) => {
-      draft.year = listOptionMonth[parseInt(event.target.value)].label
-    }
-    );
-  };
+  // const changeYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setBirthday((draft) => {
+  //     draft.year = listOptionMonth[parseInt(event.target.value)].label
+  //   }
+  //   );
+  // };
 
   return (
     <div className={styles.birthdayContainer}>
@@ -36,21 +36,21 @@ function Birthday() {
         <SelectBox
           valueSelect={birthday.month}
           listOption={listOptionMonth}
-          handleChange={changeMonth}
+          // handleChange={changeMonth}
         />
       </div>
       <div className={styles.selectItem}>
         <SelectBox
           valueSelect={birthday.day}
           listOption={listOptionDay}
-          handleChange={changeDay}
+          // handleChange={changeDay}
         />
       </div>
       <div className={styles.selectItem}>
         <SelectBox
           valueSelect={birthday.year}
           listOption={listOptionMonth}
-          handleChange={changeYear}
+          // handleChange={changeYear}
         />
       </div>
     </div>
