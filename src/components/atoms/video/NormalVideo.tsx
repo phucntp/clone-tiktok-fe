@@ -1,6 +1,6 @@
 import { useVideo } from "react-use";
 import styles from "./Video.module.scss";
-import React from "react";
+import React, { Suspense } from "react";
 import IconPause from "../icons/IconPause";
 import IconPlay from "../icons/IconPlay";
 import IconUnMute from "../icons/IconUnMute";
@@ -23,15 +23,17 @@ function NormalVideo({
 }: TProps) {
   const dispatch = useDispatch();
   const [video, state, controls] = useVideo(
-    <video
-      className={styles.video}
-      width={width}
-      height={height}
-      src={src}
-      autoPlay
-      onLoadStart={() => dispatch(loadingModule.actions.on())}
-      onLoadedData={() => dispatch(loadingModule.actions.off())}
-    ></video>
+    <Suspense fallback={<h1>Loading posts...</h1>}>
+      <video
+          className={styles.video}
+          width={width}
+          height={height}
+          src={src}
+          autoPlay
+          onLoadStart={() => dispatch(loadingModule.actions.on())}
+        ></video>
+    </Suspense>
+
   );
 
   return (
