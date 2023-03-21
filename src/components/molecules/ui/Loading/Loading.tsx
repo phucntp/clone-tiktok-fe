@@ -4,13 +4,17 @@ import { AppState } from "@/store";
 import React from "react";
 import { useSelector } from "react-redux";
 
-function Loading() {
+type TProps = {
+  loading?: boolean;
+}
+
+function Loading({loading = false}: TProps) {
   const isLoading = useSelector(
     (state: AppState) => state.uiReducers.loadingReducer.isLoading
   );
   return (
     <>
-      {isLoading && (
+      {isLoading || loading && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
