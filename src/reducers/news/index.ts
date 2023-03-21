@@ -9,6 +9,33 @@ export type TStateNews = {
   hasError: boolean;
   data: TResListNews;
 };
+export type TLoadingNews = {
+  loaded: boolean;
+  id: string;
+};
+
+const convertData = (data: TResListNews) => {
+  const newData = data.map((item) => {
+    return {
+      ...item,
+      loaded: false,
+    };
+  });
+  return newData;
+};
+
+const setDataId = (data: TResListNews, id: string, loaded: boolean) => {
+  const newData = data.map((item) => {
+    if (item._id === id) {
+      return {
+        ...item,
+        loaded: loaded,
+      };
+    }
+    return item;
+  });
+  return newData;
+};
 
 const newsReducer = createSlice({
   name: "[reducers/news]",
@@ -17,12 +44,18 @@ const newsReducer = createSlice({
     set(state: TStateNews, action: PayloadAction<TStateNews>) {
       return {
         ...state,
-        data: action.payload.data,
+        data: convertData(action.payload.data),
         hasError: action.payload.hasError,
       };
     },
     clear(state: TStateNews) {
       return { ...state, ...initialStateNews };
+    },
+    setLoadingId(state: TStateNews, action: PayloadAction<TLoadingNews>) {
+      return {
+        ...state,
+        data: setDataId(state.data, action.payload.id, action.payload.loaded),
+      };
     },
   },
 });

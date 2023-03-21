@@ -1,8 +1,8 @@
 @import "@/styles/variables";
 
 .containerLayout {
-  flex: 1 1 auto !important;
   @include flexbox;
+  @include flexbox-justify-space-around;
   width: 100vw;
   max-width: 1150px;
   margin: 0 auto;

@@ -14,6 +14,7 @@ export type TNews = {
   author: string;
   createdAt: Date;
   updatedAt: Date;
+  loaded?: boolean;
 };
 
 export type TResListNews = TNews[];

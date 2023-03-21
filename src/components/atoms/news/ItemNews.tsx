@@ -19,49 +19,64 @@ function ItemNews({ data }: TProps) {
 
   return (
     <div className="keen-slider__slide">
-      <div className={styles.videoItem}>
-        <NormalVideo src={data.url} />
-      </div>
+      {breakpoint === "SM" && (
+        <div className={styles.videoItem}>
+          <NormalVideo loaded={data.loaded} id={data._id} src={data.url} />
+        </div>
+      )}
       <div className={styles.containerItem}>
-        <Avatar
-          width={48}
-          height={48}
-          isAdd={breakpoint === "SM"}
-          className={styles.avatar}
-        />
+        {data.loaded && (
+          <Avatar
+            width={48}
+            height={48}
+            isAdd={breakpoint === "SM"}
+            className={styles.avatar}
+          />
+        )}
         <div className={styles.contentItem}>
-          <div className={styles.infoNews}>
-            <div className={styles.infoItem}>
-              <div className={styles.infoTitle}>{data.title}</div>
-              <div className={styles.infDescription}>{data.description}</div>
+          {data.loaded && (
+            <div className={styles.infoNews}>
+              <div className={styles.infoItem}>
+                <div className={styles.infoTitle}>{data.title}</div>
+                <div className={styles.infDescription}>{data.description}</div>
+              </div>
+              <button className={styles.buttonFollow}>
+                {t("common.button.follow")}
+              </button>
             </div>
-            <button className={styles.buttonFollow}>
-              {t("common.button.follow")}
-            </button>
-          </div>
+          )}
           <div className={styles.socialItem}>
             <div className={styles.videoItem}>
-              <NormalVideo src={data.url} />
-              <div className={styles.listButtonSocial}>
-                <div className={styles.buttonSocial}>
-                  <button className={styles.buttonFavorite}>
-                    <IconHeart />
-                  </button>
-                  <div className={styles.buttonCount}>{data.like_count}</div>
+              <NormalVideo
+                className="d-sm-none"
+                loaded={data.loaded}
+                id={data._id}
+                src={data.url}
+              />
+              {data.loaded && (
+                <div className={styles.listButtonSocial}>
+                  <div className={styles.buttonSocial}>
+                    <button className={styles.buttonFavorite}>
+                      <IconHeart />
+                    </button>
+                    <div className={styles.buttonCount}>{data.like_count}</div>
+                  </div>
+                  <div className={styles.buttonSocial}>
+                    <button className={styles.buttonComment}>
+                      <IconComment />
+                    </button>
+                    <div className={styles.buttonCount}>
+                      {data.comment_count}
+                    </div>
+                  </div>
+                  <div className={styles.buttonSocial}>
+                    <button className={styles.buttonShare}>
+                      <IconShare />
+                    </button>
+                    <div className={styles.buttonCount}>{data.share_count}</div>
+                  </div>
                 </div>
-                <div className={styles.buttonSocial}>
-                  <button className={styles.buttonComment}>
-                    <IconComment />
-                  </button>
-                  <div className={styles.buttonCount}>{data.comment_count}</div>
-                </div>
-                <div className={styles.buttonSocial}>
-                  <button className={styles.buttonShare}>
-                    <IconShare />
-                  </button>
-                  <div className={styles.buttonCount}>{data.share_count}</div>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ type TProps = {
 
 function Avatar({
   className = "",
-  isAdd,
+  isAdd = false,
   onClickAdd,
   width = 56,
   height = 56,

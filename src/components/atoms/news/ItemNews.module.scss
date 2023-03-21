@@ -51,7 +51,8 @@
 
       @media screen and (max-width: $sm) {
         position: absolute;
-        left: 0;
+        left: 10px;
+        bottom: 100px;
       }
 
       .buttonFollow {
@@ -98,6 +99,12 @@
       @include flexbox;
       margin-top: 15px;
 
+      @media screen and (max-width: $sm) {
+        position: absolute;
+        right: 0;
+        width: 100%;
+      }
+
       .videoItem {
         width: 542px;
         max-width: 542px;
@@ -105,12 +112,6 @@
         height: auto;
         display: flex;
         position: relative;
-
-        @media screen and (max-width: $sm) {
-          width: 100vw;
-          height: 100vh;
-          display: none;
-        }
         // height: calc(450px + (100vw - 768px) / 1152 * 100);
       }
 
@@ -119,9 +120,12 @@
         @include flexbox-column;
         @include flexbox-justify-end;
         row-gap: 10px;
+        margin-left: 20px;
 
         @media screen and (max-width: $sm) {
-          position: relative;
+          position: absolute;
+          right: 0;
+          margin: 0;
         }
 
         .buttonSocial {

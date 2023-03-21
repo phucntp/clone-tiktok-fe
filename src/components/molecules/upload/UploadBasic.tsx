@@ -9,6 +9,11 @@ import styles from "./UploadBasic.module.scss";
 import { MAX_LENGTH_SIZE_VIDEO } from "@/constant/file";
 import { convertUrl } from "@/utils/common/file";
 
+export type TProps = {
+  // eslint-disable-next-line no-unused-vars
+  setFile?: (file: File) => void;
+};
+
 function nameLengthValidator(file: File) {
   if (file.name.length > MAX_LENGTH_SIZE_VIDEO) {
     return {
@@ -16,11 +21,10 @@ function nameLengthValidator(file: File) {
       message: `Name is larger than ${MAX_LENGTH_SIZE_VIDEO} characters`,
     };
   }
-
   return null;
 }
 
-function UploadBasic() {
+function UploadBasic({ setFile = () => {} }: TProps) {
   const [files, setFiles] = useState<any[]>([]);
 
   const { acceptedFiles, getRootProps, getInputProps, open, fileRejections } =
@@ -38,6 +42,13 @@ function UploadBasic() {
               preview: convertUrl(file),
             })
           )
+        );
+        setFile(
+          acceptedFiles.map((file) =>
+            Object.assign(file, {
+              preview: convertUrl(file),
+            })
+          )[0]
         );
       },
     });
