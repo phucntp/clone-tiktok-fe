@@ -233,6 +233,14 @@
 .d-block {
   display: block !important;
 }
+.d-none {
+  display: none !important;
+}
+.d-sm-none {
+  @media screen and (max-width: $sm) {
+    display: none !important;
+  }
+}
 
 .float-right {
   float: right !important;

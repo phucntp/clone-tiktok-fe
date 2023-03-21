@@ -80,7 +80,8 @@ function ListNews() {
 
   useEffect(() => {
     dispatch(newsActions.getNewsAll());
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.containerHome}>
@@ -89,7 +90,7 @@ function ListNews() {
         className="keen-slider"
         style={{ width: "100%", height: "100vh" }}
       >
-        {data.length &&
+        {data?.length &&
           data.map((item) => <ItemNews key={item._id} data={item} />)}
       </div>
     </div>

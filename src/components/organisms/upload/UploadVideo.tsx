@@ -11,20 +11,20 @@ import { useDispatch } from "react-redux";
 import styles from "./UploadVideo.module.scss";
 
 function UploadVideo() {
-  const [file] = useState<any>();
+  const [file, setFile] = useState<File>();
   const dispatch = useDispatch();
   const t = useTranslations();
 
-  // const handleFileChange = (event: any) => {
-  //   let input = event.target.files[0];
-  //   if (!input) return;
-  //   setFile(input);
-  // };
+  const handleFile = (file: File) => {
+    setFile(file);
+  };
 
   const handleSubmit = () => {
-    const formData: FormData = new FormData();
-    formData.append("video", file);
-    dispatch(uploadActions.upload(formData));
+    if (file?.name) {
+      const formData: FormData = new FormData();
+      formData.append("video", file);
+      dispatch(uploadActions.upload(formData));
+    }
   };
   return (
     <div className={styles.uploadContainer}>
@@ -33,7 +33,7 @@ function UploadVideo() {
         <p>{t("upload.description")}</p>
       </div>
       <form>
-        <UploadBasic />
+        <UploadBasic setFile={handleFile} />
         <div className={styles.formRight}>
           <div className={styles.itemRight}>
             <label className="text-black">{t("upload.caption")}</label>
