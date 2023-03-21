@@ -5,13 +5,21 @@ interface Props {
   type?: "button" | "submit" | "reset";
   className?: string;
   handleClick?: () => void;
+  disabled?: boolean;
 }
 
-function NormalButton({ label, type, className, handleClick }: Props) {
+function NormalButton({
+  label,
+  type = "button",
+  className,
+  handleClick = () => {},
+  disabled = false,
+}: Props) {
   return (
     <button
       type={type}
       onClick={handleClick}
+      disabled={disabled}
       className={`normal-button ${className}`}
     >
       {label}
