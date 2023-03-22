@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useKeenSlider, KeenSliderPlugin } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import styles from "./ListNews.module.scss";
+import newsReducer from "@/reducers/news";
 
 const WheelControls: KeenSliderPlugin = (slider) => {
   let touchTimeout: ReturnType<typeof setTimeout>;
@@ -67,16 +68,20 @@ const WheelControls: KeenSliderPlugin = (slider) => {
 };
 
 function ListNews() {
+  const dispatch = useDispatch();
+  const { data } = useSelector((state: AppState) => state.newsReducer);
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: false,
       rubberband: false,
       vertical: true,
+      initial: 0,
+      slideChanged: (slider) => {
+        dispatch(newsReducer.actions.setIndexVideo(slider.track.details.abs));
+      },
     },
     [WheelControls]
   );
-  const dispatch = useDispatch();
-  const { data } = useSelector((state: AppState) => state.newsReducer);
 
   useEffect(() => {
     dispatch(newsActions.getNewsAll());
@@ -91,7 +96,9 @@ function ListNews() {
         style={{ width: "100%", height: "100vh" }}
       >
         {data?.length &&
-          data.map((item) => <ItemNews key={item._id} data={item} />)}
+          data.map((item, index) => (
+            <ItemNews index={index} key={item._id} data={item} />
+          ))}
       </div>
     </div>
   );

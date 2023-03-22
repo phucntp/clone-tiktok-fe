@@ -12,6 +12,7 @@ const getNewsAll = async (): Promise<TStateNews> => {
   return {
     hasError: false,
     data: res.data,
+    indexVideo: null,
   };
 };
 

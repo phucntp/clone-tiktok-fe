@@ -36,6 +36,7 @@ const newsEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
   action$.pipe(
     ofAction(_actionNews.newsNext),
     map(({ payload }) => {
+      newsReducer.actions.setIndexVideo(null);
       return newsReducer.actions.set(payload);
     })
   );
