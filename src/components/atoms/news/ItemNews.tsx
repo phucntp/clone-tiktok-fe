@@ -11,9 +11,10 @@ import { useTranslations } from "next-intl";
 
 type TProps = {
   data: TNews;
+  index?: Number;
 };
 
-function ItemNews({ data }: TProps) {
+function ItemNews({ data, index = 0 }: TProps) {
   const breakpoint = useBreakpoint();
   const t = useTranslations();
 
@@ -21,7 +22,12 @@ function ItemNews({ data }: TProps) {
     <div className="keen-slider__slide">
       {breakpoint === "SM" && (
         <div className={styles.videoItem}>
-          <NormalVideo loaded={data.loaded} id={data._id} src={data.url} />
+          <NormalVideo
+            index={index}
+            loaded={data.loaded}
+            id={data._id}
+            src={data.url}
+          />
         </div>
       )}
       <div className={styles.containerItem}>
@@ -48,6 +54,7 @@ function ItemNews({ data }: TProps) {
           <div className={styles.socialItem}>
             <div className={styles.videoItem}>
               <NormalVideo
+                index={index}
                 className="d-sm-none"
                 loaded={data.loaded}
                 id={data._id}
