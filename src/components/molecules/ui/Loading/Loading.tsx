@@ -9,7 +9,7 @@ type TProps = {
   className?: string;
 };
 
-function Loading({ loading = false }: TProps) {
+function Loading({ loading = false, className = "" }: TProps) {
   const isLoading = useSelector(
     (state: AppState) => state.uiReducers.loadingReducer.isLoading
   );
@@ -29,6 +29,7 @@ function Loading({ loading = false }: TProps) {
               position: "absolute",
               top: 0,
             }}
+            className={className}
             width="100%"
             height="100%"
             viewBox="0 0 100 100"

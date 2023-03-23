@@ -31,14 +31,12 @@ function ItemNews({ data, index = 0 }: TProps) {
         </div>
       )}
       <div className={styles.containerItem}>
-        {data.loaded && (
-          <Avatar
-            width={48}
-            height={48}
-            isAdd={breakpoint === "SM"}
-            className={styles.avatar}
-          />
-        )}
+        <Avatar
+          width={48}
+          height={48}
+          isAdd={breakpoint === "SM"}
+          className={`${styles.avatar} ${data.loaded ? "d-block" : "d-none"}`}
+        />
         <div className={styles.contentItem}>
           {data.loaded && (
             <div className={styles.infoNews}>

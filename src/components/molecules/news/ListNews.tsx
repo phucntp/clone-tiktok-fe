@@ -84,6 +84,18 @@ function ListNews() {
   );
 
   useEffect(() => {
+    const html = document.querySelector("html");
+    if (html) {
+      html.style.overflow = "hidden";
+    }
+    return () => {
+      if (html) {
+        html.style.overflow = "auto";
+      }
+    };
+  });
+
+  useEffect(() => {
     dispatch(newsActions.getNewsAll());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

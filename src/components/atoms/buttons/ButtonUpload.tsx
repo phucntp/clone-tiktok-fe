@@ -1,3 +1,5 @@
+import { ROUTER } from "@/routers/routers";
+import Link from "next/link";
 import React from "react";
 import IconAdd from "../icons/IconAdd";
 
@@ -11,14 +13,15 @@ interface Props {
 function ButtonUpload({ label, type, className, handleClick }: Props) {
   return (
     <div>
-      <a
+      <Link
+        href={ROUTER.UPLOAD}
         type={type}
         onClick={handleClick}
         className={`normal-button d-flex align-center ${className}`}
       >
-        <IconAdd />
+        <IconAdd className="mr-5" />
         <div>{label}</div>
-      </a>
+      </Link>
     </div>
   );
 }
