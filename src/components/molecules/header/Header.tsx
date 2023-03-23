@@ -23,10 +23,13 @@ const Header = () => {
         <SearchBar />
       </div>
       <div className={styles.rightContainer}>
-        <ButtonUpload label={t("common.button.upload")} className="h-36-px" />
+        <ButtonUpload
+          label={t("common.button.upload")}
+          className="py-8 h-auto"
+        />
         <NormalButton
           label={t("login.title")}
-          className="button-danger h-36-px"
+          className="button-danger py-8 h-auto"
         />
         <ButtonChat className="" />
         <ButtonInbox />

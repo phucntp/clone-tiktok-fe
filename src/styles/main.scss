@@ -254,6 +254,9 @@
   margin-left: auto !important;
   margin-right: auto !important;
 }
+.h-auto {
+  height: fit-content !important;
+}
 
 .position-relative {
   position: relative !important;
@@ -279,6 +282,14 @@
 
 .background-white {
   background-color: $color-white !important;
+}
+
+.background-gray {
+  background-color: $color-gray-bg !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 @media screen and (max-width: $lg) and (min-width: $sm) {

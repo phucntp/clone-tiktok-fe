@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 type TProps = {
@@ -7,7 +8,7 @@ type TProps = {
 
 function Logo({ className = "", color = "white" }: TProps) {
   return (
-    <a className={className}>
+    <Link href={"/"} className={className}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -48,7 +49,7 @@ function Logo({ className = "", color = "white" }: TProps) {
           d="M91.58 23.887a3.94 3.94 0 01-3.94-3.945 3.94 3.94 0 117.882 0c0 2.18-1.77 3.945-3.941 3.945zm0-12.058c-4.477 0-8.105 3.631-8.105 8.113 0 4.482 3.628 8.113 8.106 8.113 4.477 0 8.106-3.631 8.106-8.113 0-4.482-3.629-8.113-8.106-8.113z"
         ></path>
       </svg>
-    </a>
+    </Link>
   );
 }
 

@@ -4,17 +4,19 @@ type TProps = {
   color?: string;
   width?: string | number;
   height?: string | number;
+  className?: string;
 };
 
 function IconAdd({
   color = "currentColor",
   width = "1em",
   height = "1em",
+  className = "",
 }: TProps) {
   return (
     <>
       <svg
-        className="css-qeydvm-StyledPlusIcon e18d3d944"
+        className={className}
         width={width}
         data-e2e=""
         height={height}

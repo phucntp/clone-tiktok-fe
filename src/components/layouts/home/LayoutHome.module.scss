@@ -11,4 +11,8 @@
   @media screen and (max-width: $sm) {
     @include flexbox-column;
   }
+
+  @media screen and (max-width: $lg) and (min-width: $sm) {
+    @include flexbox-justify-space-between;
+  }
 }
