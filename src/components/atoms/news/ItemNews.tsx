@@ -5,16 +5,17 @@ import NormalVideo from "@/components/atoms/video/NormalVideo";
 import IconHeart from "@/components/atoms/icons/IconHeart";
 import IconComment from "@/components/atoms/icons/IconComment";
 import IconShare from "@/components/atoms/icons/IconShare";
-import { TNews } from "@/types/news";
+import { TNews, TUrlVideo } from "@/types/news";
 import useBreakpoint from "@/hooks/useBreakpoint";
 import { useTranslations } from "next-intl";
 
 type TProps = {
   data: TNews;
   index?: Number;
+  urlVideo?: TUrlVideo;
 };
 
-function ItemNews({ data, index = 0 }: TProps) {
+function ItemNews({ data, index = 0, urlVideo }: TProps) {
   const breakpoint = useBreakpoint();
   const t = useTranslations();
 
@@ -26,62 +27,55 @@ function ItemNews({ data, index = 0 }: TProps) {
             index={index}
             loaded={data.loaded}
             id={data._id}
-            src={data.url}
+            src={urlVideo?.url}
+            idUrl={urlVideo?.id}
           />
         </div>
       )}
       <div className={styles.containerItem}>
-        <Avatar
-          width={48}
-          height={48}
-          isAdd={breakpoint === "SM"}
-          className={`${styles.avatar} ${data.loaded ? "d-block" : "d-none"}`}
-        />
+        <Avatar width={48} height={48} isAdd={breakpoint === "SM"} />
         <div className={styles.contentItem}>
-          {data.loaded && (
-            <div className={styles.infoNews}>
-              <div className={styles.infoItem}>
-                <div className={styles.infoTitle}>{data.title}</div>
-                <div className={styles.infDescription}>{data.description}</div>
-              </div>
-              <button className={styles.buttonFollow}>
-                {t("common.button.follow")}
-              </button>
+          <div className={styles.infoNews}>
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>{data.title}</div>
+              <div className={styles.infDescription}>{data.description}</div>
             </div>
-          )}
+            <button className={styles.buttonFollow}>
+              {t("common.button.follow")}
+            </button>
+          </div>
           <div className={styles.socialItem}>
             <div className={styles.videoItem}>
-              <NormalVideo
-                index={index}
-                className="d-sm-none"
-                loaded={data.loaded}
-                id={data._id}
-                src={data.url}
-              />
-              {data.loaded && (
-                <div className={styles.listButtonSocial}>
-                  <div className={styles.buttonSocial}>
-                    <button className={styles.buttonFavorite}>
-                      <IconHeart />
-                    </button>
-                    <div className={styles.buttonCount}>{data.like_count}</div>
-                  </div>
-                  <div className={styles.buttonSocial}>
-                    <button className={styles.buttonComment}>
-                      <IconComment />
-                    </button>
-                    <div className={styles.buttonCount}>
-                      {data.comment_count}
-                    </div>
-                  </div>
-                  <div className={styles.buttonSocial}>
-                    <button className={styles.buttonShare}>
-                      <IconShare />
-                    </button>
-                    <div className={styles.buttonCount}>{data.share_count}</div>
-                  </div>
-                </div>
+              {breakpoint !== "SM" && (
+                <NormalVideo
+                  index={index}
+                  className="d-sm-none"
+                  loaded={data.loaded}
+                  id={data._id}
+                  src={urlVideo?.url}
+                  idUrl={urlVideo?.id}
+                />
               )}
+              <div className={styles.listButtonSocial}>
+                <div className={styles.buttonSocial}>
+                  <button className={styles.buttonFavorite}>
+                    <IconHeart />
+                  </button>
+                  <div className={styles.buttonCount}>{data.like_count}</div>
+                </div>
+                <div className={styles.buttonSocial}>
+                  <button className={styles.buttonComment}>
+                    <IconComment />
+                  </button>
+                  <div className={styles.buttonCount}>{data.comment_count}</div>
+                </div>
+                <div className={styles.buttonSocial}>
+                  <button className={styles.buttonShare}>
+                    <IconShare />
+                  </button>
+                  <div className={styles.buttonCount}>{data.share_count}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

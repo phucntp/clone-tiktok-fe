@@ -2,12 +2,14 @@
 import newsActions from "@/actions/news";
 import ItemNews from "@/components/atoms/news/ItemNews";
 import { AppState } from "@/store";
-import React, { useEffect, memo } from "react";
+import React, { useEffect, memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useKeenSlider, KeenSliderPlugin } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import styles from "./ListNews.module.scss";
 import newsReducer from "@/reducers/news";
+import axios from "axios";
+import { TUrlVideo } from "@/types/news";
 
 const WheelControls: KeenSliderPlugin = (slider) => {
   let touchTimeout: ReturnType<typeof setTimeout>;
@@ -70,6 +72,7 @@ const WheelControls: KeenSliderPlugin = (slider) => {
 function ListNews() {
   const dispatch = useDispatch();
   const { data } = useSelector((state: AppState) => state.newsReducer);
+  const [urlInit, setUrlInit] = useState<TUrlVideo[]>([]);
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: false,
@@ -100,6 +103,16 @@ function ListNews() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    data.map(async (item) => {
+      await axios.get(item.url, { responseType: "blob" }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        setUrlInit((prev) => [...prev, { url, id: item._id }]);
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className={styles.containerHome}>
       <div
@@ -109,7 +122,12 @@ function ListNews() {
       >
         {data?.length &&
           data.map((item, index) => (
-            <ItemNews index={index} key={item._id} data={item} />
+            <ItemNews
+              index={index}
+              key={item._id}
+              urlVideo={urlInit.find((url) => url.id === item._id)}
+              data={item}
+            />
           ))}
       </div>
     </div>
