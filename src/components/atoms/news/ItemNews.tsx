@@ -5,14 +5,14 @@ import NormalVideo from "@/components/atoms/video/NormalVideo";
 import IconHeart from "@/components/atoms/icons/IconHeart";
 import IconComment from "@/components/atoms/icons/IconComment";
 import IconShare from "@/components/atoms/icons/IconShare";
-import { TNews } from "@/types/news";
+import { TNews, TUrlVideo } from "@/types/news";
 import useBreakpoint from "@/hooks/useBreakpoint";
 import { useTranslations } from "next-intl";
 
 type TProps = {
   data: TNews;
   index?: Number;
-  urlVideo?: string;
+  urlVideo?: TUrlVideo;
 };
 
 function ItemNews({ data, index = 0, urlVideo }: TProps) {
@@ -27,7 +27,8 @@ function ItemNews({ data, index = 0, urlVideo }: TProps) {
             index={index}
             loaded={data.loaded}
             id={data._id}
-            src={urlVideo}
+            src={urlVideo?.url}
+            idUrl={urlVideo?.id}
           />
         </div>
       )}
@@ -45,13 +46,16 @@ function ItemNews({ data, index = 0, urlVideo }: TProps) {
           </div>
           <div className={styles.socialItem}>
             <div className={styles.videoItem}>
-              <NormalVideo
-                index={index}
-                className="d-sm-none"
-                loaded={data.loaded}
-                id={data._id}
-                src={urlVideo}
-              />
+              {breakpoint !== "SM" && (
+                <NormalVideo
+                  index={index}
+                  className="d-sm-none"
+                  loaded={data.loaded}
+                  id={data._id}
+                  src={urlVideo?.url}
+                  idUrl={urlVideo?.id}
+                />
+              )}
               <div className={styles.listButtonSocial}>
                 <div className={styles.buttonSocial}>
                   <button className={styles.buttonFavorite}>

@@ -18,3 +18,8 @@ export type TNews = {
 };
 
 export type TResListNews = TNews[];
+
+export type TUrlVideo = {
+  id: string;
+  url: string;
+};

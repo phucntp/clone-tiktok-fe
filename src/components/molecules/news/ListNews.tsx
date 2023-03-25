@@ -9,6 +9,7 @@ import "keen-slider/keen-slider.min.css";
 import styles from "./ListNews.module.scss";
 import newsReducer from "@/reducers/news";
 import axios from "axios";
+import { TUrlVideo } from "@/types/news";
 
 const WheelControls: KeenSliderPlugin = (slider) => {
   let touchTimeout: ReturnType<typeof setTimeout>;
@@ -71,7 +72,7 @@ const WheelControls: KeenSliderPlugin = (slider) => {
 function ListNews() {
   const dispatch = useDispatch();
   const { data } = useSelector((state: AppState) => state.newsReducer);
-  const [urlInit, setUrlInit] = useState<string[]>([]);
+  const [urlInit, setUrlInit] = useState<TUrlVideo[]>([]);
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: false,
@@ -106,7 +107,7 @@ function ListNews() {
     data.map(async (item) => {
       await axios.get(item.url, { responseType: "blob" }).then((response) => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
-        setUrlInit((prev) => [...prev, url]);
+        setUrlInit((prev) => [...prev, { url, id: item._id }]);
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -124,7 +125,7 @@ function ListNews() {
             <ItemNews
               index={index}
               key={item._id}
-              urlVideo={urlInit[index]}
+              urlVideo={urlInit.find((url) => url.id === item._id)}
               data={item}
             />
           ))}
