@@ -41,9 +41,10 @@ function NormalVideo({
       className={styles.video}
       width={width}
       height={height}
-      src={src ?? ""}
       playsInline
       loop
+      preload="metadata"
+      src={src}
     ></video>
   );
 
@@ -124,20 +125,24 @@ function NormalVideo({
   ]);
 
   return (
-    <div
-      onClick={onClickHandler}
-      className={`${styles.containerVideo} cursor-pointer ${className}`}
-    >
-      {video}
-      {waiting.current?.duration ? displayVideo : <Loading loading />}
-      {/* <br />
+    <>
+      {src && (
+        <div
+          onClick={onClickHandler}
+          className={`${styles.containerVideo} cursor-pointer ${className}`}
+        >
+          {video}
+          {waiting.current?.duration ? displayVideo : <Loading loading />}
+          {/* <br />
       <button onClick={() => controls.volume(0.1)}>Volume: 10%</button>
       <button onClick={() => controls.volume(0.5)}>Volume: 50%</button>
       <button onClick={() => controls.volume(1)}>Volume: 100%</button>
       <br />
       <button onClick={() => controls.seek(state.time - 5)}>-5 sec</button>
       <button onClick={() => controls.seek(state.time + 5)}>+5 sec</button> */}
-    </div>
+        </div>
+      )}
+    </>
   );
 }
 

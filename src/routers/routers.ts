@@ -5,4 +5,6 @@ export const ROUTER = {
   CHAT: "/chat",
   UPLOAD: "/upload",
   INBOX: "/inbox",
+  HOME: "/",
+  FOLLOWING: "/following",
 };

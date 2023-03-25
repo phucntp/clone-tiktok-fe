@@ -12,9 +12,10 @@ import { useTranslations } from "next-intl";
 type TProps = {
   data: TNews;
   index?: Number;
+  urlVideo?: string;
 };
 
-function ItemNews({ data, index = 0 }: TProps) {
+function ItemNews({ data, index = 0, urlVideo }: TProps) {
   const breakpoint = useBreakpoint();
   const t = useTranslations();
 
@@ -26,29 +27,22 @@ function ItemNews({ data, index = 0 }: TProps) {
             index={index}
             loaded={data.loaded}
             id={data._id}
-            src={data.url}
+            src={urlVideo}
           />
         </div>
       )}
       <div className={styles.containerItem}>
-        <Avatar
-          width={48}
-          height={48}
-          isAdd={breakpoint === "SM"}
-          className={`${styles.avatar} ${data.loaded ? "d-block" : "d-none"}`}
-        />
+        <Avatar width={48} height={48} isAdd={breakpoint === "SM"} />
         <div className={styles.contentItem}>
-          {data.loaded && (
-            <div className={styles.infoNews}>
-              <div className={styles.infoItem}>
-                <div className={styles.infoTitle}>{data.title}</div>
-                <div className={styles.infDescription}>{data.description}</div>
-              </div>
-              <button className={styles.buttonFollow}>
-                {t("common.button.follow")}
-              </button>
+          <div className={styles.infoNews}>
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>{data.title}</div>
+              <div className={styles.infDescription}>{data.description}</div>
             </div>
-          )}
+            <button className={styles.buttonFollow}>
+              {t("common.button.follow")}
+            </button>
+          </div>
           <div className={styles.socialItem}>
             <div className={styles.videoItem}>
               <NormalVideo
@@ -56,32 +50,28 @@ function ItemNews({ data, index = 0 }: TProps) {
                 className="d-sm-none"
                 loaded={data.loaded}
                 id={data._id}
-                src={data.url}
+                src={urlVideo}
               />
-              {data.loaded && (
-                <div className={styles.listButtonSocial}>
-                  <div className={styles.buttonSocial}>
-                    <button className={styles.buttonFavorite}>
-                      <IconHeart />
-                    </button>
-                    <div className={styles.buttonCount}>{data.like_count}</div>
-                  </div>
-                  <div className={styles.buttonSocial}>
-                    <button className={styles.buttonComment}>
-                      <IconComment />
-                    </button>
-                    <div className={styles.buttonCount}>
-                      {data.comment_count}
-                    </div>
-                  </div>
-                  <div className={styles.buttonSocial}>
-                    <button className={styles.buttonShare}>
-                      <IconShare />
-                    </button>
-                    <div className={styles.buttonCount}>{data.share_count}</div>
-                  </div>
+              <div className={styles.listButtonSocial}>
+                <div className={styles.buttonSocial}>
+                  <button className={styles.buttonFavorite}>
+                    <IconHeart />
+                  </button>
+                  <div className={styles.buttonCount}>{data.like_count}</div>
                 </div>
-              )}
+                <div className={styles.buttonSocial}>
+                  <button className={styles.buttonComment}>
+                    <IconComment />
+                  </button>
+                  <div className={styles.buttonCount}>{data.comment_count}</div>
+                </div>
+                <div className={styles.buttonSocial}>
+                  <button className={styles.buttonShare}>
+                    <IconShare />
+                  </button>
+                  <div className={styles.buttonCount}>{data.share_count}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
