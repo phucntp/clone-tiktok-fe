@@ -1,0 +1,263 @@
+[33mcommit 2ad2dd3a807d961df6d2088bfb5026934a9b471c[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: be8d1d2 6220b6a
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Sat Mar 25 15:34:43 2023 +0700
+
+    Merge pull request #54 from phucntp/revert-53-develop
+    
+    Revert "Commit 24-03"
+
+[33mcommit 6220b6a5339250b2cea1da5352e5a13cfe9d2306[m[33m ([m[1;31morigin/revert-53-develop[m[33m)[m
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Sat Mar 25 15:29:32 2023 +0700
+
+    Revert "Commit 24-03"
+
+[33mcommit be8d1d272b9db0939f3bfb9f99c38160f4eb3a84[m
+Merge: 9eef11b d330bfb
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Sat Mar 25 14:18:50 2023 +0700
+
+    Merge pull request #53 from phucntp/develop
+    
+    Commit 24-03
+
+[33mcommit d330bfb8c34762b087c23ee2bd8d9b3ee1d471b2[m[33m ([m[1;31morigin/develop[m[33m)[m
+Author: Phucnguyen <nguyen.phuc@jvb-corp.com>
+Date:   Sat Mar 25 14:17:09 2023 +0700
+
+    Commit 24-03
+
+[33mcommit 9eef11bfb07531dc40e5a10b51dc5305bb372c94[m
+Merge: d7b2ecf ffbd609
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Fri Mar 24 02:07:08 2023 +0700
+
+    Merge pull request #52 from phucntp/develop
+    
+    Commit  23-03
+
+[33mcommit ffbd609e8b044d3a48a2e50c902a236c278ad492[m
+Author: Phucnguyen <nguyen.phuc@jvb-corp.com>
+Date:   Fri Mar 24 02:05:21 2023 +0700
+
+    Commit  23-03
+
+[33mcommit d7b2ecffcadc0fcba0fdc29e31f85d6569a87770[m
+Merge: f136db7 55f9308
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Thu Mar 23 01:51:58 2023 +0700
+
+    Merge pull request #51 from phucntp/develop
+    
+    Commit  22-03
+
+[33mcommit 55f9308b471c089f30aadba66dd3cd827a178e8d[m
+Author: Phucnguyen <nguyen.phuc@jvb-corp.com>
+Date:   Thu Mar 23 01:51:01 2023 +0700
+
+    Commit  22-03
+
+[33mcommit f136db71d6d3b14c22faf787e554a6ea6aaad14f[m
+Merge: e523eb6 9b9bbe9
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Wed Mar 22 00:57:43 2023 +0700
+
+    Merge pull request #50 from phucntp/develop
+    
+    Commit 21-03
+
+[33mcommit 9b9bbe926fe9bb79fd67a14cffc0a12d8a56bee5[m
+Author: Phucnguyen <nguyen.phuc@jvb-corp.com>
+Date:   Wed Mar 22 00:56:28 2023 +0700
+
+    Commit 21-03
+
+[33mcommit e523eb6432e0df841bae2920e79c93163040f858[m
+Merge: f0e8426 fd77a4e
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Tue Mar 21 18:39:21 2023 +0700
+
+    Merge pull request #49 from phucntp/develop
+    
+    Develop
+
+[33mcommit fd77a4e66c1ab7c764f0fefba5d90d604138546a[m
+Merge: b398533 733382a
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Tue Mar 21 18:28:27 2023 +0700
+
+    Merge pull request #48 from phucntp/feature/home_21-03
+    
+    Commit 21-03
+
+[33mcommit 733382a8dfda901fce2f4cb6c7cf96adc1f724ab[m[33m ([m[1;31morigin/feature/home_21-03[m[33m)[m
+Author: PhucNT <Phucqaz.1234@gmail.com>
+Date:   Tue Mar 21 18:26:33 2023 +0700
+
+    Commit 21-03
+
+[33mcommit b398533dbd7e7b8659fc24552170cb8d0fe3d599[m
+Merge: 3bd4cc0 7613aab
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Tue Mar 21 00:14:56 2023 +0700
+
+    Merge pull request #47 from phucntp/feature/upload_20-03
+    
+    Commit 20/03
+
+[33mcommit 7613aab784fe408f349200c2c488956cee54a5ac[m[33m ([m[1;31morigin/feature/upload_20-03[m[33m, [m[1;32mfeature/upload_20-03[m[33m)[m
+Author: Phucnguyen <nguyen.phuc@jvb-corp.com>
+Date:   Tue Mar 21 00:13:41 2023 +0700
+
+    Commit 20/03
+
+[33mcommit f0e84262190bac6c10890cb4438dc501f4c69b80[m
+Merge: d87560f 3bd4cc0
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Mon Mar 20 17:58:58 2023 +0700
+
+    Merge pull request #46 from phucntp/develop
+    
+    add env
+
+[33mcommit 3bd4cc0d8060e056f1b583b8e245b74417eb9a9b[m
+Author: PhucNT <Phucqaz.1234@gmail.com>
+Date:   Mon Mar 20 17:55:36 2023 +0700
+
+    add env
+
+[33mcommit d87560f8b674eac40bc54380154f0a520f94133e[m
+Merge: be0281d ff6e840
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Mon Mar 20 17:13:45 2023 +0700
+
+    Merge pull request #45 from phucntp/develop
+    
+    update birthday
+
+[33mcommit ff6e840269f3d1ad23050d363241a841988d5daa[m
+Author: PhucNT <Phucqaz.1234@gmail.com>
+Date:   Mon Mar 20 17:12:34 2023 +0700
+
+    update birthday
+
+[33mcommit be0281d4118bb8b330d40ce6595f8ceeaced6afb[m
+Merge: 39e95b5 7fc3201
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Mon Mar 20 14:20:37 2023 +0700
+
+    Merge pull request #44 from phucntp/develop
+    
+    update env
+
+[33mcommit 7fc3201c01f5f91ffa7554189c24caddff9d3bd2[m
+Author: PhucNT <Phucqaz.1234@gmail.com>
+Date:   Mon Mar 20 14:19:51 2023 +0700
+
+    update env
+
+[33mcommit 39e95b58b6ff8b3e7b29b64c7aeae35f77d351a4[m
+Merge: 9d579a5 f807a37
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Mon Mar 20 14:16:14 2023 +0700
+
+    Merge pull request #43 from phucntp/develop
+    
+    Develop
+
+[33mcommit f807a37a67feb24b3d3248676ae9e564a104b659[m
+Merge: c272d0a 64f4489
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Mon Mar 20 01:43:05 2023 +0700
+
+    Merge pull request #42 from phucntp/feature/upload_19-03
+    
+    Commit 19-03
+
+[33mcommit 64f4489384cbd8f01d73932e443a936ac7552682[m[33m ([m[1;31morigin/feature/upload_19-03[m[33m, [m[1;32mfeature/upload_19-03[m[33m)[m
+Author: Phucnguyen <nguyen.phuc@jvb-corp.com>
+Date:   Mon Mar 20 01:41:29 2023 +0700
+
+    Commit 19-03
+
+[33mcommit c272d0a4d42e056c5834c7603f69d5632211ae36[m
+Merge: f190f5a 53ccb24
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Sun Mar 19 01:53:54 2023 +0700
+
+    Merge pull request #41 from phucntp/feature/home_18-03
+    
+    Commit 18-03
+
+[33mcommit 53ccb24a9f676cc373942c328ea678d517821004[m[33m ([m[1;31morigin/feature/home_18-03[m[33m, [m[1;32mfeature/home_18-03[m[33m)[m
+Author: Phucnguyen <nguyen.phuc@jvb-corp.com>
+Date:   Sun Mar 19 01:52:41 2023 +0700
+
+    Commit 18-03
+
+[33mcommit f190f5aef48cb5a4ec02db4b5eda4dc3ed054b94[m
+Merge: 24cb73a 997d8f8
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Fri Mar 17 10:21:42 2023 +0700
+
+    Merge pull request #40 from phucntp/feature/home_17-03
+    
+    Commit 17-03
+
+[33mcommit 997d8f803113262d7ae36384d27d6d0ca90db4d2[m[33m ([m[1;31morigin/feature/home_17-03[m[33m)[m
+Author: PhucNT <Phucqaz.1234@gmail.com>
+Date:   Fri Mar 17 10:21:23 2023 +0700
+
+    Commit 17-03
+
+[33mcommit 24cb73aaf83491450510b914f4987e1e588ee656[m
+Merge: 66f1a4f 4f11489
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Fri Mar 17 00:27:44 2023 +0700
+
+    Merge pull request #39 from phucntp/feature/home_16-03
+    
+    Commit 16-03
+
+[33mcommit 4f114892d0b3888720b08e7e0642233b0a0b64a0[m[33m ([m[1;31morigin/feature/home_16-03[m[33m, [m[1;32mfeature/home_16-03[m[33m)[m
+Author: Phucnguyen <nguyen.phuc@jvb-corp.com>
+Date:   Fri Mar 17 00:26:24 2023 +0700
+
+    Commit 16-03
+
+[33mcommit 66f1a4fcdd8c7af284a5aec8104b39a1b737c6d7[m
+Merge: a1a674e e72a34a
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Thu Mar 16 00:31:44 2023 +0700
+
+    Merge pull request #38 from phucntp/feature/login_15-03
+    
+    Commit 15-03
+
+[33mcommit e72a34a81c43c9659592e769c1f4089b9a21fac8[m[33m ([m[1;31morigin/feature/login_15-03[m[33m, [m[1;32mfeature/login_15-03[m[33m)[m
+Author: Phucnguyen <nguyen.phuc@jvb-corp.com>
+Date:   Thu Mar 16 00:31:07 2023 +0700
+
+    Commit 15-03
+
+[33mcommit a1a674e576a435e93be80a4578a5724d695f7b27[m
+Merge: 55552d1 ee6d9f4
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Wed Mar 15 22:19:39 2023 +0700
+
+    Merge pull request #37 from phucntp/feature/home_13-03
+    
+    Commit 13-03
+
+[33mcommit 9d579a532dfbaf71e3990a2e60edd645aeb39bde[m
+Merge: 8f0a569 ee6d9f4
+Author: phucntp <75481243+phucntp@users.noreply.github.com>
+Date:   Wed Mar 15 18:44:20 2023 +0700
+
+    Merge pull request #36 from phucntp/feature/home_13-03
+    
+    Feature/home 13 03
+
+[33mcommit ee6d9f422aced325227a07af2a3de6da78c2c162[m[33m ([m[1;31morigin/feature/home_13-03[m[33m)[m
+Author: PhucNT <Phucqaz.1234@gma

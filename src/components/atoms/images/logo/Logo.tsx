@@ -1,3 +1,4 @@
+import { ROUTER } from "@/routers/routers";
 import Link from "next/link";
 import React from "react";
 
@@ -8,7 +9,7 @@ type TProps = {
 
 function Logo({ className = "", color = "white" }: TProps) {
   return (
-    <Link href={"/"} className={className}>
+    <Link href={ROUTER.HOME} className={className}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

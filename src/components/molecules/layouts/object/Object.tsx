@@ -1,4 +1,6 @@
+import { ROUTER } from "@/routers/routers";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import React from "react";
 import styles from "./Object.module.scss";
 
@@ -18,7 +20,7 @@ function Object({
   const t = useTranslations();
   return (
     <div className={`${styles.objectContainer} ${className}`}>
-      <div className={styles.objectItem}>
+      <Link href={ROUTER.HOME} className={styles.objectItem}>
         {showIcon && (
           <svg
             width="32"
@@ -36,8 +38,8 @@ function Object({
           </svg>
         )}
         <h2 className="ml-5 hidden-content-lg">{t("layout.object.for_you")}</h2>
-      </div>
-      <div className={styles.objectItem}>
+      </Link>
+      <Link href={ROUTER.FOLLOWING} className={styles.objectItem}>
         {showIcon && (
           <svg
             width="32"
@@ -67,7 +69,7 @@ function Object({
         <h2 className="ml-5 hidden-content-lg">
           {t("layout.object.following")}
         </h2>
-      </div>
+      </Link>
     </div>
   );
 }
