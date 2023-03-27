@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useKeenSlider, KeenSliderPlugin } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import styles from "./ListNews.module.scss";
-import newsReducer from "@/reducers/news";
+import listNewsReducer from "@/reducers/listNews";
 import axios from "axios";
 import { TUrlVideo } from "@/types/news";
 
@@ -71,7 +71,7 @@ const WheelControls: KeenSliderPlugin = (slider) => {
 
 function ListNews() {
   const dispatch = useDispatch();
-  const { data } = useSelector((state: AppState) => state.newsReducer);
+  const { data } = useSelector((state: AppState) => state.listNewsReducer);
   const [urlInit, setUrlInit] = useState<TUrlVideo[]>([]);
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
@@ -80,7 +80,9 @@ function ListNews() {
       vertical: true,
       initial: 0,
       slideChanged: (slider) => {
-        dispatch(newsReducer.actions.setIndexVideo(slider.track.details.abs));
+        dispatch(
+          listNewsReducer.actions.setIndexVideo(slider.track.details.abs)
+        );
       },
     },
     [WheelControls]
@@ -99,7 +101,7 @@ function ListNews() {
   });
 
   useEffect(() => {
-    dispatch(newsActions.getNewsAll());
+    dispatch(newsActions.getNewsAll({ limit: 5 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -11,7 +11,7 @@ import IconMute from "../icons/IconMute";
 import Loading from "@/components/molecules/ui/Loading/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "@/store";
-import newsReducer from "@/reducers/news";
+import listNewsReducer from "@/reducers/listNews";
 import LoadingBall from "@/components/molecules/ui/Loading/LoadingBall";
 
 type TProps = {
@@ -36,7 +36,7 @@ function NormalVideo({
 }: TProps) {
   const dispatch = useDispatch();
   const indexActive = useSelector(
-    (state: AppState) => state.newsReducer.indexVideo
+    (state: AppState) => state.listNewsReducer.indexVideo
   );
   const [video, state, controls, waiting] = useVideo(
     <video
@@ -52,14 +52,14 @@ function NormalVideo({
 
   useEffect(() => {
     if (index === 0 && indexActive) {
-      dispatch(newsReducer.actions.setIndexVideo(null));
+      dispatch(listNewsReducer.actions.setIndexVideo(null));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (state.duration) {
-      dispatch(newsReducer.actions.setLoadingId({ id, loaded: true }));
+      dispatch(listNewsReducer.actions.setLoadingId({ id, loaded: true }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, id, state.duration]);

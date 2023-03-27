@@ -4,8 +4,10 @@ import registerReducer from "./register";
 import logoutReducer from "./logout";
 import forgotPasswordReducer from "./forgotPassword";
 import refreshTokenReducer from "./refreshToken";
-import newsReducer from "./news";
+import listNewsReducer from "./listNews";
 import uploadVideoReducer from "./uploadVideo";
+import newsReducer from "./news";
+import favoriteNewsReducer from "./favoriteNews";
 import { uiReducers } from "./ui";
 
 export const reducers = combineReducers({
@@ -14,7 +16,9 @@ export const reducers = combineReducers({
   logoutReducer: logoutReducer.reducer,
   forgotPasswordReducer: forgotPasswordReducer.reducer,
   refreshTokenReducer: refreshTokenReducer.reducer,
-  newsReducer: newsReducer.reducer,
+  listNewsReducer: listNewsReducer.reducer,
   uploadVideoReducer: uploadVideoReducer.reducer,
+  newsReducer: newsReducer.reducer,
+  favoriteNewsReducer: favoriteNewsReducer.reducer,
   uiReducers,
 });
