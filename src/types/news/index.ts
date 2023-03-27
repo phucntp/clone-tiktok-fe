@@ -15,9 +15,25 @@ export type TNews = {
   createdAt: Date;
   updatedAt: Date;
   loaded?: boolean;
+  width?: number;
+  height?: number;
 };
 
 export type TResListNews = TNews[];
+export type TResFavorite = {
+  message: string;
+};
+
+export type TReqNews = {
+  page?: number;
+  limit?: number;
+};
+export type TReqId = {
+  idNews?: string;
+};
+export type TReqFavorite = {
+  idNews?: string;
+};
 
 export type TUrlVideo = {
   id: string;
