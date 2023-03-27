@@ -49,7 +49,7 @@ function ItemNews({ data, index = 0, urlVideo }: TProps) {
               {breakpoint !== "SM" && (
                 <NormalVideo
                   index={index}
-                  className="d-sm-none"
+                  className={`w-${data.width}-px h-${data.height}-px background-gray`}
                   loaded={data.loaded}
                   id={data._id}
                   src={urlVideo?.url}
