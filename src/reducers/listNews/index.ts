@@ -4,12 +4,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export const initialStateListNews: TStateListNews = {
   hasError: false,
   data: [],
-  indexVideo: null,
+  indexVideo: 0,
 };
 export type TStateListNews = {
   hasError: boolean;
   data: TResListNews;
-  indexVideo: Number | null;
+  indexVideo: number;
 };
 export type TLoadingNews = {
   loaded: boolean;
@@ -59,7 +59,7 @@ const listNewsReducer = createSlice({
         data: setDataId(state.data, action.payload.id, action.payload.loaded),
       };
     },
-    setIndexVideo(state: TStateListNews, action: PayloadAction<Number | null>) {
+    setIndexVideo(state: TStateListNews, action: PayloadAction<number>) {
       return {
         ...state,
         indexVideo: action.payload,

@@ -40,7 +40,7 @@ const listNewsEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
   action$.pipe(
     ofAction(_actionNews.listNewsNext),
     map(({ payload }) => {
-      listNewsReducer.actions.setIndexVideo(null);
+      listNewsReducer.actions.setIndexVideo(0);
       return listNewsReducer.actions.set(payload);
     })
   );

@@ -1,3 +1,5 @@
+import { TMessage } from "../common";
+
 export type TUser = {
   _id: string;
   username: string;
@@ -24,3 +26,10 @@ export type TReqUsername = {
 export type TReqFollowing = {
   idUserFollow?: string;
 };
+
+export type TResFollowing = TMessage;
+export type TReqUpdateAvatar = {
+  username: string;
+  url: string;
+};
+export type TResUpdateAvatar = TMessage;

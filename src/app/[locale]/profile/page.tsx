@@ -1,10 +1,10 @@
 import LayoutUpload from "@/components/layouts/upload/LayoutUpload";
-import UploadVideo from "@/components/organisms/upload/video/UploadVideo";
+import UploadImage from "@/components/organisms/upload/image/UploadImage";
 
 function page() {
   return (
     <LayoutUpload>
-      <UploadVideo />
+      <UploadImage />
     </LayoutUpload>
   );
 }

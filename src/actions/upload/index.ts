@@ -1,9 +1,11 @@
 import actionCreatorFactory from "typescript-fsa";
-import { TReqGetVideo, TRequestUpload } from "@/types/upload";
+import { TFile, TRequestUpload } from "@/types/upload";
 
 const ac = actionCreatorFactory("[upload]");
 const uploadActions = {
-  upload: ac<TRequestUpload>("uploadVideo"),
-  getVideo: ac<TReqGetVideo>("getVideo"),
+  uploadVideo: ac<TRequestUpload>("uploadVideo"),
+  uploadImage: ac<TRequestUpload>("uploadImage"),
+  getVideo: ac<TFile>("getVideo"),
+  getImage: ac<TFile>("getImage"),
 };
 export default uploadActions;

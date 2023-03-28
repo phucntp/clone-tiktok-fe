@@ -15,7 +15,7 @@ const getNewsAll = async (params: TReqNews): Promise<TStateListNews> => {
   return {
     hasError: false,
     data: res.data,
-    indexVideo: null,
+    indexVideo: 0,
   };
 };
 
@@ -33,8 +33,8 @@ const getNewsId = async (params: TReqId): Promise<TStateNews> => {
   };
 };
 
-const favoriteNews = async (params: TReqFavorite): Promise<TStateFavorite> => {
-  const res = await newsRepositories.favoriteNews({ params });
+const favoriteNews = async (data: TReqFavorite): Promise<TStateFavorite> => {
+  const res = await newsRepositories.favoriteNews(data);
   if (!res || !res?.data) {
     return {
       ...initialStateFavorite,

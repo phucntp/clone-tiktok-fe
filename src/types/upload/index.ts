@@ -1,9 +1,16 @@
 export type TRequestUpload = FormData;
 
-export type TResUploadVideo = {
-  video: string;
+export type TResUpload = {
+  url: string;
 };
 
-export type TReqGetVideo = {
+export type TReqGetFile = {
   filename: string;
 };
+
+export type TFile = {
+  url: string;
+  id: string;
+};
+
+export type TResGetFile = TFile[];

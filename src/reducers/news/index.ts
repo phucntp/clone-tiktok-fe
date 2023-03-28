@@ -11,7 +11,7 @@ export type TStateNews = {
 };
 
 const newsReducer = createSlice({
-  name: "[reducers/listNews]",
+  name: "[reducers/news]",
   initialState: initialStateNews,
   reducers: {
     set(state: TStateNews, action: PayloadAction<TStateNews>) {

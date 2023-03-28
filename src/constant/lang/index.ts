@@ -1,3 +1,3 @@
-import { Lang } from "@/types/common/lang";
+import { Lang } from "../enum/lang";
 
 export const defaultLang = Lang.EN;

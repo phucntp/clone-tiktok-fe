@@ -52,7 +52,7 @@ function NormalVideo({
 
   useEffect(() => {
     if (index === 0 && indexActive) {
-      dispatch(listNewsReducer.actions.setIndexVideo(null));
+      dispatch(listNewsReducer.actions.setIndexVideo(0));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

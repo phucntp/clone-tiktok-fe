@@ -1,15 +1,15 @@
-import { TResUploadVideo } from "@/types/upload";
+import { TResUpload } from "@/types/upload";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const initialStateUploadVideo: TStateUploadVideo = {
   hasError: false,
   data: {
-    video: "",
+    url: "",
   },
 };
 export type TStateUploadVideo = {
   hasError: boolean;
-  data: TResUploadVideo;
+  data: TResUpload;
 };
 
 const uploadVideoReducer = createSlice({

@@ -1,3 +1,5 @@
+import { TMessage } from "../common";
+
 export type TNews = {
   _id: string;
   title: string;
@@ -20,9 +22,7 @@ export type TNews = {
 };
 
 export type TResListNews = TNews[];
-export type TResFavorite = {
-  message: string;
-};
+export type TResFavorite = TMessage;
 
 export type TReqNews = {
   page?: number;

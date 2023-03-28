@@ -6,76 +6,76 @@ import { from, map } from "rxjs";
 import actionCreatorFactory, { AnyAction } from "typescript-fsa";
 import { ofAction } from "typescript-fsa-redux-observable-of-action";
 import { AppState } from "@/store";
-import uploadVideoReducer, { TStateUploadVideo } from "@/reducers/uploadVideo";
+import uploadImageReducer, { TStateUploadImage } from "@/reducers/uploadImage";
 import uploadActions from "@/actions/upload";
 import { uploadServices } from "@/services/upload";
-import getVideoReducer, { TStateVideo } from "@/reducers/getVideo";
+import getImageReducer, { TStateImage } from "@/reducers/getImage";
 
-const ac = actionCreatorFactory("[epics/uploadVideo]");
+const ac = actionCreatorFactory("[epics/uploadImage]");
 
-const _actionUploadVideo = {
-  uploadVideoNext: ac<TStateUploadVideo>("uploadVideoNext"),
-  getVideoNext: ac<TStateVideo>("getVideoNext"),
+const _actionUploadImage = {
+  uploadImageNext: ac<TStateUploadImage>("uploadImageNext"),
+  getImageNext: ac<TStateImage>("getImageNext"),
 };
-const uploadVideoEpic: Epic<
+const uploadImageEpic: Epic<
   AnyAction,
   WrapAction<typeof asyncActionWithCallback>, //
   AppState
 > = (action$) =>
   action$.pipe(
-    ofAction(uploadActions.uploadVideo),
+    ofAction(uploadActions.uploadImage),
     map(({ payload }) =>
       asyncActionWithCallback({
         previous: loadingModule.actions.on(),
-        asyncFunc: from(uploadServices.uploadVideo(payload)),
+        asyncFunc: from(uploadServices.uploadImage(payload)),
         error: (error: any) => {
           loadingModule.actions.off();
           return errorActions.throwError(error);
         },
-        next: (res: TStateUploadVideo) =>
-          _actionUploadVideo.uploadVideoNext(res),
+        next: (res: TStateUploadImage) =>
+          _actionUploadImage.uploadImageNext(res),
         complete: loadingModule.actions.off(),
       })
     )
   );
-const uploadVideoEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
+const uploadImageEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
   action$.pipe(
-    ofAction(_actionUploadVideo.uploadVideoNext),
+    ofAction(_actionUploadImage.uploadImageNext),
     map(({ payload }) => {
-      return uploadVideoReducer.actions.set(payload);
+      return uploadImageReducer.actions.set(payload);
     })
   );
 
-const getVideoEpic: Epic<
+const getImageEpic: Epic<
   AnyAction,
   WrapAction<typeof asyncActionWithCallback>, //
   AppState
 > = (action$) =>
   action$.pipe(
-    ofAction(uploadActions.getVideo),
+    ofAction(uploadActions.getImage),
     map(({ payload }) =>
       asyncActionWithCallback({
         previous: loadingModule.actions.on(),
-        asyncFunc: from(uploadServices.getVideo(payload)),
+        asyncFunc: from(uploadServices.getImage(payload)),
         error: (error: any) => {
           loadingModule.actions.off();
           return errorActions.throwError(error);
         },
-        next: (res: TStateVideo) => _actionUploadVideo.getVideoNext(res),
+        next: (res: TStateImage) => _actionUploadImage.getImageNext(res),
         complete: loadingModule.actions.off(),
       })
     )
   );
-const getVideoEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
+const getImageEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
   action$.pipe(
-    ofAction(_actionUploadVideo.getVideoNext),
+    ofAction(_actionUploadImage.getImageNext),
     map(({ payload }) => {
-      return getVideoReducer.actions.set(payload);
+      return getImageReducer.actions.set(payload);
     })
   );
-export const uploadVideoEpics = combineEpics(
-  uploadVideoEpic,
-  uploadVideoEpicNext,
-  getVideoEpic,
-  getVideoEpicNext
+export const uploadImageEpics = combineEpics(
+  uploadImageEpic,
+  uploadImageEpicNext,
+  getImageEpic,
+  getImageEpicNext
 );
