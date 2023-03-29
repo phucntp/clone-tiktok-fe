@@ -14,8 +14,9 @@ const getNewsAll = async (params: TReqNews): Promise<TStateListNews> => {
   }
   return {
     hasError: false,
-    data: res.data,
+    data: res.data.listNews,
     indexVideo: 0,
+    pagination: res.data.pagination,
   };
 };
 

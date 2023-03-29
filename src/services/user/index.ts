@@ -14,7 +14,8 @@ const getListUser = async (params: TReqListUser): Promise<TStateListUser> => {
   }
   return {
     hasError: false,
-    data: res.data,
+    data: res.data.users,
+    pagination: res.data.pagination,
   };
 };
 

@@ -101,7 +101,7 @@ function ListNews() {
   });
 
   useEffect(() => {
-    dispatch(newsActions.getNewsAll({ limit: 5 }));
+    dispatch(newsActions.getNewsAll({ limit: 5, currentPage: 4 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

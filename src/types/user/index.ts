@@ -1,4 +1,4 @@
-import { TMessage } from "../common";
+import { TMessage, TPagination } from "../common";
 
 export type TUser = {
   _id: string;
@@ -14,7 +14,10 @@ export type TUser = {
   users_following: string[];
 };
 
-export type TResListUser = TUser[];
+export type TResListUser = {
+  users: TUser[];
+  pagination: TPagination;
+};
 export type TReqListUser = {
   page?: number;
   limit?: number;
