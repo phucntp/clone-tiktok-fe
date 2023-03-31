@@ -6,17 +6,18 @@ export const initialStateListNews: TStateListNews = {
   hasError: false,
   data: [],
   indexVideo: 0,
-  pagination: {} as TPagination,
+  pagination: {
+    limit: 0,
+    currentPage: 0,
+    total: 0,
+    totalPage: 0,
+  },
 };
 export type TStateListNews = {
   hasError: boolean;
   data: TNews[];
   indexVideo: number;
   pagination: TPagination;
-};
-export type TLoadingNews = {
-  loaded: boolean;
-  id: string;
 };
 
 const convertData = (oldData: TNews[], data: TNews[]) => {
@@ -31,25 +32,11 @@ const convertData = (oldData: TNews[], data: TNews[]) => {
     const newData = newsList.map((item) => {
       return {
         ...item,
-        loaded: false,
       };
     });
     return newData;
   }
   return [];
-};
-
-const setDataId = (data: TNews[], id: string, loaded: boolean) => {
-  const newData = data.map((item) => {
-    if (item._id === id) {
-      return {
-        ...item,
-        loaded: loaded,
-      };
-    }
-    return item;
-  });
-  return newData;
 };
 
 const listNewsReducer = createSlice({
@@ -64,20 +51,8 @@ const listNewsReducer = createSlice({
         indexVideo: 0,
       };
     },
-    clear(state: TStateListNews) {
-      return { ...state, ...initialStateListNews };
-    },
-    setLoadingId(state: TStateListNews, action: PayloadAction<TLoadingNews>) {
-      return {
-        ...state,
-        data: setDataId(state.data, action.payload.id, action.payload.loaded),
-      };
-    },
-    setIndexVideo(state: TStateListNews, action: PayloadAction<number>) {
-      return {
-        ...state,
-        indexVideo: action.payload,
-      };
+    clear() {
+      return { ...initialStateListNews };
     },
   },
 });

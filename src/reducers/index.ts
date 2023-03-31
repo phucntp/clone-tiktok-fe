@@ -16,9 +16,16 @@ import getImageReducer from "./getImage";
 import uploadImageReducer from "./uploadImage";
 import updateAvatarReducer from "./updateAvatar";
 import { uiReducers } from "./ui";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
+
+const authPersistConfig = {
+  key: "auth",
+  storage: storage,
+};
 
 export const reducers = combineReducers({
-  loginReducer: loginReducer.reducer,
+  loginReducer: persistReducer(authPersistConfig, loginReducer.reducer),
   registerReducer: registerReducer.reducer,
   logoutReducer: logoutReducer.reducer,
   forgotPasswordReducer: forgotPasswordReducer.reducer,

@@ -3,15 +3,12 @@
 
 import { useVideo } from "react-use";
 import styles from "./Video.module.scss";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import IconPause from "../icons/IconPause";
 import IconPlay from "../icons/IconPlay";
 import IconUnMute from "../icons/IconUnMute";
 import IconMute from "../icons/IconMute";
 import Loading from "@/components/molecules/ui/Loading/Loading";
-import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "@/store";
-import listNewsReducer from "@/reducers/listNews";
 import LoadingBall from "@/components/molecules/ui/Loading/LoadingBall";
 
 type TProps = {
@@ -20,9 +17,9 @@ type TProps = {
   height?: string | number;
   className?: string;
   id?: string;
-  loaded?: boolean;
-  index?: Number;
+  index?: number;
   idUrl?: string;
+  currentIndex?: number;
 };
 
 function NormalVideo({
@@ -30,16 +27,14 @@ function NormalVideo({
   width = "100%",
   height = "100%",
   className = "",
-  id = "",
   index = 0,
-  idUrl,
+  currentIndex = 0,
 }: TProps) {
-  const dispatch = useDispatch();
-  const indexActive = useSelector(
-    (state: AppState) => state.listNewsReducer.indexVideo
-  );
-  const [video, state, controls, waiting] = useVideo(
+  const [playing] = useState(true);
+  const [video, state, controls, ref] = useVideo(
     <video
+      key={index}
+      id={`${index}`}
       className={styles.video}
       width={width}
       height={height}
@@ -51,29 +46,19 @@ function NormalVideo({
   );
 
   useEffect(() => {
-    if (index === 0 && indexActive) {
-      dispatch(listNewsReducer.actions.setIndexVideo(0));
+    if (ref.current) {
+      if (state.duration && ref.current.id === String(currentIndex)) {
+        ref.current.autoplay = true;
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [ref, state, currentIndex]);
 
-  useEffect(() => {
-    if (state.duration) {
-      dispatch(listNewsReducer.actions.setLoadingId({ id, loaded: true }));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, id, state.duration]);
-
-  useEffect(() => {
-    controls.pause();
-    if (index === indexActive || (index === 0 && !indexActive)) {
-      controls.play();
-    }
-    return () => {
-      controls.pause();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, indexActive]);
+  // useEffect(() => {
+  //   if (playing && state.duration && currentIndex === 0) {
+  //     controls.play();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [playing, state.duration, currentIndex, index]);
 
   const onClickHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -133,7 +118,7 @@ function NormalVideo({
         className={`${styles.containerVideo} cursor-pointer ${className}`}
       >
         {video}
-        {waiting.current?.duration ? displayVideo : <Loading loading />}
+        {ref.current?.duration ? displayVideo : <Loading loading />}
         {/* <br />
       <button onClick={() => controls.volume(0.1)}>Volume: 10%</button>
       <button onClick={() => controls.volume(0.5)}>Volume: 50%</button>

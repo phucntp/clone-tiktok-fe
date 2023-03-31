@@ -16,7 +16,6 @@ export type TNews = {
   author: string;
   createdAt: Date;
   updatedAt: Date;
-  loaded?: boolean;
   width?: number;
   height?: number;
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import Discover from "@/components/molecules/layouts/discover/Discover";
 import FollowingAccount from "@/components/molecules/layouts/following-account/FollowingAccount";
 import Information from "@/components/molecules/layouts/information/Information";
