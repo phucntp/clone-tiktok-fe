@@ -1,42 +1,42 @@
-import { TResListNews } from "@/types/news";
+import { TPagination } from "@/types/common";
+import { TNews } from "@/types/news";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const initialStateListNews: TStateListNews = {
   hasError: false,
   data: [],
-  indexVideo: null,
+  indexVideo: 0,
+  pagination: {
+    limit: 0,
+    currentPage: 0,
+    total: 0,
+    totalPage: 0,
+  },
 };
 export type TStateListNews = {
   hasError: boolean;
-  data: TResListNews;
-  indexVideo: Number | null;
-};
-export type TLoadingNews = {
-  loaded: boolean;
-  id: string;
+  data: TNews[];
+  indexVideo: number;
+  pagination: TPagination;
 };
 
-const convertData = (data: TResListNews) => {
-  const newData = data.map((item) => {
-    return {
-      ...item,
-      loaded: false,
-    };
-  });
-  return newData;
-};
-
-const setDataId = (data: TResListNews, id: string, loaded: boolean) => {
-  const newData = data.map((item) => {
-    if (item._id === id) {
+const convertData = (oldData: TNews[], data: TNews[]) => {
+  const oldIdNews = oldData.map((news) => news._id);
+  let newsList = oldData;
+  if (data?.length) {
+    data.forEach((item) => {
+      if (!oldIdNews.includes(item._id)) {
+        newsList = [...newsList, item];
+      }
+    });
+    const newData = newsList.map((item) => {
       return {
         ...item,
-        loaded: loaded,
       };
-    }
-    return item;
-  });
-  return newData;
+    });
+    return newData;
+  }
+  return [];
 };
 
 const listNewsReducer = createSlice({
@@ -45,25 +45,14 @@ const listNewsReducer = createSlice({
   reducers: {
     set(state: TStateListNews, action: PayloadAction<TStateListNews>) {
       return {
-        ...state,
-        data: convertData(action.payload.data),
+        data: convertData(state.data, action.payload.data),
         hasError: action.payload.hasError,
+        pagination: action.payload.pagination,
+        indexVideo: 0,
       };
     },
-    clear(state: TStateListNews) {
-      return { ...state, ...initialStateListNews };
-    },
-    setLoadingId(state: TStateListNews, action: PayloadAction<TLoadingNews>) {
-      return {
-        ...state,
-        data: setDataId(state.data, action.payload.id, action.payload.loaded),
-      };
-    },
-    setIndexVideo(state: TStateListNews, action: PayloadAction<Number | null>) {
-      return {
-        ...state,
-        indexVideo: action.payload,
-      };
+    clear() {
+      return { ...initialStateListNews };
     },
   },
 });

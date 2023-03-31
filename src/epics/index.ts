@@ -6,6 +6,9 @@ import { forgotPasswordEpics } from "./forgotPassword";
 import { refreshTokenEpics } from "./refreshToken";
 import { newsEpics } from "./news";
 import { uploadVideoEpics } from "./uploadVideo";
+import { uploadImageEpics } from "./uploadImage";
+import { updateAvatarEpics } from "./updateProfile";
+import { userEpics } from "./user";
 
 export const epics = combineEpics(
   loginEpics,
@@ -14,5 +17,8 @@ export const epics = combineEpics(
   forgotPasswordEpics,
   refreshTokenEpics,
   newsEpics,
-  uploadVideoEpics
+  uploadVideoEpics,
+  userEpics,
+  uploadImageEpics,
+  updateAvatarEpics
 );

@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useKeenSlider, KeenSliderPlugin } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import styles from "./ListNews.module.scss";
-import listNewsReducer from "@/reducers/listNews";
 import axios from "axios";
 import { TUrlVideo } from "@/types/news";
 
@@ -71,8 +70,16 @@ const WheelControls: KeenSliderPlugin = (slider) => {
 
 function ListNews() {
   const dispatch = useDispatch();
-  const { data } = useSelector((state: AppState) => state.listNewsReducer);
+  const { data, pagination } = useSelector(
+    (state: AppState) => state.listNewsReducer
+  );
+  const { isLoading } = useSelector(
+    (state: AppState) => state.uiReducers.loadingReducer
+  );
   const [urlInit, setUrlInit] = useState<TUrlVideo[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [key, forceUpdate] = React.useReducer((x) => x + 1, 0);
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: false,
@@ -80,9 +87,7 @@ function ListNews() {
       vertical: true,
       initial: 0,
       slideChanged: (slider) => {
-        dispatch(
-          listNewsReducer.actions.setIndexVideo(slider.track.details.abs)
-        );
+        setCurrentIndex(slider.track.details.abs);
       },
     },
     [WheelControls]
@@ -98,10 +103,37 @@ function ListNews() {
         html.style.overflow = "auto";
       }
     };
-  });
+  }, []);
 
   useEffect(() => {
-    dispatch(newsActions.getNewsAll({ limit: 5 }));
+    if (
+      pagination.total &&
+      !isLoading &&
+      data.length &&
+      currentIndex === data.length - 1
+    ) {
+      if (
+        pagination.currentPage &&
+        pagination.totalPage &&
+        pagination.currentPage < pagination.totalPage
+      ) {
+        dispatch(
+          newsActions.getNewsAll({
+            limit: pagination.limit,
+            currentPage: pagination.currentPage + 1,
+          })
+        );
+      }
+    }
+  }, [pagination, currentIndex, data, dispatch, isLoading]);
+
+  useEffect(() => {
+    dispatch(
+      newsActions.getNewsAll({
+        limit: 5,
+        currentPage: 1,
+      })
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -112,27 +144,34 @@ function ListNews() {
         setUrlInit((prev) => [...prev, { url, id: item._id }]);
       });
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    forceUpdate();
+  }, [data]);
 
   return (
-    <div className={styles.containerHome}>
-      <div
-        ref={sliderRef}
-        className="keen-slider"
-        style={{ width: "100%", height: "100vh" }}
-      >
-        {data?.length &&
-          data.map((item, index) => (
-            <ItemNews
-              index={index}
-              key={item._id}
-              urlVideo={urlInit.find((url) => url.id === item._id)}
-              data={item}
-            />
-          ))}
-      </div>
-    </div>
+    <>
+      {data && data.length ? (
+        <div className={styles.containerHome}>
+          <div
+            key={key}
+            ref={sliderRef}
+            className="keen-slider"
+            style={{ width: "100%", height: "100vh" }}
+          >
+            {data.map((item, index) => (
+              <ItemNews
+                index={index}
+                key={item._id}
+                urlVideo={urlInit.find((url) => url.id === item._id)}
+                data={item}
+                currentIndex={currentIndex}
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
   );
 }
 

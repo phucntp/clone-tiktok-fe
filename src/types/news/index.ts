@@ -1,3 +1,5 @@
+import { TMessage, TPagination } from "../common";
+
 export type TNews = {
   _id: string;
   title: string;
@@ -14,19 +16,20 @@ export type TNews = {
   author: string;
   createdAt: Date;
   updatedAt: Date;
-  loaded?: boolean;
   width?: number;
   height?: number;
 };
 
-export type TResListNews = TNews[];
-export type TResFavorite = {
-  message: string;
+export type TResListNews = {
+  listNews: TNews[];
+  pagination: TPagination;
 };
+export type TResFavorite = TMessage;
 
 export type TReqNews = {
   page?: number;
   limit?: number;
+  currentPage?: number;
 };
 export type TReqId = {
   idNews?: string;

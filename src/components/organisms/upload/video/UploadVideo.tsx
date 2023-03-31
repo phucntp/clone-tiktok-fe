@@ -4,7 +4,7 @@ import uploadActions from "@/actions/upload";
 import NormalButton from "@/components/atoms/buttons/NormalButton";
 import InputNormal from "@/components/atoms/form/inputs/input-normal/InputNormal";
 import SelectBox from "@/components/atoms/form/select-box/SelectBox";
-import UploadBasic from "@/components/molecules/upload/UploadBasic";
+import UploadVideoBasic from "@/components/molecules/upload/video/UploadVideoBasic";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -23,7 +23,7 @@ function UploadVideo() {
     if (file?.name) {
       const formData: FormData = new FormData();
       formData.append("video", file);
-      dispatch(uploadActions.upload(formData));
+      dispatch(uploadActions.uploadVideo(formData));
     }
   };
   return (
@@ -33,7 +33,7 @@ function UploadVideo() {
         <p>{t("upload.description")}</p>
       </div>
       <form>
-        <UploadBasic setFile={handleFile} />
+        <UploadVideoBasic setFile={handleFile} />
         <div className={styles.formRight}>
           <div className={styles.itemRight}>
             <label className="text-black">{t("upload.caption")}</label>

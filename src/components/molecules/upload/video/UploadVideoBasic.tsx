@@ -5,7 +5,7 @@ import NormalVideo from "@/components/atoms/video/NormalVideo";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import styles from "./UploadBasic.module.scss";
+import styles from "./UploadVideoBasic.module.scss";
 import { MAX_LENGTH_SIZE_VIDEO } from "@/constant/file";
 import { convertUrl } from "@/utils/common/file";
 

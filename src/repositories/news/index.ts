@@ -1,3 +1,4 @@
+import { TReqFavorite } from "@/types/news";
 import { apiClient } from "@/utils/axios";
 import { replaceString } from "@/utils/common/string";
 import { AxiosRequestConfig } from "axios";
@@ -22,6 +23,6 @@ export const newsRepositories = {
       url: replaceString(getNewsId.url, ":id", pathParams),
       config,
     }),
-  favoriteNews: (config?: AxiosRequestConfig<any>) =>
-    apiClient.postMethod({ url: favoriteNews.url, config }),
+  favoriteNews: (data: TReqFavorite, config?: AxiosRequestConfig<any>) =>
+    apiClient.postMethod({ url: favoriteNews.url, data, config }),
 };

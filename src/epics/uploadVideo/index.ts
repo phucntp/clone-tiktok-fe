@@ -9,11 +9,13 @@ import { AppState } from "@/store";
 import uploadVideoReducer, { TStateUploadVideo } from "@/reducers/uploadVideo";
 import uploadActions from "@/actions/upload";
 import { uploadServices } from "@/services/upload";
+import getVideoReducer, { TStateVideo } from "@/reducers/getVideo";
 
 const ac = actionCreatorFactory("[epics/uploadVideo]");
 
 const _actionUploadVideo = {
-  uploadVideoNext: ac<TStateUploadVideo>("getExpertStatusNext"),
+  uploadVideoNext: ac<TStateUploadVideo>("uploadVideoNext"),
+  getVideoNext: ac<TStateVideo>("getVideoNext"),
 };
 const uploadVideoEpic: Epic<
   AnyAction,
@@ -21,7 +23,7 @@ const uploadVideoEpic: Epic<
   AppState
 > = (action$) =>
   action$.pipe(
-    ofAction(uploadActions.upload),
+    ofAction(uploadActions.uploadVideo),
     map(({ payload }) =>
       asyncActionWithCallback({
         previous: loadingModule.actions.on(),
@@ -43,7 +45,37 @@ const uploadVideoEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
       return uploadVideoReducer.actions.set(payload);
     })
   );
+
+const getVideoEpic: Epic<
+  AnyAction,
+  WrapAction<typeof asyncActionWithCallback>, //
+  AppState
+> = (action$) =>
+  action$.pipe(
+    ofAction(uploadActions.getVideo),
+    map(({ payload }) =>
+      asyncActionWithCallback({
+        previous: loadingModule.actions.on(),
+        asyncFunc: from(uploadServices.getVideo(payload)),
+        error: (error: any) => {
+          loadingModule.actions.off();
+          return errorActions.throwError(error);
+        },
+        next: (res: TStateVideo) => _actionUploadVideo.getVideoNext(res),
+        complete: loadingModule.actions.off(),
+      })
+    )
+  );
+const getVideoEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
+  action$.pipe(
+    ofAction(_actionUploadVideo.getVideoNext),
+    map(({ payload }) => {
+      return getVideoReducer.actions.set(payload);
+    })
+  );
 export const uploadVideoEpics = combineEpics(
   uploadVideoEpic,
-  uploadVideoEpicNext
+  uploadVideoEpicNext,
+  getVideoEpic,
+  getVideoEpicNext
 );

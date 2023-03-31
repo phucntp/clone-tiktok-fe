@@ -11,11 +11,12 @@ import { useTranslations } from "next-intl";
 
 type TProps = {
   data: TNews;
-  index?: Number;
+  index?: number;
   urlVideo?: TUrlVideo;
+  currentIndex: number;
 };
 
-function ItemNews({ data, index = 0, urlVideo }: TProps) {
+function ItemNews({ data, index = 0, urlVideo, currentIndex }: TProps) {
   const breakpoint = useBreakpoint();
   const t = useTranslations();
 
@@ -25,10 +26,10 @@ function ItemNews({ data, index = 0, urlVideo }: TProps) {
         <div className={styles.videoItem}>
           <NormalVideo
             index={index}
-            loaded={data.loaded}
             id={data._id}
             src={urlVideo?.url}
             idUrl={urlVideo?.id}
+            currentIndex={currentIndex}
           />
         </div>
       )}
@@ -50,10 +51,10 @@ function ItemNews({ data, index = 0, urlVideo }: TProps) {
                 <NormalVideo
                   index={index}
                   className={`w-${data.width}-px h-${data.height}-px background-gray`}
-                  loaded={data.loaded}
                   id={data._id}
                   src={urlVideo?.url}
                   idUrl={urlVideo?.id}
+                  currentIndex={currentIndex}
                 />
               )}
               <div className={styles.listButtonSocial}>
