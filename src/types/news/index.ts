@@ -42,3 +42,13 @@ export type TUrlVideo = {
   id: string;
   url: string;
 };
+
+export type TReqCreateNews = {
+  title: string;
+  music?: string;
+  description?: string;
+  tag?: string[];
+  url: string;
+  height: number;
+  width: number;
+};

@@ -39,14 +39,14 @@ function UploadImageBasic({ setFile = () => {} }: TProps) {
         setFiles(
           acceptedFiles.map((file) =>
             Object.assign(file, {
-              preview: convertUrl(file, "image/*"),
+              preview: convertUrl(file),
             })
           )
         );
         setFile(
           acceptedFiles.map((file) =>
             Object.assign(file, {
-              preview: convertUrl(file, "image/*"),
+              preview: convertUrl(file),
             })
           )[0]
         );

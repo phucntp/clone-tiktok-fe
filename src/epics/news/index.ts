@@ -2,7 +2,7 @@ import { errorActions } from "@/actions/errorActions";
 import loadingModule from "@/reducers/ui/loading";
 import { asyncActionWithCallback, WrapAction } from "@/types/store/epic";
 import { combineEpics, Epic } from "redux-observable";
-import { from, map } from "rxjs";
+import { concatMap, from, map } from "rxjs";
 import actionCreatorFactory, { AnyAction } from "typescript-fsa";
 import { ofAction } from "typescript-fsa-redux-observable-of-action";
 import { AppState } from "@/store";
@@ -11,6 +11,8 @@ import newsActions from "@/actions/news";
 import { newsServices } from "@/services/news";
 import newsReducer, { TStateNews } from "@/reducers/news";
 import favoriteNewsReducer, { TStateFavorite } from "@/reducers/favoriteNews";
+import createNewsReducer, { TStateCreateNews } from "@/reducers/createNews";
+import { uploadServices } from "@/services/upload";
 
 const ac = actionCreatorFactory("[epics/news]");
 
@@ -18,6 +20,7 @@ const _actionNews = {
   listNewsNext: ac<TStateListNews>("getListNewsNext"),
   newsNext: ac<TStateNews>("getNewsNext"),
   favoriteNext: ac<TStateFavorite>("favoriteNext"),
+  createNewsNext: ac<TStateCreateNews>("createNews"),
 };
 const listNewsEpic: Epic<
   AnyAction,
@@ -91,11 +94,48 @@ const favoriteNewsEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
       return favoriteNewsReducer.actions.set(payload);
     })
   );
+
+const createNewsEpic: Epic<
+  AnyAction,
+  WrapAction<typeof asyncActionWithCallback>, //
+  AppState
+> = (action$) =>
+  action$.pipe(
+    ofAction(newsActions.createNews),
+    map(({ payload }) =>
+      asyncActionWithCallback({
+        previous: loadingModule.actions.on(),
+        asyncFunc: from(uploadServices.uploadVideo(payload.file)).pipe(
+          concatMap((res) => {
+            return newsServices.createdNews({
+              ...payload.data,
+              url: res.data.url,
+            });
+          })
+        ),
+        error: (error: any) => {
+          loadingModule.actions.off();
+          return errorActions.throwError(error);
+        },
+        next: (res: TStateCreateNews) => _actionNews.createNewsNext(res),
+        complete: loadingModule.actions.off(),
+      })
+    )
+  );
+const createNewsEpicNext: Epic<AnyAction, AnyAction, AppState> = (action$) =>
+  action$.pipe(
+    ofAction(_actionNews.createNewsNext),
+    map(({ payload }) => {
+      return createNewsReducer.actions.set(payload);
+    })
+  );
 export const newsEpics = combineEpics(
   listNewsEpic,
   listNewsEpicNext,
   newsEpic,
   newsEpicNext,
   favoriteNewsEpic,
-  favoriteNewsEpicNext
+  favoriteNewsEpicNext,
+  createNewsEpic,
+  createNewsEpicNext
 );

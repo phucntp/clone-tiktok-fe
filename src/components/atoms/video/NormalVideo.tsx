@@ -48,10 +48,12 @@ function NormalVideo({
   useEffect(() => {
     if (ref.current) {
       if (state.duration && ref.current.id === String(currentIndex)) {
-        ref.current.autoplay = true;
+        ref.current.play();
+      } else {
+        ref.current.pause();
       }
     }
-  }, [ref, state, currentIndex]);
+  }, [currentIndex, ref, state.duration]);
 
   // useEffect(() => {
   //   if (playing && state.duration && currentIndex === 0) {

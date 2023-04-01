@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 "use client";
 import newsActions from "@/actions/news";
 import ItemNews from "@/components/atoms/news/ItemNews";
@@ -7,8 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useKeenSlider, KeenSliderPlugin } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import styles from "./ListNews.module.scss";
-import axios from "axios";
-import { TUrlVideo } from "@/types/news";
+import uploadActions from "@/actions/upload";
+import getVideoReducer from "@/reducers/getVideo";
 
 const WheelControls: KeenSliderPlugin = (slider) => {
   let touchTimeout: ReturnType<typeof setTimeout>;
@@ -70,17 +71,16 @@ const WheelControls: KeenSliderPlugin = (slider) => {
 
 function ListNews() {
   const dispatch = useDispatch();
-  const { data, pagination } = useSelector(
+  const { data, pagination, dataNew } = useSelector(
     (state: AppState) => state.listNewsReducer
   );
   const { isLoading } = useSelector(
     (state: AppState) => state.uiReducers.loadingReducer
   );
-  const [urlInit, setUrlInit] = useState<TUrlVideo[]>([]);
+  const { listVideo } = useSelector((state: AppState) => state.getVideoReducer);
   const [currentIndex, setCurrentIndex] = useState(0);
   // eslint-disable-next-line no-unused-vars
-  const [key, forceUpdate] = React.useReducer((x) => x + 1, 0);
-  const [sliderRef] = useKeenSlider<HTMLDivElement>(
+  const [sliderRef, internalSlider] = useKeenSlider<HTMLDivElement>(
     {
       loop: false,
       rubberband: false,
@@ -138,21 +138,27 @@ function ListNews() {
   }, []);
 
   useEffect(() => {
-    data.map(async (item) => {
-      await axios.get(item.url, { responseType: "blob" }).then((response) => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        setUrlInit((prev) => [...prev, { url, id: item._id }]);
-      });
-    });
-    forceUpdate();
+    internalSlider?.current?.update();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  useEffect(() => {
+    dataNew.map((news) => {
+      dispatch(
+        uploadActions.getVideo({
+          id: news._id,
+          url: news.url,
+        })
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataNew]);
 
   return (
     <>
-      {data && data.length ? (
-        <div className={styles.containerHome}>
+      <div className={styles.containerHome}>
+        {data && data.length ? (
           <div
-            key={key}
             ref={sliderRef}
             className="keen-slider"
             style={{ width: "100%", height: "100vh" }}
@@ -161,16 +167,16 @@ function ListNews() {
               <ItemNews
                 index={index}
                 key={item._id}
-                urlVideo={urlInit.find((url) => url.id === item._id)}
+                urlVideo={listVideo.find((url) => url.id === item._id)}
                 data={item}
                 currentIndex={currentIndex}
               />
             ))}
           </div>
-        </div>
-      ) : (
-        <></>
-      )}
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 }

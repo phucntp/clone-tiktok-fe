@@ -1,6 +1,3 @@
-export const convertUrl = (file: any, type = "video/mp4") => {
-  const blob = new Blob([file], {
-    type: type,
-  });
-  return URL.createObjectURL(blob);
+export const convertUrl = (file: any) => {
+  return window.URL.createObjectURL(new Blob([file]));
 };

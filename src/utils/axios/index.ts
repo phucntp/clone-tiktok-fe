@@ -12,9 +12,15 @@ export type TPostCommonConfig = {
 };
 
 const getMethod = (commonConfig: TGetCommonConfig) => {
-  return axios.get(process.env.NEXT_PUBLIC_API_BASE + commonConfig.url, {
-    params: commonConfig.config?.params,
-  });
+  return axios.get(
+    commonConfig.url.includes(process.env.NEXT_PUBLIC_API_BASE ?? "")
+      ? commonConfig.url
+      : process.env.NEXT_PUBLIC_API_BASE + commonConfig.url,
+    {
+      ...commonConfig.config,
+      params: commonConfig.config?.params,
+    }
+  );
 };
 
 const postMethod = (commonConfig: TPostCommonConfig) => {

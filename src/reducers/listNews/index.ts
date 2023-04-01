@@ -12,12 +12,14 @@ export const initialStateListNews: TStateListNews = {
     total: 0,
     totalPage: 0,
   },
+  dataNew: [],
 };
 export type TStateListNews = {
   hasError: boolean;
   data: TNews[];
   indexVideo: number;
   pagination: TPagination;
+  dataNew: TNews[];
 };
 
 const convertData = (oldData: TNews[], data: TNews[]) => {
@@ -29,12 +31,7 @@ const convertData = (oldData: TNews[], data: TNews[]) => {
         newsList = [...newsList, item];
       }
     });
-    const newData = newsList.map((item) => {
-      return {
-        ...item,
-      };
-    });
-    return newData;
+    return newsList;
   }
   return [];
 };
@@ -49,6 +46,7 @@ const listNewsReducer = createSlice({
         hasError: action.payload.hasError,
         pagination: action.payload.pagination,
         indexVideo: 0,
+        dataNew: action.payload.dataNew,
       };
     },
     clear() {

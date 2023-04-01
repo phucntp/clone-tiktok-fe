@@ -74,7 +74,7 @@ const getImage = async (data: TFile): Promise<TStateImage> => {
   return {
     ...initStateImage,
     hasError: false,
-    data: { url: convertUrl(res.data, "image/*"), id: data.id },
+    data: { url: convertUrl(res.data), id: data.id },
   };
 };
 

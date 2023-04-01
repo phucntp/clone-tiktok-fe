@@ -15,6 +15,7 @@ import getVideoReducer from "./getVideo";
 import getImageReducer from "./getImage";
 import uploadImageReducer from "./uploadImage";
 import updateAvatarReducer from "./updateAvatar";
+import createNewsReducer from "./createNews";
 import { uiReducers } from "./ui";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
@@ -41,5 +42,6 @@ export const reducers = combineReducers({
   getImageReducer: getImageReducer.reducer,
   uploadImageReducer: uploadImageReducer.reducer,
   updateAvatarReducer: updateAvatarReducer.reducer,
+  createNewsReducer: createNewsReducer.reducer,
   uiReducers,
 });

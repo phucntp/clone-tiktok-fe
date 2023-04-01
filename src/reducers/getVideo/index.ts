@@ -15,11 +15,13 @@ export type TStateVideo = {
   listVideo: TFile[];
 };
 
-const convertListVideo = (video: TFile): TFile[] => {
-  if (!initStateVideo.listVideo.map((item) => item.id)?.includes(video.id)) {
-    return [...initStateVideo.listVideo, video];
+const convertListVideo = (oldData: TFile[], video: TFile): TFile[] => {
+  const oldIdVideo = oldData?.map((item) => item.id);
+  let listVideo = oldData;
+  if (!oldIdVideo.includes(video.id) || oldData.length === 0) {
+    listVideo = [...listVideo, video];
   }
-  return initStateVideo.listVideo;
+  return listVideo;
 };
 
 const getVideoReducer = createSlice({
@@ -28,9 +30,8 @@ const getVideoReducer = createSlice({
   reducers: {
     set(state: TStateVideo, action: PayloadAction<TStateVideo>) {
       return {
-        ...state,
         data: action.payload.data,
-        listVideo: convertListVideo(action.payload.data),
+        listVideo: convertListVideo(state.listVideo, action.payload.data),
         hasError: action.payload.hasError,
       };
     },
