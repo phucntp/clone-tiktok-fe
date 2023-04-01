@@ -1,6 +1,7 @@
 "use client";
 
-import uploadActions from "@/actions/upload";
+import newsActions from "@/actions/news";
+// import uploadActions from "@/actions/upload";
 import NormalButton from "@/components/atoms/buttons/NormalButton";
 import InputNormal from "@/components/atoms/form/inputs/input-normal/InputNormal";
 import SelectBox from "@/components/atoms/form/select-box/SelectBox";
@@ -23,7 +24,19 @@ function UploadVideo() {
     if (file?.name) {
       const formData: FormData = new FormData();
       formData.append("video", file);
-      dispatch(uploadActions.uploadVideo(formData));
+      // dispatch(uploadActions.uploadVideo(formData));
+      dispatch(
+        newsActions.createNews({
+          file: formData,
+          data: {
+            title: "Test",
+            description: "Information test",
+            url: "",
+            height: 465,
+            width: 260,
+          },
+        })
+      );
     }
   };
   return (

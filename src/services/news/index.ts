@@ -1,8 +1,9 @@
+import { initStateCreateNews, TStateCreateNews } from "@/reducers/createNews";
 import { initialStateFavorite, TStateFavorite } from "@/reducers/favoriteNews";
 import { TStateListNews, initialStateListNews } from "@/reducers/listNews";
 import { initialStateNews, TStateNews } from "@/reducers/news";
 import { newsRepositories } from "@/repositories/news";
-import { TReqFavorite, TReqId, TReqNews } from "@/types/news";
+import { TReqCreateNews, TReqFavorite, TReqId, TReqNews } from "@/types/news";
 
 const getNewsAll = async (params: TReqNews): Promise<TStateListNews> => {
   const res = await newsRepositories.getNewsAll({ params });
@@ -17,6 +18,7 @@ const getNewsAll = async (params: TReqNews): Promise<TStateListNews> => {
     data: res.data.listNews,
     indexVideo: 0,
     pagination: res.data.pagination,
+    dataNew: res.data.listNews,
   };
 };
 
@@ -48,8 +50,23 @@ const favoriteNews = async (data: TReqFavorite): Promise<TStateFavorite> => {
   };
 };
 
+const createdNews = async (data: TReqCreateNews): Promise<TStateCreateNews> => {
+  const res = await newsRepositories.createNews(data);
+  if (!res || !res?.data) {
+    return {
+      ...initStateCreateNews,
+      hasError: true,
+    };
+  }
+  return {
+    hasError: false,
+    data: res.data,
+  };
+};
+
 export const newsServices = {
   getNewsId,
   getNewsAll,
   favoriteNews,
+  createdNews,
 };
