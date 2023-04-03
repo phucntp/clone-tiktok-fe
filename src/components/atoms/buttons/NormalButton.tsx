@@ -1,4 +1,7 @@
+'use client'
+import { AppState } from "@/store";
 import React from "react";
+import { useSelector } from "react-redux";
 
 interface Props {
   label?: string;
@@ -15,11 +18,13 @@ function NormalButton({
   handleClick = () => {},
   disabled = false,
 }: Props) {
+  const {isLoading} = useSelector((state: AppState) => state.uiReducers.loadingReducer)
+  
   return (
     <button
       type={type}
       onClick={handleClick}
-      disabled={disabled}
+      disabled={isLoading || disabled}
       className={`normal-button ${className}`}
     >
       {label}
