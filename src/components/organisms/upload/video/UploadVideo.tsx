@@ -24,7 +24,6 @@ function UploadVideo() {
     if (file?.name) {
       const formData: FormData = new FormData();
       formData.append("video", file);
-      // dispatch(uploadActions.uploadVideo(formData));
       dispatch(
         newsActions.createNews({
           file: formData,

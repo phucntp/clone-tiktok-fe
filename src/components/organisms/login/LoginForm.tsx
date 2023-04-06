@@ -14,7 +14,7 @@ import { AppState } from "@/store";
 import { useTranslations } from "next-intl";
 import { useImmer } from "use-immer";
 import Message from "@/components/atoms/form/message/Message";
-import { minLength, required, validatePassword } from "@/utils/validate";
+import { minLength, required, validateEmail, validatePassword } from "@/utils/validate";
 import InputPassword from "@/components/atoms/form/inputs/input-password/InputPassword";
 
 export default function LoginForm() {
@@ -27,7 +27,7 @@ export default function LoginForm() {
   });
 
   const dispatch = useDispatch();
-  // const auth = useSelector((state: AppState) => state.loginReducer)
+  const {isLoading} = useSelector((state: AppState) => state.uiReducers.loadingReducer)
   const t = useTranslations();
 
   const toggleModal = useCallback(() => {
@@ -46,7 +46,7 @@ export default function LoginForm() {
     });
   };
 
-  const validateEmail = () => {
+  const validateEmailLogin = () => {
     if (!required(userInfo.email)) {
       setErrEmail((draft) => {
         (draft.hasError = true),
@@ -77,21 +77,16 @@ export default function LoginForm() {
   };
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    validateEmail();
+    validateEmailLogin();
     valPassword();
   };
 
   const handleClick = useCallback(async () => {
-    // const data = await fetch('http://localhost:9000/api/users/login', {
-    //   method: 'POST',
-    //   credentials: 'include',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //     // 'Content-Type': 'application/x-www-form-urlencoded',
-    //   },
-    //   body: JSON.stringify({email: "phuc@gmail.com", password: "1234567"})
-    // })
-    dispatch(loginActions.login(userInfo));
+    dispatch(loginActions.login({
+      username: !validateEmail(userInfo.email) ? userInfo.email : undefined,
+      password: userInfo.password,
+      email: validateEmail(userInfo.email) ? userInfo.email : undefined
+    }));
   }, [dispatch, userInfo]);
   return (
     <>
