@@ -12,11 +12,11 @@ const getNewsId = {
 };
 
 const favoriteNews = {
-  url: "news/favorite",
+  url: "/news/favorite",
 };
 
 const createNews = {
-  url: "news/create",
+  url: "/news/create",
 };
 
 export const newsRepositories = {

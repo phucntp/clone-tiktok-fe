@@ -47,7 +47,7 @@ export type TReqCreateNews = {
   title: string;
   music?: string;
   description?: string;
-  tag?: string[];
+  tags?: string[];
   url: string;
   height: number;
   width: number;
