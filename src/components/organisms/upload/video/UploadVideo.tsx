@@ -13,6 +13,7 @@ import styles from "./UploadVideo.module.scss";
 
 function UploadVideo() {
   const [file, setFile] = useState<File>();
+  const [title, setTitle] = useState<string>("");
   const dispatch = useDispatch();
   const t = useTranslations();
 
@@ -28,20 +29,31 @@ function UploadVideo() {
         newsActions.createNews({
           file: formData,
           data: {
-            title: "Test",
+            title,
             description: "Information test",
             url: "",
             height: 465,
             width: 260,
+            tags: ["trending", "top", "like"],
           },
         })
       );
     }
   };
+
+  const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
   return (
     <div className={styles.uploadContainer}>
       <div className="text-black pb-20">
         <h2 className="mb-5">{t("upload.title")}</h2>
+        <InputNormal
+          value={title}
+          onChange={handleChangeTitle}
+          className="background-white text-black"
+          placeholder={t("upload.title")}
+        />
         <p>{t("upload.description")}</p>
       </div>
       <form>
