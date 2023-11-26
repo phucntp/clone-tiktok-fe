@@ -41,7 +41,7 @@ function NormalVideo({
       src={src}
       playsInline
       loop
-      preload="metadata"
+      preload="auto"
     ></video>
   );
 
