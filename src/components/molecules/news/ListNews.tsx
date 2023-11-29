@@ -87,7 +87,7 @@ function ListNews() {
       vertical: true,
       initial: 0,
       slideChanged: (slider) => {
-        setCurrentIndex(slider.track.details.abs);
+        setCurrentIndex(slider.track.details.abs || 0);
       },
     },
     [WheelControls]
@@ -138,19 +138,36 @@ function ListNews() {
   }, []);
 
   useEffect(() => {
+    if (currentIndex >= 0) {
+      dispatch(
+        uploadActions.getVideo({
+          id: data?.[currentIndex]?._id,
+          url: data?.[currentIndex]?.url,
+        })
+      );
+    }
+  }, [currentIndex, data, dispatch]);
+
+  useEffect(() => {
     internalSlider?.current?.update();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   useEffect(() => {
-    dataNew.map((news) => {
-      dispatch(
-        uploadActions.getVideo({
-          id: news._id,
-          url: news.url,
-        })
-      );
-    });
+    // dataNew.map((news) => {
+    //   dispatch(
+    //     uploadActions.getVideo({
+    //       id: news._id,
+    //       url: news.url,
+    //     })
+    //   );
+    // });
+    dispatch(
+      uploadActions.getVideo({
+        id: dataNew?.[0]?._id,
+        url: dataNew?.[0]?.url,
+      })
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataNew]);
 
