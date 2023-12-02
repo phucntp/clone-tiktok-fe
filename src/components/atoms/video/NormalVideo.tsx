@@ -3,7 +3,7 @@
 
 import { useVideo } from "react-use";
 import styles from "./Video.module.scss";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import IconPause from "../icons/IconPause";
 import IconPlay from "../icons/IconPlay";
 import IconUnMute from "../icons/IconUnMute";
@@ -31,6 +31,13 @@ function NormalVideo({
   currentIndex = 0,
 }: TProps) {
   const [playing] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const handleProgress = (e) => {
+    if (isNaN(e.target.duration))
+      // duration is NotaNumber at Beginning.
+      return;
+    setProgress((e.target.currentTime / e.target.duration) * 100);
+  };
   const [video, state, controls, ref] = useVideo(
     <video
       key={index}
@@ -42,6 +49,7 @@ function NormalVideo({
       playsInline
       loop
       preload="auto"
+      onProgress={handleProgress}
     ></video>
   );
 
@@ -65,16 +73,23 @@ function NormalVideo({
   const onClickHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    if (event.detail === 1) {
-      if (state.playing) {
-        controls.pause();
-      } else {
-        controls.play();
-      }
-      // eslint-disable-next-line no-empty
-    } else if (event.detail === 2) {
-    }
+    // if (event.detail === 1) {
+    //   if (state.playing) {
+    //     controls.pause();
+    //   } else {
+    //     controls.play();
+    //   }
+    //   // eslint-disable-next-line no-empty
+    // } else if (event.detail === 2) {
+    // }
   };
+
+  const handleChangeProgress = useCallback(
+    (e: any) => {
+      controls.seek(e.target.value);
+    },
+    [controls]
+  );
 
   const displayVideo = useMemo(() => {
     if ((!state.playing && !state.paused) || (state.playing && !state.time)) {
@@ -91,6 +106,13 @@ function NormalVideo({
             <IconPause />
           </button>
         )}
+        <input
+          type="range"
+          className="styled-slider slider-progress"
+          max={state.duration}
+          value={state.time}
+          onChange={handleChangeProgress}
+        />
         {state.muted ? (
           <button onClick={controls.unmute}>
             <IconMute />
@@ -121,13 +143,9 @@ function NormalVideo({
       >
         {video}
         {ref.current?.duration ? displayVideo : <Loading loading />}
-        {/* <br />
-      <button onClick={() => controls.volume(0.1)}>Volume: 10%</button>
-      <button onClick={() => controls.volume(0.5)}>Volume: 50%</button>
-      <button onClick={() => controls.volume(1)}>Volume: 100%</button>
-      <br />
-      <button onClick={() => controls.seek(state.time - 5)}>-5 sec</button>
-      <button onClick={() => controls.seek(state.time + 5)}>+5 sec</button> */}
+        {/* <button onClick={() => controls.volume(0.1)}>Volume: 10%</button> */}
+        {/* <button onClick={() => controls.volume(0.5)}>Volume: 50%</button> */}
+        {/* <button onClick={() => controls.volume(1)}>Volume: 100%</button> */}
       </div>
     </>
   );
