@@ -31,13 +31,6 @@ function NormalVideo({
   currentIndex = 0,
 }: TProps) {
   const [playing] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const handleProgress = (e) => {
-    if (isNaN(e.target.duration))
-      // duration is NotaNumber at Beginning.
-      return;
-    setProgress((e.target.currentTime / e.target.duration) * 100);
-  };
   const [video, state, controls, ref] = useVideo(
     <video
       key={index}
@@ -49,7 +42,6 @@ function NormalVideo({
       playsInline
       loop
       preload="auto"
-      onProgress={handleProgress}
     ></video>
   );
 
