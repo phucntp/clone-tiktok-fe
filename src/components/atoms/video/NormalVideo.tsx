@@ -100,7 +100,7 @@ function NormalVideo({
         )}
         <input
           type="range"
-          className="styled-slider slider-progress"
+          className="styled-slider slider-progress w-70"
           max={state.duration}
           value={state.time}
           onChange={handleChangeProgress}
