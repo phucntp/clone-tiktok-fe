@@ -65,15 +65,15 @@ function NormalVideo({
   const onClickHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    // if (event.detail === 1) {
-    //   if (state.playing) {
-    //     controls.pause();
-    //   } else {
-    //     controls.play();
-    //   }
-    //   // eslint-disable-next-line no-empty
-    // } else if (event.detail === 2) {
-    // }
+    if (event.detail === 1) {
+      if (state.playing) {
+        controls.pause();
+      } else {
+        controls.play();
+      }
+      // eslint-disable-next-line no-empty
+    } else if (event.detail === 2) {
+    }
   };
 
   const handleChangeProgress = useCallback(
@@ -100,7 +100,7 @@ function NormalVideo({
         )}
         <input
           type="range"
-          className="styled-slider slider-progress"
+          className="styled-slider slider-progress w-70"
           max={state.duration}
           value={state.time}
           onChange={handleChangeProgress}
