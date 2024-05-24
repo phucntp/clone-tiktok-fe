@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "homepage": "./",
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.2.32",
     "@next/font": "13.1.6",
